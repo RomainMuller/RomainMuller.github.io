@@ -1,1 +1,37 @@
-theme: jekyll-theme-midnight
+---
+defaults:
+  - scope:
+      path: '' # Everywhere
+    values:
+      author: Romain Marcadier-Muller
+encoding: UTF-8
+future: true
+gfm_quirks: paragraph_end
+gist:
+  noscript: false
+highlighter: rouge
+jailed: false
+kramdown:
+  input: GFM
+  hard_wrap: false
+  math_engine: mathjax
+  syntax_highlighter: rouge
+lsi: false
+plugins:
+  - jekyll-avatar
+  - jekyll-feed
+  - jekyll-mentions
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jemoji
+timezone: Europe/Paris
+safe: true
+strict_front_matter: true
+# Site-specific configuration
+lang: en_US
+title: GeekyThoughts
+description: A blog about code.
+collections:
+  posts:
+    output: true
+    permalink: /:collection/:year-:month-:day/:title:output_ext
