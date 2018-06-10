@@ -1,0 +1,4 @@
+{% assign icon = site.data.octicons[include.name] %}
+<svg aria-hidden="true" class="octicon octicon-{{ icon.name }}" width="{{ icon.width }}" height="{{ icon.height }}" role="img" version="1.1" viewBox="0 0 {{ icon.width }} {{ icon.height }}">
+  {{ icon.path }}
+</svg>

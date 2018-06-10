@@ -1,0 +1,18 @@
+<nav>
+  <div class="container">
+    <div class="nav-wrapper">
+      <a href="{{ root_url }}/" class="brand-logo amber-text text-darken-4">GeekyThoughts</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+      {% assign pages = site.pages | where_exp: "item", "item.title" %}
+      {% for p in pages %}
+        <li{% if page.url == p.url %} class="active"{% endif %}>
+          <a href="{{ p.url }}">
+            {% if p.icon %}{% include octicon.html name=p.icon %}{% endif %}
+            {{ p.title }}
+          </a>
+        </li>
+      {% endfor %}
+      </ul>
+    </div>
+  </div>
+</nav>

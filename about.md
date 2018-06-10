@@ -1,5 +1,6 @@
 ---
-permalink: about.html
+title: About
+icon: person
 ---
 ## OpenPGP keys
 My OpenPGP keys are hosted on my [Keybase account](https://keybase.io/romainmuller):

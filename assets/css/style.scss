@@ -1,24 +1,14 @@
 ---
 ---
-$body-bg: rgb(36, 43, 56);
-$body-color: #fff;
-$dark: rgb(33, 39, 51);
+@import 'materialize';
 
-@import 'bootstrap';
-
-html, body {
-  height: 100%;
+body {
+  background-color: $primary-color-light;
 }
 
-nav.navbar {
-  border-bottom: 1px solid rgb(52, 61, 74);
-}
-
-#root {
-  padding-top: 15px;
-  height: 100%;
-}
-
-pre {
-  color: $body-color;
+// #### OCTICONS ####
+.octicon {
+  display: inline-block;
+  vertical-align: text-top;
+  fill: currentColor;
 }
