@@ -1,14 +1,7 @@
 ---
 ---
-@import 'materialize';
 
-body {
-  background-color: $primary-color-light;
-}
-
-// #### OCTICONS ####
-.octicon {
-  display: inline-block;
-  vertical-align: text-top;
-  fill: currentColor;
-}
+@import "avatar";
+@import "blog-header";
+@import "main";
+@import "post";
