@@ -34,7 +34,7 @@ safe: true
 strict_front_matter: true
 # Site-specific configuration
 lang: en_US
-title: GeekyThoughts
+title: 👨🏻‍💻 GeekyThoughts
 description: A blog about code.
 collections:
   posts:
