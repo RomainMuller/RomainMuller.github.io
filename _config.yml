@@ -34,7 +34,7 @@ safe: true
 strict_front_matter: true
 # Site-specific configuration
 lang: en_US
-title: GeekyThoughts ∙ Blog
+title: Crimson, Eleven, Delight, Petrichor
 description: A blog about code.
 collections:
   posts:
