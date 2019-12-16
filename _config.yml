@@ -1,44 +1,57 @@
----
+title: Crimson 11 Delight Petrichor
+description: >-
+  Write an awesome description for your new site here. You can edit this
+  line in _config.yml. It will appear in your document head meta (for
+  Google search results) and in your feed.xml site description.
+url: "https://blog.geekythoughts.fr"
+baseurl: ''
+keywords:
+  - blog
+  - development
+  - tech
+
+license:
+  spdx: CC-BY-NC-ND-4.0
+  name: Creative Commons Attribution Non Commercial No Derivatives 4.0 International
+
+author:
+  name: Romain Marcadier-Muller
+  github:  RomainMuller
+  keybase: romainmuller
+  twitter: RomainMuller
+
+# Build settings
+plugins:
+  - jekyll-feed
+  - jekyll-octicons
+  - jekyll-paginate
+
+encoding: UTF-8
+timezone: Europe/Paris
+
 defaults:
   - scope:
-      path: '' # Everywhere
-    values:
-      author: Romain Marcadier-Muller
-  - scope:
-      path: _posts
+      path: ''
+      type: 'posts'
     values:
       layout: post
-encoding: UTF-8
-future: true
-gfm_quirks: paragraph_end
-gist:
-  noscript: false
+
+markdown: kramdown
 highlighter: rouge
-jailed: false
 kramdown:
   input: GFM
-  hard_wrap: false
-  math_engine: mathjax
   syntax_highlighter: rouge
-lsi: false
-plugins:
-  - jekyll-avatar
-  - jekyll-feed
-  - jekyll-mentions
-  - jekyll-paginate
-  - jekyll-seo-tag
-  - jekyll-sitemap
-  - jemoji
-timezone: Europe/Paris
-safe: true
-strict_front_matter: true
-# Site-specific configuration
-lang: en_US
-title: Crimson, Eleven, Delight, Petrichor
-description: A blog about code.
-collections:
-  posts:
-    output: true
-    permalink: /:collection/:year-:month-:day/:title:output_ext
-paginate: 20
-paginate_path: /posts/page-:num/
+  syntax_highlighter_opts:
+    span:
+      line-numbers: false
+    block:
+      line_numbers: true
+      start_line: 1
+
+paginate: 10
+paginate_path: '/page/:num/'
+
+exclude:
+  - .dependabot
+  - .github
+  - CNAME

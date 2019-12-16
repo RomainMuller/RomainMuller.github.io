@@ -1,0 +1,22 @@
+---
+---
+
+@import "bootstrap/bootstrap";
+@import "fira-code";
+@import "octicons";
+@import "syntax-highlights";
+
+body {
+  -webkit-font-feature-settings: "liga" on, "calt" on;
+  -webkit-font-smoothing: antialiased;
+  font-family: 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-feature-settings: "liga" on, "calt" on;
+  font-kerning: normal;
+  font-variant-ligatures: common-ligatures;
+  padding-top: 60px;
+  text-rendering: optimizeLegibility;
+}
+
+pre {
+  font-family: 'Fira Code';
+}

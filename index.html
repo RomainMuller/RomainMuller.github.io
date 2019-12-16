@@ -2,16 +2,9 @@
 layout: default
 ---
 {% for post in paginator.posts %}
-<div class="jumbotron p-3 p-md-5 text-white rounded bg-dark">
-  <div class="col-md-6 px-0">
-    <h1 class="display-4 font-italic">{{ post.title }}</h1>
-    <p class="lead my-3">
-      {{ post.excerpt }}
-    </p>
-    <p class="lead mb-0">
-      <a class="text-white font-weight-bold" href="{{ post.url }}">Continue reading...</a>
-    </p>
-  </div>
-</div>
+  {% include post-excerpt.haml post=post %}
 {% endfor %}
-{% include paginator.html %}
+
+{%if paginator.total_pages > 1 %}
+  {% include page-navigator.haml paginator=paginator %}
+{% endif %}
