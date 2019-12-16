@@ -1,0 +1,18 @@
+.btn-toolbar{ role: 'toolbar', 'aria-label': 'Page Selector' }
+  .btn-group.mr-2{ role: 'group' }
+    %a.btn.btn-secondary{ href: '{{ include.paginator.previous_page_path | relative_url }}', 'aria-label': 'Previous Page' }<
+      {% octicon chevron-left %}
+  .btn-group.mr-2{ role: 'group' }
+    {% for p in (1..(include.paginator.page - 1)) %}
+    %a.btn.btn-secondary{ href: '{{ site.paginate_path | relative_url | replace: ":num", p }}', 'aria-label': 'Page {{ p }}' }<
+      {{ p }}
+    {% endfor %}
+    %a.btn.btn-primary{ href: '{{ site.paginate.path | relative_url | replace: ":num", include.paginator.page }}', 'aria-label': 'Current Page' }<
+      {{ include.paginator.page }}
+    {% for p in ((include.paginator.page + 1)..include.paginator.total_pages) %}
+    %a.btn.btn-secondary{ href: '{{ site.paginate_path | relative_url | replace: ":num", p }}', 'aria-label': 'Page {{ p }}' }<
+      {{ p }}
+    {% endfor %}
+  .btn-group.mr-2{ role: 'group' }
+    %a.btn.btn-secondary{ href: '{{ include.paginator.next_page_path | relative_url }}', 'aria-label': 'Next Page' }<
+      {% octicon chevron-right %}

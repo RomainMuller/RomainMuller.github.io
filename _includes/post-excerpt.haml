@@ -1,0 +1,14 @@
+.card.shadow-sm
+  %a.text-decoration-none{ href: '{{ include.post.url }}' }
+    .card-header
+      {% octicon book %}
+      {{ include.post.title }}
+      .float-right.text-muted
+        {{ include.post.date| date: '%Y-%m-%d' }}
+  .card-body.align-justify
+    {{ include.post.excerpt }}
+
+    {% if include.post.excerpt != include.post.content %}
+    %a{ href: '{{ include.post.url }}' }>
+      Read more...
+    {% endif %}

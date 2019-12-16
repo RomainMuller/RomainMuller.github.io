@@ -1,0 +1,59 @@
+---
+permalink: /.well-known/keybase.txt
+---
+==================================================================
+https://keybase.io/romainmuller
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://blog.geekythoughts.fr
+  * I am romainmuller (https://keybase.io/romainmuller) on keybase.
+  * I have a public key ASCvjUqtBWm8Qtq_dfGo0W1y8a8lDB31Ch0ohNP4wj_m1go
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0120f6c42d52f07acea5c3a3665512dc42b6377d03d15f89eb7c18023fed4d144bb60a",
+      "host": "keybase.io",
+      "kid": "0120af8d4aad0569bc42dabf75f1a8d16d72f1af250c1df50a1d2884d3f8c23fe6d60a",
+      "uid": "602826139c5ab32afc387beb2963a919",
+      "username": "romainmuller"
+    },
+    "merkle_root": {
+      "ctime": 1528097495,
+      "hash": "1d8010cd0108b33c6830f51b708e86bf23522b499fea44b04643d4c468a0ba4adc98c24d982d1aaf526af973d0afe2b6513b56817963c426a0c254233c4367b0",
+      "hash_meta": "68e2e8645d887fd19a9d99aa4bbfcac6b8b628c3e613df9f5ef67f7515f4e824",
+      "seqno": 2988507
+    },
+    "service": {
+      "entropy": "dOIl5Mrg6figdoRGZ8IamvBw",
+      "hostname": "blog.geekythoughts.fr",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "1.0.48"
+  },
+  "ctime": 1528097508,
+  "expire_in": 504576000,
+  "prev": "b3282759b8058aeaba5af9d2ed1a1ca242c98f776cccca2b47c98cb4a67cee21",
+  "seqno": 86,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgr41KrQVpvELav3XxqNFtcvGvJQwd9QodKITT+MI/5tYKp3BheWxvYWTESpcCVsQgsygnWbgFiuq6WvnS7RocokLJj3dszMorR8mMtKZ87iHEIAy3l6PNJe4gOYBPEyCeXo2H05PRV+xSDB9tuIY+hUYvAgHCo3NpZ8RAwkDOo0qFdaGvXgVbG0x4tm9s9BprCfZtmWCSGpjm+c6dK7FHDlSU0rwAExVb6siuMtHL3HNJtkzvXRyQDZufB6hzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIA1S3IXafp3MfYKtYR6yNgSSYK7voYKvlCW5oXkste98o3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/romainmuller
+
+==================================================================

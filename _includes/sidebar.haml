@@ -1,0 +1,29 @@
+.card.shadow-sm
+  %img.card-img-top{ 'aria-label': 'My GitHub Avatar', src: 'https://github.com/{{ site.author.github }}.png' }/
+  %ul.list-group.list-group-flush
+    %li.list-group-item
+      %h5.card-title {{ site.author.name }}
+      %p
+        I'm a
+        %i programming language wizard
+        at
+        %a{ href: 'https://aws.amazon.com', target: '_blank' } Amazon Web Services
+        in Luxembourg.
+      %p
+        This is my personal blog about software development, open source, programming languages, and related topics.
+
+    %li.list-group-item
+      %h5.card-title Resources
+      %a.d-block.text-decoration-none{ href: 'https://github.com/{{ site.author.github }}', target: '_blank' }
+        {% octicon mark-github aria-label:'GitHub Account' %} {{ site.author.github }}
+      %a.d-block.text-decoration-none{ href: 'https://keybase.io/{{ site.author.keybase }}', target: '_blank' }
+        {% octicon key aria-label:'Keybase.IO Account' %} {{ site.author.keybase }}
+      %a.d-block.text-decoration-none{ href: 'https://github.com/aws/aws-cdk', target: '_blank' }
+        {% octicon repo aria-hidden:true %} AWS Cloud Development Kit
+      %a.d-block.text-decoration-none{ href: 'https://github.com/aws/jsii', target: '_blank' }
+        {% octicon repo aria-hidden:true %} AWS jsii
+
+  .card-footer.text-muted
+    {% octicon law aria-label:"License: " %}
+    %a.text-decoration-none.text-muted{ href: 'https://spdx.org/licenses/{{ site.license.spdx }}.html', target: '_blank' }<
+      {{ site.license.spdx }}
