@@ -54,4 +54,3 @@ paginate_path: '/page/:num/'
 exclude:
   - .dependabot
   - .github
-  - CNAME
