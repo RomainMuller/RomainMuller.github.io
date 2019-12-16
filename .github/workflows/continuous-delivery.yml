@@ -57,7 +57,7 @@ jobs:
             git commit -m "chore: publish from ${GITHUB_SHA}"
           )
       - name: Release
-        if: github.event == 'push'
+        if: github.event_name == 'push'
         working-directory: ./master
         run: |
           git push origin master
