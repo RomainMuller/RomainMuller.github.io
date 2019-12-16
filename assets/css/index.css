@@ -3199,7 +3199,7 @@ pre.highlight .n { color: #f8f8f2; }
 
 pre.highlight .o { color: #F29274; }
 
-pre.highlight .p { color: #f8f8f2; }
+pre.highlight .p, pre.highlight .pi { color: #f8f8f2; }
 
 pre.highlight .cm { color: #5C6773; }
 

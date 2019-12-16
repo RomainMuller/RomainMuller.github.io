@@ -6,7 +6,7 @@
 <meta content="Romain Marcadier-Muller" name="author">
 <meta content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description." name="description">
 <meta content="blog,development,tech" name="keywords">
-<meta content="Mon, 16 Dec 2019 19:20:26 +0100" name="revised">
+<meta content="Mon, 16 Dec 2019 19:28:17 +0100" name="revised">
 <meta content="width=device-width, initial-scale=1" name="viewport">
 <link type="application/atom+xml" rel="alternate" href="https://blog.geekythoughts.fr/feed.xml" title="Crimson 11 Delight Petrichor" />
 <link href="https://spdx.org/licenses/CC-BY-NC-ND-4.0.html" rel="license" title="Creative Commons Attribution Non Commercial No Derivatives 4.0 International">
@@ -103,7 +103,10 @@ Pages</a> allows: I can use any plug-in I want, such as using a HAML preprocesso
 59
 60
 61
-</pre></td><td class="rouge-code"><pre><span class="na">name</span><span class="pi">:</span> <span class="s">Continuous Delivery</span>
+62
+63
+</pre></td><td class="rouge-code"><pre><span class="nn">---</span>
+<span class="na">name</span><span class="pi">:</span> <span class="s">Continuous Delivery</span>
 
 <span class="na">on</span><span class="pi">:</span>
   <span class="na">pull_request</span><span class="pi">:</span>
@@ -129,9 +132,9 @@ Pages</a> allows: I can use any plug-in I want, such as using a HAML preprocesso
         <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/cache@v1</span>
         <span class="na">with</span><span class="pi">:</span>
           <span class="na">path</span><span class="pi">:</span> <span class="s">source/vendor/bundle</span>
-          <span class="na">key</span><span class="pi">:</span> <span class="s">$-gem-$</span>
+          <span class="na">key</span><span class="pi">:</span> <span class="s">${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}</span>
           <span class="na">restore-keys</span><span class="pi">:</span> <span class="pi">|</span>
-            <span class="s">$-gem-</span>
+            <span class="s">${{ runner.os }}-gem-</span>
       <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Install Dependencies</span>
         <span class="na">working-directory</span><span class="pi">:</span> <span class="s">./source</span>
         <span class="na">run</span><span class="pi">:</span> <span class="pi">|</span>
@@ -146,7 +149,7 @@ Pages</a> allows: I can use any plug-in I want, such as using a HAML preprocesso
         <span class="na">with</span><span class="pi">:</span>
           <span class="na">path</span><span class="pi">:</span> <span class="s">master</span>
           <span class="na">ref</span><span class="pi">:</span> <span class="s">master</span>
-          <span class="na">token</span><span class="pi">:</span> <span class="s">$</span>
+          <span class="na">token</span><span class="pi">:</span> <span class="s">${{secrets.GITHUB_PAT}}</span>
       <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Configure Git</span>
         <span class="na">working-directory</span><span class="pi">:</span> <span class="s">./master</span>
         <span class="na">run</span><span class="pi">:</span> <span class="pi">|</span>
@@ -164,6 +167,7 @@ Pages</a> allows: I can use any plug-in I want, such as using a HAML preprocesso
         <span class="na">working-directory</span><span class="pi">:</span> <span class="s">./master</span>
         <span class="na">run</span><span class="pi">:</span> <span class="pi">|</span>
           <span class="s">git push origin master</span>
+
 </pre></td></tr></tbody></table></code></pre></div></div>
 
 
