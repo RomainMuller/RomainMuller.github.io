@@ -17,7 +17,7 @@
 
     %title<= '{{ site.title }}'
 
-    %link{ rel: 'stylesheet', href: '{{ "/assets/css/index.css" | relative_url }}' }/
+    %link{ rel: 'stylesheet', href: '{{ "/assets/css/index.css" | relative_url }}?{{site.now}}' }/
 
   %body
     %header
