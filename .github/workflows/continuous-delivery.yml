@@ -9,7 +9,7 @@ on:
       - master
 
 jobs:
-  build:
+  CI/CD:
     runs-on: ubuntu-18.04
     steps:
       - name: Checkout
@@ -18,9 +18,17 @@ jobs:
         uses: actions/setup-ruby@v1
         with:
           ruby-version: ^2.6.x
+      #- name: Bundler Cache
+      #  uses: actions/cache@v1
+      #  with:
+      #    path:
+      #    key: ${{ runner.os }}-bundler-${{ hashFiles('**/Gemfile.lock') }}
       - name: Install Dependencies
         run: |
           gem install bundler
           bundle install
+          bundle show jekyll
       - name: Jekyll Build
         run: bundle exec jekyll build
+      - name: Publish
+        if: github.event == 'push'
