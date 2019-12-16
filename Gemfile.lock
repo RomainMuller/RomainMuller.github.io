@@ -68,10 +68,9 @@ GEM
     temple (0.8.2)
     terminal-table (1.8.0)
       unicode-display_width (~> 1.1, >= 1.1.1)
-    thread_safe (0.3.6)
     tilt (2.0.10)
-    tzinfo (1.2.5)
-      thread_safe (~> 0.1)
+    tzinfo (2.0.0)
+      concurrent-ruby (~> 1.0)
     tzinfo-data (1.2019.3)
       tzinfo (>= 1.0.0)
     unicode-display_width (1.6.0)
@@ -86,7 +85,7 @@ DEPENDENCIES
   jekyll-feed (~> 0.13.0)
   jekyll-octicons (~> 9.3.0)
   jekyll-paginate (~> 1.1.0)
-  tzinfo (~> 1.2)
+  tzinfo (~> 2.0)
   tzinfo-data
   wdm (~> 0.1.1)
 
