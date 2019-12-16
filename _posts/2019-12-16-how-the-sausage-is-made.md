@@ -1,5 +1,6 @@
 ---
 title: How the sausage is made...
+render_with_liquid: false
 ---
 I've entirely re-written the blog generation with Jekyll and doing the rendering
 and publishing directly through [GitHub Actions]. It was a nice ride - rather
@@ -17,7 +18,7 @@ Pages] allows: I can use any plug-in I want, such as using a HAML preprocessor!
 Then, everything is glued up using the [GitHub Actions] workflow:
 
 ```yaml
-{% raw %}---
+---
 name: Continuous Delivery
 
 on:
@@ -79,7 +80,6 @@ jobs:
         working-directory: ./master
         run: |
           git push origin master
-{% endraw %}
 ```
 
 [GitHub Actions]: https://github.com/features/actions
