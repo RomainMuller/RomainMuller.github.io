@@ -9,7 +9,7 @@ on:
       - master
 
 jobs:
-  CI/CD:
+  CI-CD:
     runs-on: ubuntu-18.04
     steps:
       - name: Checkout
