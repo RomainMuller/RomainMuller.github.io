@@ -17,6 +17,7 @@ Pages] allows: I can use any plug-in I want, such as using a HAML preprocessor!
 Then, everything is glued up using the [GitHub Actions] workflow:
 
 ```yaml
+{% raw %}---
 name: Continuous Delivery
 
 on:
@@ -78,6 +79,7 @@ jobs:
         working-directory: ./master
         run: |
           git push origin master
+{% endraw %}
 ```
 
 [GitHub Actions]: https://github.com/features/actions
