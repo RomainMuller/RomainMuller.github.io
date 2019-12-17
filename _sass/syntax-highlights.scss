@@ -55,7 +55,7 @@ pre {
     .cp { color: #5C6773 }
 
     // Comment.Single
-    .c1 { color: #5C6773 }
+    .c1 { color: #5C6773; font-style: italic }
 
     // Comment.Special
     .cs { color: #5C6773 }
@@ -213,5 +213,13 @@ pre {
 
     // Generic.Inserted & Diff Inserted
     .gi { color: #a6e22e }
+  }
+}
+
+.language-yaml {
+  pre.highlight {
+    .na { color: #5ccfe6 }
+    .pi { color: #fda659 }
+    .s { color: #bae67e }
   }
 }
