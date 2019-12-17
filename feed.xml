@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://blog.geekythoughts.fr/feed.xml" rel="self" type="application/atom+xml" /><link href="https://blog.geekythoughts.fr/" rel="alternate" type="text/html" /><updated>2019-12-16T19:49:13+01:00</updated><id>https://blog.geekythoughts.fr/feed.xml</id><title type="html">Crimson 11 Delight Petrichor</title><subtitle>I'm a programming language wizard at Amazon Web Services in Luxembourg. This is my personal blog about software development, open source, programming languages, and related topics.</subtitle><author><name>Romain Marcadier-Muller</name></author><entry><title type="html">How the sausage is made…</title><link href="https://blog.geekythoughts.fr/2019/12/16/how-the-sausage-is-made.html" rel="alternate" type="text/html" title="How the sausage is made..." /><published>2019-12-16T00:00:00+01:00</published><updated>2019-12-16T00:00:00+01:00</updated><id>https://blog.geekythoughts.fr/2019/12/16/how-the-sausage-is-made</id><content type="html" xml:base="https://blog.geekythoughts.fr/2019/12/16/how-the-sausage-is-made.html">&lt;p&gt;I’ve entirely re-written the blog generation with Jekyll and doing the rendering
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://blog.geekythoughts.fr/feed.xml" rel="self" type="application/atom+xml" /><link href="https://blog.geekythoughts.fr/" rel="alternate" type="text/html" /><updated>2019-12-17T11:01:38+01:00</updated><id>https://blog.geekythoughts.fr/feed.xml</id><title type="html">Crimson 11 Delight Petrichor</title><subtitle>I'm a programming language wizard at Amazon Web Services in Luxembourg. This is my personal blog about software development, open source, programming languages, and related topics.</subtitle><author><name>Romain Marcadier-Muller</name></author><entry><title type="html">How the sausage is made…</title><link href="https://blog.geekythoughts.fr/2019/12/16/how-the-sausage-is-made.html" rel="alternate" type="text/html" title="How the sausage is made..." /><published>2019-12-16T00:00:00+01:00</published><updated>2019-12-16T00:00:00+01:00</updated><id>https://blog.geekythoughts.fr/2019/12/16/how-the-sausage-is-made</id><content type="html" xml:base="https://blog.geekythoughts.fr/2019/12/16/how-the-sausage-is-made.html">&lt;p&gt;I’ve entirely re-written the blog generation with Jekyll and doing the rendering
 and publishing directly through &lt;a href=&quot;https://github.com/features/actions&quot;&gt;GitHub Actions&lt;/a&gt;. It was a nice ride - rather
 easy all the way though, and leaving a magical sense of “It Does Just Work”.&lt;/p&gt;
 
@@ -8,6 +8,8 @@ easy all the way though, and leaving a magical sense of “It Does Just Work”.
   &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;master&lt;/code&gt; which is the branch &lt;a href=&quot;https://pages.github.com&quot;&gt;GitHub Pages&lt;/a&gt; publishes user pages from (it may
 be &lt;code class=&quot;highlighter-rouge&quot;&gt;gh-pages&lt;/code&gt; or something else in different contexts)&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;!-- MORE --&gt;
 
 &lt;p&gt;The blog is a vanialla &lt;a href=&quot;https://jekyllrb.com&quot;&gt;Jekyll&lt;/a&gt; project with nothing special to it. The upsides
 from using it in this setup however is that I am not limited to what &lt;a href=&quot;https://pages.github.com&quot;&gt;GitHub
@@ -77,14 +79,26 @@ Pages&lt;/a&gt; allows: I can use any plug-in I want, such as using a HAML prepr
 60
 61
 62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
 &lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
 &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Continuous Delivery&lt;/span&gt;
 
 &lt;span class=&quot;na&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;pull_request&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;pull_request&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;# PR validation build&lt;/span&gt;
     &lt;span class=&quot;na&quot;&gt;branches&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
       &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;source&lt;/span&gt;
-  &lt;span class=&quot;na&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;             &lt;span class=&quot;c1&quot;&gt;# Actually publishing the site&lt;/span&gt;
     &lt;span class=&quot;na&quot;&gt;branches&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
       &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;source&lt;/span&gt;
 
@@ -92,10 +106,14 @@ Pages&lt;/a&gt; allows: I can use any plug-in I want, such as using a HAML prepr
   &lt;span class=&quot;na&quot;&gt;CI-CD&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
     &lt;span class=&quot;na&quot;&gt;runs-on&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;ubuntu-18.04&lt;/span&gt;
     &lt;span class=&quot;na&quot;&gt;steps&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+
+      &lt;span class=&quot;c1&quot;&gt;# Check out the site's source&lt;/span&gt;
       &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Checkout source&lt;/span&gt;
         &lt;span class=&quot;na&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;actions/checkout@v2&lt;/span&gt;
         &lt;span class=&quot;na&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
           &lt;span class=&quot;na&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;source&lt;/span&gt;
+
+      &lt;span class=&quot;c1&quot;&gt;# Configure Ruby &amp;amp; set up a Gem cache&lt;/span&gt;
       &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Setup Ruby&lt;/span&gt;
         &lt;span class=&quot;na&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;actions/setup-ruby@v1&lt;/span&gt;
         &lt;span class=&quot;na&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
@@ -107,15 +125,21 @@ Pages&lt;/a&gt; allows: I can use any plug-in I want, such as using a HAML prepr
           &lt;span class=&quot;na&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}&lt;/span&gt;
           &lt;span class=&quot;na&quot;&gt;restore-keys&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;|&lt;/span&gt;
             &lt;span class=&quot;s&quot;&gt;${{ runner.os }}-gem-&lt;/span&gt;
+
+      &lt;span class=&quot;c1&quot;&gt;# Install Jekyll &amp;amp; it's dependencies&lt;/span&gt;
       &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Install Dependencies&lt;/span&gt;
         &lt;span class=&quot;na&quot;&gt;working-directory&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;./source&lt;/span&gt;
         &lt;span class=&quot;na&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;|&lt;/span&gt;
           &lt;span class=&quot;s&quot;&gt;gem install bundler&lt;/span&gt;
           &lt;span class=&quot;s&quot;&gt;bundle config path vendor/bundle&lt;/span&gt;
           &lt;span class=&quot;s&quot;&gt;bundle install --jobs 4 --retry 3&lt;/span&gt;
+
+      &lt;span class=&quot;c1&quot;&gt;# Build the new version of the site&lt;/span&gt;
       &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Jekyll Build&lt;/span&gt;
         &lt;span class=&quot;na&quot;&gt;working-directory&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;./source&lt;/span&gt;
         &lt;span class=&quot;na&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;bundle exec jekyll build&lt;/span&gt;
+
+      &lt;span class=&quot;c1&quot;&gt;# Checkout the `master` branch, and update it with the newly generated site&lt;/span&gt;
       &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Checkout master&lt;/span&gt;
         &lt;span class=&quot;na&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;actions/checkout@v2&lt;/span&gt;
         &lt;span class=&quot;na&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
@@ -134,9 +158,11 @@ Pages&lt;/a&gt; allows: I can use any plug-in I want, such as using a HAML prepr
           &lt;span class=&quot;s&quot;&gt;touch .nojekyll&lt;/span&gt;
           &lt;span class=&quot;s&quot;&gt;git add .&lt;/span&gt;
           &lt;span class=&quot;s&quot;&gt;git diff --exit-code --quiet HEAD || git commit -m &quot;chore: publish from ${GITHUB_SHA}&quot;&lt;/span&gt;
+
+      &lt;span class=&quot;c1&quot;&gt;# When &quot;push&quot; to `source`, actually push the site to `master`&lt;/span&gt;
       &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;Release&lt;/span&gt;
         &lt;span class=&quot;na&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;github.event_name == 'push'&lt;/span&gt;
         &lt;span class=&quot;na&quot;&gt;working-directory&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;./master&lt;/span&gt;
         &lt;span class=&quot;na&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;pi&quot;&gt;|&lt;/span&gt;
           &lt;span class=&quot;s&quot;&gt;git push origin master&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Romain Marcadier-Muller</name></author><summary type="html">I’ve entirely re-written the blog generation with Jekyll and doing the rendering and publishing directly through GitHub Actions. It was a nice ride - rather easy all the way though, and leaving a magical sense of “It Does Just Work”.</summary></entry></feed>
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Romain Marcadier-Muller</name></author><category term="meta" /><category term="github" /><summary type="html">I’ve entirely re-written the blog generation with Jekyll and doing the rendering and publishing directly through GitHub Actions. It was a nice ride - rather easy all the way though, and leaving a magical sense of “It Does Just Work”. It basically involves a set-up with two branches: source is the branch containing the Jekyll source for the blog master which is the branch GitHub Pages publishes user pages from (it may be gh-pages or something else in different contexts)</summary></entry></feed>

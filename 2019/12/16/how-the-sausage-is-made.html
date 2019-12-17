@@ -6,7 +6,7 @@
 <meta content="Romain Marcadier-Muller" name="author">
 <meta content="I'm a programming language wizard at Amazon Web Services in Luxembourg. This is my personal blog about software development, open source, programming languages, and related topics." name="description">
 <meta content="blog,development,tech" name="keywords">
-<meta content="Mon, 16 Dec 2019 19:49:13 +0100" name="revised">
+<meta content="Tue, 17 Dec 2019 11:01:38 +0100" name="revised">
 <meta content="width=device-width, initial-scale=1" name="viewport">
 <link type="application/atom+xml" rel="alternate" href="https://blog.geekythoughts.fr/feed.xml" title="Crimson 11 Delight Petrichor" />
 <link href="https://spdx.org/licenses/CC-BY-NC-ND-4.0.html" rel="license" title="Creative Commons Attribution Non Commercial No Derivatives 4.0 International">
@@ -35,6 +35,8 @@ easy all the way though, and leaving a magical sense of “It Does Just Work”.
   <li><code class="highlighter-rouge">master</code> which is the branch <a href="https://pages.github.com">GitHub Pages</a> publishes user pages from (it may
 be <code class="highlighter-rouge">gh-pages</code> or something else in different contexts)</li>
 </ul>
+
+<!-- MORE -->
 
 <p>The blog is a vanialla <a href="https://jekyllrb.com">Jekyll</a> project with nothing special to it. The upsides
 from using it in this setup however is that I am not limited to what <a href="https://pages.github.com">GitHub
@@ -104,14 +106,26 @@ Pages</a> allows: I can use any plug-in I want, such as using a HAML preprocesso
 60
 61
 62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
 </pre></td><td class="rouge-code"><pre><span class="nn">---</span>
 <span class="na">name</span><span class="pi">:</span> <span class="s">Continuous Delivery</span>
 
 <span class="na">on</span><span class="pi">:</span>
-  <span class="na">pull_request</span><span class="pi">:</span>
+  <span class="na">pull_request</span><span class="pi">:</span>     <span class="c1"># PR validation build</span>
     <span class="na">branches</span><span class="pi">:</span>
       <span class="pi">-</span> <span class="s">source</span>
-  <span class="na">push</span><span class="pi">:</span>
+  <span class="na">push</span><span class="pi">:</span>             <span class="c1"># Actually publishing the site</span>
     <span class="na">branches</span><span class="pi">:</span>
       <span class="pi">-</span> <span class="s">source</span>
 
@@ -119,10 +133,14 @@ Pages</a> allows: I can use any plug-in I want, such as using a HAML preprocesso
   <span class="na">CI-CD</span><span class="pi">:</span>
     <span class="na">runs-on</span><span class="pi">:</span> <span class="s">ubuntu-18.04</span>
     <span class="na">steps</span><span class="pi">:</span>
+
+      <span class="c1"># Check out the site's source</span>
       <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Checkout source</span>
         <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/checkout@v2</span>
         <span class="na">with</span><span class="pi">:</span>
           <span class="na">path</span><span class="pi">:</span> <span class="s">source</span>
+
+      <span class="c1"># Configure Ruby &amp; set up a Gem cache</span>
       <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Setup Ruby</span>
         <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/setup-ruby@v1</span>
         <span class="na">with</span><span class="pi">:</span>
@@ -134,15 +152,21 @@ Pages</a> allows: I can use any plug-in I want, such as using a HAML preprocesso
           <span class="na">key</span><span class="pi">:</span> <span class="s">${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}</span>
           <span class="na">restore-keys</span><span class="pi">:</span> <span class="pi">|</span>
             <span class="s">${{ runner.os }}-gem-</span>
+
+      <span class="c1"># Install Jekyll &amp; it's dependencies</span>
       <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Install Dependencies</span>
         <span class="na">working-directory</span><span class="pi">:</span> <span class="s">./source</span>
         <span class="na">run</span><span class="pi">:</span> <span class="pi">|</span>
           <span class="s">gem install bundler</span>
           <span class="s">bundle config path vendor/bundle</span>
           <span class="s">bundle install --jobs 4 --retry 3</span>
+
+      <span class="c1"># Build the new version of the site</span>
       <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Jekyll Build</span>
         <span class="na">working-directory</span><span class="pi">:</span> <span class="s">./source</span>
         <span class="na">run</span><span class="pi">:</span> <span class="s">bundle exec jekyll build</span>
+
+      <span class="c1"># Checkout the `master` branch, and update it with the newly generated site</span>
       <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Checkout master</span>
         <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/checkout@v2</span>
         <span class="na">with</span><span class="pi">:</span>
@@ -161,6 +185,8 @@ Pages</a> allows: I can use any plug-in I want, such as using a HAML preprocesso
           <span class="s">touch .nojekyll</span>
           <span class="s">git add .</span>
           <span class="s">git diff --exit-code --quiet HEAD || git commit -m "chore: publish from ${GITHUB_SHA}"</span>
+
+      <span class="c1"># When "push" to `source`, actually push the site to `master`</span>
       <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Release</span>
         <span class="na">if</span><span class="pi">:</span> <span class="s">github.event_name == 'push'</span>
         <span class="na">working-directory</span><span class="pi">:</span> <span class="s">./master</span>

@@ -3205,7 +3205,7 @@ pre.highlight .cm { color: #5C6773; }
 
 pre.highlight .cp { color: #5C6773; }
 
-pre.highlight .c1 { color: #5C6773; }
+pre.highlight .c1 { color: #5C6773; font-style: italic; }
 
 pre.highlight .cs { color: #5C6773; }
 
@@ -3308,6 +3308,12 @@ pre.highlight .gu { color: #75715e; }
 pre.highlight .gd { color: #f92672; }
 
 pre.highlight .gi { color: #a6e22e; }
+
+.language-yaml pre.highlight .na { color: #5ccfe6; }
+
+.language-yaml pre.highlight .pi { color: #fda659; }
+
+.language-yaml pre.highlight .s { color: #bae67e; }
 
 body { -webkit-font-feature-settings: "liga" on, "calt" on; -webkit-font-smoothing: antialiased; font-family: 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-feature-settings: "liga" on, "calt" on; font-kerning: normal; font-variant-ligatures: common-ligatures; padding-top: 60px; text-rendering: optimizeLegibility; }
 
