@@ -23,7 +23,7 @@
 
     %title<= '{{ site.title }}'
 
-    %link{ rel: 'stylesheet', href: '{{ "/assets/css/index.css" | relative_url }}?{{site.now}}' }/
+    %link{ rel: 'stylesheet', href: '{{ "/assets/css/index.css" | relative_url }}?{{ site.time | date: "%s" }}' }/
 
   %body
     %header
