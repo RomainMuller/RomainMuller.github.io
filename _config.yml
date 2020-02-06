@@ -48,6 +48,10 @@ kramdown:
       line_numbers: true
       start_line: 1
 
+sass:
+  style: compressed
+  sourcemap: always
+
 paginate: 10
 paginate_path: '/page/:num/'
 
