@@ -23,8 +23,10 @@ author:
 # Build settings
 plugins:
   - jekyll-feed
+  - jekyll-gist
   - jekyll-octicons
   - jekyll-paginate
+  - jekyll-relative-links
 
 encoding: UTF-8
 timezone: Europe/Paris
@@ -47,6 +49,10 @@ kramdown:
     block:
       line_numbers: true
       start_line: 1
+
+relative_links:
+  enabled: true
+  collections: true
 
 sass:
   style: compressed

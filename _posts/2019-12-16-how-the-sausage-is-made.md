@@ -2,7 +2,6 @@
 excerpt_separator: <!-- MORE -->
 tags: [meta, github]
 title: How the sausage is made...
-render_with_liquid: false
 ---
 I've entirely re-written the blog generation with Jekyll and doing the rendering
 and publishing directly through [GitHub Actions]. It was a nice ride - rather
@@ -21,82 +20,7 @@ Pages] allows: I can use any plug-in I want, such as using a HAML preprocessor!
 
 Then, everything is glued up using the [GitHub Actions] workflow:
 
-```yaml
----
-name: Continuous Delivery
-
-on:
-  pull_request:     # PR validation build
-    branches:
-      - source
-  push:             # Actually publishing the site
-    branches:
-      - source
-
-jobs:
-  CI-CD:
-    runs-on: ubuntu-18.04
-    steps:
-
-      # Check out the site's source
-      - name: Checkout source
-        uses: actions/checkout@v2
-        with:
-          path: source
-
-      # Configure Ruby & set up a Gem cache
-      - name: Setup Ruby
-        uses: actions/setup-ruby@v1
-        with:
-          ruby-version: ^2.6.x
-      - name: Gem Cache
-        uses: actions/cache@v1
-        with:
-          path: source/vendor/bundle
-          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-gem-
-
-      # Install Jekyll & it's dependencies
-      - name: Install Dependencies
-        working-directory: ./source
-        run: |
-          gem install bundler
-          bundle config path vendor/bundle
-          bundle install --jobs 4 --retry 3
-
-      # Build the new version of the site
-      - name: Jekyll Build
-        working-directory: ./source
-        run: bundle exec jekyll build
-
-      # Checkout the `master` branch, and update it with the newly generated site
-      - name: Checkout master
-        uses: actions/checkout@v2
-        with:
-          path: master
-          ref: master
-          token: ${{secrets.GITHUB_PAT}}
-      - name: Configure Git
-        working-directory: ./master
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Actions"
-      - name: Preparing Release
-        working-directory: ./master
-        run: |
-          rsync --delete --exclude=.git --recursive --verbose ../source/_site/ ./
-          touch .nojekyll
-          git add .
-          git diff --exit-code --quiet HEAD || git commit -m "chore: publish from ${GITHUB_SHA}"
-
-      # When "push" to `source`, actually push the site to `master`
-      - name: Release
-        if: github.event_name == 'push'
-        working-directory: ./master
-        run: |
-          git push origin master
-```
+{% gist '92a26ffcad4cabc2fc5ef93abf2eaca4' %}
 
 [GitHub Actions]: https://github.com/features/actions
 [GitHub Pages]: https://pages.github.com
