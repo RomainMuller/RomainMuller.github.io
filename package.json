@@ -1,0 +1,14 @@
+{
+  "name": "RomainMuller.github.io",
+  "private": true,
+  "version": "1.0.0",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-filter": "^6.0.0",
+    "gulp-hash": "^4.2.2",
+    "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-util": "^3.0.8"
+  }
+}
