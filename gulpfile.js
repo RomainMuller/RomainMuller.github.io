@@ -1,10 +1,10 @@
 const { spawn } = require('child_process');
+const log = require('fancy-log');
 const gulp = require('gulp');
 const filter = require('gulp-filter');
 const hash = require('gulp-hash');
 const sass = require('gulp-sass');
 const sourcemaps = require('gulp-sourcemaps');
-const util = require('gulp-util');
 const path = require('path');
 
 gulp.task('css', () =>
@@ -42,7 +42,7 @@ gulp.task('assets', gulp.series(['css', 'images']));
 
 gulp.task('jekyll', () => {
   const jekyll = spawn('bundle', ['exec', 'jekyll', 'build']);
-  const logger = buffer => buffer.toString().split(/\n/).forEach(msg => util.log(`Jekyll: ${msg}`));
+  const logger = buffer => buffer.toString().split(/\n/).forEach(msg => log(`Jekyll: ${msg}`));
   jekyll.stdout.on('data', logger);
   jekyll.stderr.on('data', logger);
   return jekyll;
