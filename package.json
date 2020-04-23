@@ -7,7 +7,7 @@
     "gulp": "^4.0.2",
     "gulp-filter": "^6.0.0",
     "gulp-hash": "^4.2.2",
-    "gulp-sass": "^4.0.2",
+    "gulp-sass": "^4.1.0",
     "gulp-sourcemaps": "^2.6.5",
     "gulp-util": "^3.0.8"
   }
