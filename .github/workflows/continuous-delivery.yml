@@ -38,7 +38,7 @@ jobs:
 
       - name: Execute Build
         working-directory: ./source
-        run: jekyll build
+        run: bundle exec jekyll build
         env:
           JEKYLL_ENV: production
 
