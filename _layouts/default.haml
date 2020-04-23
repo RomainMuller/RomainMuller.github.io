@@ -15,15 +15,15 @@
 
     %link{ rel: 'license', title: '{{ site.license.name }}', href: 'https://spdx.org/licenses/{{ site.license.spdx }}.html' }/
 
-    %link{ rel: 'icon', sizes: '160x160', href: '{{ "/assets/images/favicon.png" | fingerprint }}' }
-    %link{ rel: 'shortcut icon', href: '{{ "/assets/images/favicon.ico" | fingerprint }}' }
-    %link{ rel: 'icon', type: 'image/vnd.microsoft.icon', href: '{{ "/assets/images/favicon.ico" | fingerprint }}' }
-    %link{ rel: 'icon', type: 'image/x-icon', href: '{{ "/assets/images/favicon.ico" | fingerprint }}' }
-    %link{ rel: 'icon', href: '{{ "/assets/images/favicon.ico" | fingerprint }}' }
+    %link{ rel: 'icon', sizes: '160x160', href: '{% asset favicon.ico @path %}' }
+    %link{ rel: 'shortcut icon', href: '{% asset favicon.ico @path %}' }
+    %link{ rel: 'icon', type: 'image/vnd.microsoft.icon', href: '{% asset favicon.ico @path %}' }
+    %link{ rel: 'icon', type: 'image/x-icon', href: '{% asset favicon.ico @path %}' }
+    %link{ rel: 'icon', href: '{% asset favicon.ico @path %}' }
 
     %title<= '{{ site.title }}'
 
-    %link{ rel: 'stylesheet', href: '{{ "/assets/css/index.css" | fingerprint }}' }/
+    {% asset index.css %}
 
   %body
     %header

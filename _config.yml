@@ -1,8 +1,8 @@
 title: Crimson 11 Delight Petrichor
 description: >-
-  I'm a programming language wizard at Amazon Web Services in Luxembourg. This
-  is my personal blog about software development, open source, programming
-  languages, and related topics.
+  I'm a programming linguist at Amazon Web Services in Luxembourg. This is my
+  personal blog about software development, open source, programming languages,
+  and related topics.
 url: "https://romainmuller.dev"
 baseurl: ''
 keywords:
@@ -22,11 +22,35 @@ author:
 
 # Build settings
 plugins:
+  - jekyll-assets
   - jekyll-feed
   - jekyll-gist
   - jekyll-octicons
   - jekyll-paginate
   - jekyll-relative-links
+
+assets:
+  destination: '/assets'
+  compression: false
+  gzip: false
+  defaults:
+    integrity:
+      css: true
+      img: true
+      js: true
+  caching:
+    enabled: true
+    path: .jekyll-cache/assets
+    type: file
+  precompile: []
+  raw_precompile: []
+  cdn:
+    baseurl: false
+    destination: false
+    url: null
+  source:
+    - _assets
+  plugins: {}
 
 encoding: UTF-8
 timezone: Europe/Paris
@@ -53,10 +77,6 @@ kramdown:
 relative_links:
   enabled: true
   collections: true
-
-sass:
-  style: compressed
-  sourcemap: always
 
 paginate: 10
 paginate_path: '/page/:num/'
