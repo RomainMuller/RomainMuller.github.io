@@ -1,8 +1,7 @@
 ---
-layout: default
 ---
 {% for post in paginator.posts %}
-  {% include post-excerpt.haml post=post %}
+  {% include post.haml post=post %}
 {% endfor %}
 
 {%if paginator.total_pages > 1 %}

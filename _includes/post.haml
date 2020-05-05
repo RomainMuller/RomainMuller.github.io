@@ -1,0 +1,8 @@
+%article.post
+  %header.post-header
+    %span.post-meta
+      %time{ datetime: '{{ include.post.date | date: "%Y-%m-%d" }}' } {{ include.post.date | date_to_string }}
+    %h2.post-title
+      %a{ href: '{{ include.post.url }}' } {{ include.post.title }}
+  %section.post-content
+    {{ include.post.content }}

@@ -1,7 +1,7 @@
-@import "bootstrap/bootstrap";
-@import "fira-code";
-@import "octicons";
-@import "syntax-highlights";
+@import 'bootstrap';
+@import 'fira-code';
+@import 'octicons';
+@import 'syntax-highlights';
 
 a, a:visited {
   color: rgb(3, 102, 214);
@@ -31,3 +31,5 @@ code.highlighter-rouge {
 pre {
   font-family: 'Fira Code';
 }
+
+@import 'post';

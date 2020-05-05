@@ -4,13 +4,18 @@
 %html{ lang: 'en' }
   %head
     %meta{ charset: '{{ site.encoding }}' }/
-    %meta{ http_equiv: 'X-UA-Compatible', content: 'IE=edge,chrome=1' }/
+    %title<> {{ site.title }}
 
-    %meta{ name: 'author',      content: '{{ site.author.name }}' }/
-    %meta{ name: 'description', content: '{{ site.description }}' }/
+    %meta{ http_equiv: 'X-UA-Compatible', content: 'IE=edge,chrome=1' }/
+    %meta{ name: 'referrer',    content: 'no-referrer-when-downgrade' }/
+    %meta{ name: 'viewport',    content: 'width=device-width, initial-scale=1.0' }/
+
     %meta{ name: 'keywords',    content: '{{ site.keywords | join: "," }}' }/
     %meta{ name: 'revised',     content: '{{ site.time | date_to_rfc822 }}' }/
-    %meta{ name: 'viewport',    content: 'width=device-width, initial-scale=1' }/
+
+    {% include twitter_meta.haml %}
+    {% seo %}
+
     {% feed_meta %}
 
     %link{ rel: 'license', title: '{{ site.license.name }}', href: 'https://spdx.org/licenses/{{ site.license.spdx }}.html' }/
@@ -21,21 +26,18 @@
     %link{ rel: 'icon', type: 'image/x-icon', href: '{% asset favicon.ico @path %}' }
     %link{ rel: 'icon', href: '{% asset favicon.ico @path %}' }
 
-    %title<= '{{ site.title }}'
-
     {% asset index.css %}
 
   %body
     %header
       {% include header.haml %}
 
-    .container-fluid
+    .container-lg
       .row
-        .col.py-3
-          {{ content }}
-        .col-sm-3.py-3.d-none.d-lg-block
+        .col-3.py-3.d-none.d-lg-block
           {% include sidebar.haml %}
+        %main.col-9.py-3{ role: :content }
+          {{ content }}
 
-    %script{ src: 'https://code.jquery.com/jquery-3.3.1.slim.min.js',                          integrity: 'sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo', crossorigin: 'anonymous' }
-    %script{ src: 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js', integrity: 'sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1', crossorigin: 'anonymous' }
-    %script{ src: 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js',    integrity: 'sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM', crossorigin: 'anonymous' }
+    %script{ src: 'https://code.jquery.com/jquery-3.5.1.slim.min.js', integrity: 'sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=', crossorigin: 'anonymous' }
+    {% asset application.js %}

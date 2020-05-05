@@ -4,11 +4,11 @@
     %li.list-group-item
       %h5.card-title {{ site.author.name }}
       %p
-        I'm a
-        %i programming linguist
+        I'm a 🇫🇷&nbsp;french
+        %i< Software Development Engineer
         at
-        %a{ href: 'https://aws.amazon.com', target: '_blank' } Amazon Web Services
-        in Luxembourg.
+        %a{ href: 'https://aws.amazon.com', target: '_blank' }< AWS
+        in 🇱🇺&nbsp;Luxembourg.
       %p
         This is my personal blog about software development, open source, programming languages, and related topics.
 
@@ -16,12 +16,10 @@
       %h5.card-title Resources
       %a.d-block.text-decoration-none{ href: 'https://github.com/{{ site.author.github }}', target: '_blank' }
         {% octicon mark-github aria-label:'GitHub Account' %} {{ site.author.github }}
+      %a.d-block.text-decoration-none{ href: 'https://twitter.com/{{ site.author.twitter }}', target: '_blank' }
+        {% octicon mention aria-label:'Twitter Account' %} {{ site.author.twitter }}
       %a.d-block.text-decoration-none{ href: 'https://keybase.io/{{ site.author.keybase }}', target: '_blank' }
-        {% octicon key aria-label:'Keybase.IO Account' %} {{ site.author.keybase }}
-      %a.d-block.text-decoration-none{ href: 'https://github.com/aws/aws-cdk', target: '_blank' }
-        {% octicon repo aria-hidden:true %} AWS Cloud Development Kit
-      %a.d-block.text-decoration-none{ href: 'https://github.com/aws/jsii', target: '_blank' }
-        {% octicon repo aria-hidden:true %} AWS jsii
+        {% octicon verified aria-label:'Keybase.IO Account' %} {{ site.author.keybase }}
 
   .card-footer.text-muted
     {% octicon law aria-label:"License: " %}

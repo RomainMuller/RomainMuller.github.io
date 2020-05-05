@@ -1,0 +1,11 @@
+---
+url: /robots.txt
+layout: none
+---
+User-agent: *
+
+Disallow: /harming/humans
+Disallow: /ignoring/human/orders
+Disallow: /harm/to/self
+
+Sitemap: {{ '/sitemap.xml' | absolute_url }}
