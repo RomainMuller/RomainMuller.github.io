@@ -7,21 +7,21 @@
         I'm a 🇫🇷&nbsp;french
         %i< Software Development Engineer
         at
-        %a{ href: 'https://aws.amazon.com', target: '_blank' }< AWS
+        %a{ href: 'https://aws.amazon.com', target: '_blank', rel: 'noreferrer' }< AWS
         in 🇱🇺&nbsp;Luxembourg.
       %p
         This is my personal blog about software development, open source, programming languages, and related topics.
 
     %li.list-group-item
       %h5.card-title Resources
-      %a.d-block.text-decoration-none{ href: 'https://github.com/{{ site.author.github }}', target: '_blank' }
+      %a.d-block.text-decoration-none{ href: 'https://github.com/{{ site.author.github }}', target: '_blank', rel: 'noreferrer' }
         {% octicon mark-github aria-label:'GitHub Account' %} {{ site.author.github }}
-      %a.d-block.text-decoration-none{ href: 'https://twitter.com/{{ site.author.twitter }}', target: '_blank' }
+      %a.d-block.text-decoration-none{ href: 'https://twitter.com/{{ site.author.twitter }}', target: '_blank', rel: 'noreferrer' }
         {% octicon mention aria-label:'Twitter Account' %} {{ site.author.twitter }}
-      %a.d-block.text-decoration-none{ href: 'https://keybase.io/{{ site.author.keybase }}', target: '_blank' }
+      %a.d-block.text-decoration-none{ href: 'https://keybase.io/{{ site.author.keybase }}', target: '_blank', rel: 'noreferrer' }
         {% octicon verified aria-label:'Keybase.IO Account' %} {{ site.author.keybase }}
 
   .card-footer.text-muted
     {% octicon law aria-label:"License: " %}
-    %a.text-decoration-none.text-muted{ href: 'https://spdx.org/licenses/{{ site.license.spdx }}.html', target: '_blank' }<
+    %a.text-decoration-none.text-muted{ href: 'https://spdx.org/licenses/{{ site.license.spdx }}.html', target: '_blank', rel: 'noreferrer' }<
       {{ site.license.spdx }}
