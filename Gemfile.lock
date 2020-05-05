@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/envygeeks/jekyll-assets.git
-  revision: 47fc845853e27af1877691efceba991f20f46526
+  revision: 7ac3a1fde3047ee25b0ebf167678c203e3072e6f
   specs:
     jekyll-assets (4.0.0.alpha)
       activesupport (>= 5, < 7)
