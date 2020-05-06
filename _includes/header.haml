@@ -1,3 +1,16 @@
 %nav.bg-dark.d-print.fixed-top.navbar.navbar-dark.navbar-expand-sm.shadow
   %a.navbar-brand{ href: '{{ site.url }}' }
     {% octicon broadcast aria-label:"Logo" height:30 class:"align-top d-inline-block mr-1" %} {{ site.title }}
+
+  %ul.navbar-nav.nav-pills.ml-md-auto
+    %li.nav-item.dropdown{ role: :menu }
+      %a#tag-list.nav-link.dropdown-toggle{ 'data-toggle': :dropdown, role: :button, 'aria-haspopup': 'true', 'aria-expanded': 'false' }<
+        Categories
+      .dropdown-menu.dropdown-menu-right{ 'aria-labelledby': 'tag-list' }
+        {% for category in site.categories %}
+        {% assign cat = category | first %}
+        {% assign catposts = category | last %}
+        %a.dropdown-item{ href: '/category/{{ cat | slugify }}', role: :menuitem }
+          {{ cat | capitalize }}
+          %span.badge.badge-secondary {{ catposts | size }}
+        {% endfor %}

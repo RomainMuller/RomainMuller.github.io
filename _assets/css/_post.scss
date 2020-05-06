@@ -11,4 +11,13 @@
       @extend .text-body;
     }
   }
+
+  .post-category {
+    @extend .badge;
+    @extend .badge-secondary;
+
+    &.selected {
+      @extend .badge-primary;
+    }
+  }
 }

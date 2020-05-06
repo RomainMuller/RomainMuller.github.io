@@ -1,7 +1,16 @@
 %article.post
   %header.post-header
     %span.post-meta
-      %time{ datetime: '{{ include.post.date | date: "%Y-%m-%d" }}' } {{ include.post.date | date_to_string }}
+      %time{ datetime: '{{ include.post.date | date_to_xmlschema }}', pubdate: true } {{ include.post.date | date_to_string }}
+    %span.post-categories
+      {% assign categories = post.categories | sort %}
+      {% for category in categories %}
+      {% if category == include.category %}
+      %span.post-category.selected< {{ category }}
+      {% else %}
+      %span.post-category< {{ category }}
+      {% endif %}
+      {% endfor %}
     %h2.post-title
       %a{ href: '{{ include.post.url }}' } {{ include.post.title }}
   %section.post-content

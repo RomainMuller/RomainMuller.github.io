@@ -1,9 +1,9 @@
 ---
-pagination:
-  enabled: true
+layout: default
 ---
+
 {% for post in paginator.posts %}
-  {% include post.haml post=post %}
+{% include post.haml post=post category=page.autopages.display_name %}
 {% endfor %}
 
 {% include paginator.haml paginator=paginator %}

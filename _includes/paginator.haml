@@ -1,0 +1,49 @@
+{% if include.paginator.page_trail %}
+%nav{ 'aria-label': 'Page Navigation' }
+  %ul.pagination
+
+    {% if include.paginator.page > 1 %}
+    %li.page-item
+      %a.page-link{ href: '{{ include.paginator.first_page_path }}', title: 'Jump to first page' }<
+        {% include font-awesome.haml style='fas' icon='angle-double-left' %}
+
+    %li.page-item
+      %a.page-link{ href: '{{ include.paginator.previous_page_path }}', title: 'Jump to previous page' }<
+        {% include font-awesome.haml style='fas' icon='angle-left' %}
+
+    {% if (include.paginator.page_trail | first).num > 1 %}
+    %li.page-item.disabled
+      %a.page-link{ 'aria-disabled': 'true', tabindex: -1 }
+        {% include font-awesome.haml style='fas' icon='ellipsis-h' %}
+    {% endif %}
+    {% endif %}
+
+    {% for trail in include.paginator.page_trail %}
+    {% if trail.path == page.url %}
+    %li.page-item.active{ 'aria-current': :page }
+      %a.page-link{ href: '{{ trail.path }}', title: 'Jump to page {{ trail.num }} of {{ trail.max }}' }<
+        {{ trail.num }}
+        %span.sr-only< (current)
+    {% else %}
+    %li.page-item
+      %a.page-link{ href: '{{ trail.path }}', title: 'Jump to page {{ trail.num }} of {{ trail.max }}' }<
+        {{ trail.num }}
+    {% endif %}
+    {% endfor %}
+
+    {% if include.paginator.page < include.paginator.total_pages %}
+    {% if (include.paginator.page_trail | last).num < include.paginator.total_pages %}
+    %li.page-item.disabled
+      %a.page-link{ 'aria-disabled': 'true', tabindex: -1 }
+        {% include font-awesome.haml style='fas' icon='ellipsis-h' %}
+    {% endif %}
+
+    %li.page-item
+      %a.page-link{ href: '{{ include.paginator.next_page_path }}', title: 'Jump to next page' }<
+        {% include font-awesome.haml style='fas' icon='angle-right' %}
+
+    %li.page-item
+      %a.page-link{ href: '{{ include.paginator.last_page_path }}', title: 'Jump to last page' }<
+        {% include font-awesome.haml style='fas' icon='angle-double-right' %}
+    {% endif %}
+{% endif %}
