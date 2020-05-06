@@ -20,4 +20,8 @@
       @extend .badge-primary;
     }
   }
+
+  .post-content {
+    @extend .text-justify;
+  }
 }
