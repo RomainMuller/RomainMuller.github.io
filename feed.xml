@@ -1,1 +1,66 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://romainmuller.dev/feed.xml" rel="self" type="application/atom+xml" /><link href="https://romainmuller.dev/" rel="alternate" type="text/html" /><updated>2020-05-06T15:26:13+02:00</updated><id>https://romainmuller.dev/feed.xml</id><title type="html">Crimson 11 Delight Petrichor</title><subtitle>I'm a programming linguist at Amazon Web Services in Luxembourg. This is my personal blog about software development, open source, programming languages, and related topics.</subtitle><author><name>Romain Marcadier</name></author></feed>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="https://romainmuller.dev/feed.xml" rel="self" type="application/atom+xml" /><link href="https://romainmuller.dev/" rel="alternate" type="text/html" /><updated>2020-05-06T16:13:24+02:00</updated><id>https://romainmuller.dev/feed.xml</id><title type="html">Crimson 11 Delight Petrichor</title><subtitle>I'm a programming linguist at Amazon Web Services in Luxembourg. This is my personal blog about software development, open source, programming languages, and related topics.</subtitle><author><name>Romain Marcadier</name></author><entry><title type="html">Why I don’t like commenting code</title><link href="https://romainmuller.dev/posts/2020/05/06/comments-in-code.html" rel="alternate" type="text/html" title="Why I don't like commenting code" /><published>2020-05-06T15:26:00+02:00</published><updated>2020-05-06T15:26:00+02:00</updated><id>https://romainmuller.dev/posts/2020/05/06/comments-in-code</id><content type="html" xml:base="https://romainmuller.dev/posts/2020/05/06/comments-in-code.html">&lt;p&gt;Sometimes, the comments are intended as &lt;em&gt;documentation&lt;/em&gt;. As a matter of fact,
+many programming languages use specially formatted comments to represent API
+documentation (e.g: &lt;code class=&quot;highlighter-rouge&quot;&gt;javadoc&lt;/code&gt; processes comments in &lt;em&gt;Java&lt;/em&gt; code introduced by
+&lt;code class=&quot;highlighter-rouge&quot;&gt;/**&lt;/code&gt;). Such comments are invaluable in making sure users of a library or API
+are not forced to look into the implementation of a feature to understand it’s
+purpose, valid uses, limitations, etc… They inform about the &lt;em&gt;contract&lt;/em&gt; the
+feature offers, not about how the contract is fulfilled.&lt;/p&gt;
+
+&lt;p&gt;But the comments I dislike are not those. They are the breadcrumbs left within
+the implementation of the features. Those are the explanations you need to
+understand some obscure idiom, because the code suffers from a lack of
+readability. See - I am of those people who consider &lt;em&gt;source code&lt;/em&gt; is the only
+reliable source of information about what a program &lt;strong&gt;really&lt;/strong&gt; does. What the
+code was &lt;strong&gt;meant&lt;/strong&gt; to do is spelled out in the &lt;em&gt;contract&lt;/em&gt; that was documented
+outside of the implementation; but when you try to understand a bug, you need to
+gain insight into how the real behavior differs from the intended behavior.&lt;/p&gt;
+
+&lt;p&gt;The sad truth about documentation is that it becomes &lt;em&gt;stale&lt;/em&gt; really quickly. In
+fact, one can see it as a snapshot of the maintainers’ intention when it was
+written. But requirements evolve. Bugs are discovered and fixed… And it is so
+easy to forget to update the documentation to reflect the new state of affairs.&lt;/p&gt;
+
+&lt;p&gt;Now, you’d ask me what it is I don’t like about comments inserted in the
+implemntation, which are supposedly there to help me understand the &lt;strong&gt;real&lt;/strong&gt;
+behavior of the program? Well the problem is that it’s a form of documentation.
+Reality will eventually drift away from what is expressed in this comment. And
+there I am, trying to troubleshoot a bug. And I have two sources of information
+in the source:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Comments, which tell me someting&lt;/li&gt;
+  &lt;li&gt;Source code, which tells me something else&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Now, which is right? Is the comment telling me how things should be, and the
+implementation is, in fact, broken? Or is the source code correct and the
+comment is simply stale (and should be fixed or removed)? At this point, the
+source code is the only thing I have which is grounded in realmity - it
+represents what is being executed by computers.&lt;/p&gt;
+
+&lt;p&gt;If the code is not readable enough that it can be understood by the reader, it
+should be refactored for readability. Are explanations needed because the
+contract for this feature is too complicated? Breaking it down into smaller
+units will help clarifying the situation and remove the need for implementation
+comments.&lt;/p&gt;
+
+&lt;p&gt;Is the code unreadable? Convoluted idioms should only be used when abolutely necessary: development constraints (performance requirements, security, …)
+force developers to write code that is either not very readable or that looks
+unnecessarily complicated… The constraints that informed the implementation
+choice should be spelled out in the &lt;em&gt;contract&lt;/em&gt; documentation.&lt;/p&gt;
+
+&lt;p&gt;But if all documentation eventually becomes &lt;em&gt;stale&lt;/em&gt;, what’s so different about
+&lt;em&gt;contract&lt;/em&gt; documentation? Well not much. But this is one of those things where
+&lt;em&gt;less is more&lt;/em&gt;. The more places documentation is maintained in, the faster they
+will diverge from reality. It becomes much easier to stay on top of of
+documentation when there is only one palce where it is mastered. &lt;em&gt;Contracts&lt;/em&gt; are
+documented close to their implementation. So it’s easy to update the
+&lt;em&gt;documentation&lt;/em&gt; when the contract changes. And changing a &lt;em&gt;contract&lt;/em&gt; should be
+done with care: anything that subscribed to this &lt;em&gt;contract&lt;/em&gt; could be affected by
+the change.&lt;/p&gt;
+
+&lt;p&gt;So basically, my stance on commenting code is that &lt;em&gt;all&lt;/em&gt; public APIs should have
+their &lt;em&gt;contract&lt;/em&gt; documented in-place. Ideally, private members that are not
+trivial should receive the same treatment. And inline comments in the
+implementation should only be used when they explain someting counter-intuitive
+about the implementation.&lt;/p&gt;</content><author><name>Romain Marcadier</name></author><summary type="html">Sometimes, the comments are intended as documentation. As a matter of fact, many programming languages use specially formatted comments to represent API documentation (e.g: javadoc processes comments in Java code introduced by /**). Such comments are invaluable in making sure users of a library or API are not forced to look into the implementation of a feature to understand it’s purpose, valid uses, limitations, etc… They inform about the contract the feature offers, not about how the contract is fulfilled.</summary></entry></feed>
