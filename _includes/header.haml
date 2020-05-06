@@ -1,6 +1,7 @@
 %nav.bg-dark.d-print.fixed-top.navbar.navbar-dark.navbar-expand-sm.shadow
   %a.navbar-brand{ href: '{{ site.url }}' }
-    {% octicon broadcast aria-label:"Logo" height:30 class:"align-top d-inline-block mr-1" %} {{ site.title }}
+    {% octicon broadcast aria-label:"Logo" height:30 class:"align-top d-inline-block mr-1" %}
+    %span.d-none.d-sm-inline {{ site.title }}
 
   %ul.navbar-nav.nav-pills.ml-md-auto
     %li.nav-item.dropdown{ role: :menu }
