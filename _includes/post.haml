@@ -3,7 +3,7 @@
     %span.post-meta
       %time{ datetime: '{{ include.post.date | date_to_xmlschema }}', pubdate: true } {{ include.post.date | date_to_string }}
     %span.post-categories
-      {% assign categories = post.categories | sort %}
+      {% assign categories = include.post.categories | sort %}
       {% for category in categories %}
       {% if category == include.category %}
       %span.post-category.selected< {{ category }}
