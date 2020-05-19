@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'jekyll', '~> 4.0.1'
 
-gem 'bootstrap', '~> 4.4.1'
+gem 'bootstrap', '~> 4.5.0'
 gem 'font-awesome-sass', '~> 5.12.0'
 gem 'haml', '~> 5.1.2'
 gem 'sprockets', '~> 4.0.0', require: false
