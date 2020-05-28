@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'jekyll', '~> 4.0.1'
+gem 'jekyll', '~> 4.1.0'
 
 gem 'bootstrap', '~> 4.5.0'
 gem 'font-awesome-sass', '~> 5.12.0'
