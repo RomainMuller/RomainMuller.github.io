@@ -5,7 +5,7 @@ gem 'jekyll', '~> 4.1.0'
 gem 'bootstrap', '~> 4.5.0'
 gem 'font-awesome-sass', '~> 5.12.0'
 gem 'haml', '~> 5.1.2'
-gem 'sprockets', '~> 4.0.0', require: false
+gem 'sprockets', '~> 4.0.1', require: false
 
 # If you have any plugins, put them here!
 group :jekyll_plugins do
