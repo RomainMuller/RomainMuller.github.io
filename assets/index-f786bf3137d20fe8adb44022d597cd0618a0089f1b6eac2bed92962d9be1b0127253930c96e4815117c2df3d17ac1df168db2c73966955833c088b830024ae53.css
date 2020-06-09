@@ -1448,10 +1448,10 @@ pre {
     background-color: #e9ecef;
     opacity: 1; }
 
-input[type="date"].form-control,
-input[type="time"].form-control,
-input[type="datetime-local"].form-control,
-input[type="month"].form-control {
+input.form-control[type="date"],
+input.form-control[type="time"],
+input.form-control[type="datetime-local"],
+input.form-control[type="month"] {
   /* @alternate */ -webkit-appearance: none;
      /* @alternate */ -moz-appearance: none;
           appearance: none; }
@@ -1818,11 +1818,11 @@ fieldset:disabled a.btn {
     color: #fff;
     background-color: #007bff;
     border-color: #007bff; }
-  .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle {
+  .btn-primary:not(:disabled):not(.disabled):active, .btn-primary.active:not(:disabled):not(.disabled), .show > .btn-primary.dropdown-toggle {
     color: #fff;
     background-color: #0062cc;
     border-color: #005cbf; }
-    .btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus, .show > .btn-primary.dropdown-toggle:focus {
+    .btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary.active:not(:disabled):not(.disabled):focus, .show > .btn-primary.dropdown-toggle:focus {
       box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5); }
 
 .btn-secondary {
@@ -1842,11 +1842,11 @@ fieldset:disabled a.btn {
     color: #fff;
     background-color: #6c757d;
     border-color: #6c757d; }
-  .btn-secondary:not(:disabled):not(.disabled):active, .btn-secondary:not(:disabled):not(.disabled).active, .show > .btn-secondary.dropdown-toggle {
+  .btn-secondary:not(:disabled):not(.disabled):active, .btn-secondary.active:not(:disabled):not(.disabled), .show > .btn-secondary.dropdown-toggle {
     color: #fff;
     background-color: #545b62;
     border-color: #4e555b; }
-    .btn-secondary:not(:disabled):not(.disabled):active:focus, .btn-secondary:not(:disabled):not(.disabled).active:focus, .show > .btn-secondary.dropdown-toggle:focus {
+    .btn-secondary:not(:disabled):not(.disabled):active:focus, .btn-secondary.active:not(:disabled):not(.disabled):focus, .show > .btn-secondary.dropdown-toggle:focus {
       box-shadow: 0 0 0 0.2rem rgba(130, 138, 145, 0.5); }
 
 .btn-success {
@@ -1866,11 +1866,11 @@ fieldset:disabled a.btn {
     color: #fff;
     background-color: #28a745;
     border-color: #28a745; }
-  .btn-success:not(:disabled):not(.disabled):active, .btn-success:not(:disabled):not(.disabled).active, .show > .btn-success.dropdown-toggle {
+  .btn-success:not(:disabled):not(.disabled):active, .btn-success.active:not(:disabled):not(.disabled), .show > .btn-success.dropdown-toggle {
     color: #fff;
     background-color: #1e7e34;
     border-color: #1c7430; }
-    .btn-success:not(:disabled):not(.disabled):active:focus, .btn-success:not(:disabled):not(.disabled).active:focus, .show > .btn-success.dropdown-toggle:focus {
+    .btn-success:not(:disabled):not(.disabled):active:focus, .btn-success.active:not(:disabled):not(.disabled):focus, .show > .btn-success.dropdown-toggle:focus {
       box-shadow: 0 0 0 0.2rem rgba(72, 180, 97, 0.5); }
 
 .btn-info {
@@ -1890,11 +1890,11 @@ fieldset:disabled a.btn {
     color: #fff;
     background-color: #17a2b8;
     border-color: #17a2b8; }
-  .btn-info:not(:disabled):not(.disabled):active, .btn-info:not(:disabled):not(.disabled).active, .show > .btn-info.dropdown-toggle {
+  .btn-info:not(:disabled):not(.disabled):active, .btn-info.active:not(:disabled):not(.disabled), .show > .btn-info.dropdown-toggle {
     color: #fff;
     background-color: #117a8b;
     border-color: #10707f; }
-    .btn-info:not(:disabled):not(.disabled):active:focus, .btn-info:not(:disabled):not(.disabled).active:focus, .show > .btn-info.dropdown-toggle:focus {
+    .btn-info:not(:disabled):not(.disabled):active:focus, .btn-info.active:not(:disabled):not(.disabled):focus, .show > .btn-info.dropdown-toggle:focus {
       box-shadow: 0 0 0 0.2rem rgba(58, 176, 195, 0.5); }
 
 .btn-warning {
@@ -1914,11 +1914,11 @@ fieldset:disabled a.btn {
     color: #212529;
     background-color: #ffc107;
     border-color: #ffc107; }
-  .btn-warning:not(:disabled):not(.disabled):active, .btn-warning:not(:disabled):not(.disabled).active, .show > .btn-warning.dropdown-toggle {
+  .btn-warning:not(:disabled):not(.disabled):active, .btn-warning.active:not(:disabled):not(.disabled), .show > .btn-warning.dropdown-toggle {
     color: #212529;
     background-color: #d39e00;
     border-color: #c69500; }
-    .btn-warning:not(:disabled):not(.disabled):active:focus, .btn-warning:not(:disabled):not(.disabled).active:focus, .show > .btn-warning.dropdown-toggle:focus {
+    .btn-warning:not(:disabled):not(.disabled):active:focus, .btn-warning.active:not(:disabled):not(.disabled):focus, .show > .btn-warning.dropdown-toggle:focus {
       box-shadow: 0 0 0 0.2rem rgba(222, 170, 12, 0.5); }
 
 .btn-danger {
@@ -1938,11 +1938,11 @@ fieldset:disabled a.btn {
     color: #fff;
     background-color: #dc3545;
     border-color: #dc3545; }
-  .btn-danger:not(:disabled):not(.disabled):active, .btn-danger:not(:disabled):not(.disabled).active, .show > .btn-danger.dropdown-toggle {
+  .btn-danger:not(:disabled):not(.disabled):active, .btn-danger.active:not(:disabled):not(.disabled), .show > .btn-danger.dropdown-toggle {
     color: #fff;
     background-color: #bd2130;
     border-color: #b21f2d; }
-    .btn-danger:not(:disabled):not(.disabled):active:focus, .btn-danger:not(:disabled):not(.disabled).active:focus, .show > .btn-danger.dropdown-toggle:focus {
+    .btn-danger:not(:disabled):not(.disabled):active:focus, .btn-danger.active:not(:disabled):not(.disabled):focus, .show > .btn-danger.dropdown-toggle:focus {
       box-shadow: 0 0 0 0.2rem rgba(225, 83, 97, 0.5); }
 
 .btn-light {
@@ -1962,11 +1962,11 @@ fieldset:disabled a.btn {
     color: #212529;
     background-color: #f8f9fa;
     border-color: #f8f9fa; }
-  .btn-light:not(:disabled):not(.disabled):active, .btn-light:not(:disabled):not(.disabled).active, .show > .btn-light.dropdown-toggle {
+  .btn-light:not(:disabled):not(.disabled):active, .btn-light.active:not(:disabled):not(.disabled), .show > .btn-light.dropdown-toggle {
     color: #212529;
     background-color: #dae0e5;
     border-color: #d3d9df; }
-    .btn-light:not(:disabled):not(.disabled):active:focus, .btn-light:not(:disabled):not(.disabled).active:focus, .show > .btn-light.dropdown-toggle:focus {
+    .btn-light:not(:disabled):not(.disabled):active:focus, .btn-light.active:not(:disabled):not(.disabled):focus, .show > .btn-light.dropdown-toggle:focus {
       box-shadow: 0 0 0 0.2rem rgba(216, 217, 219, 0.5); }
 
 .btn-dark {
@@ -1986,11 +1986,11 @@ fieldset:disabled a.btn {
     color: #fff;
     background-color: #343a40;
     border-color: #343a40; }
-  .btn-dark:not(:disabled):not(.disabled):active, .btn-dark:not(:disabled):not(.disabled).active, .show > .btn-dark.dropdown-toggle {
+  .btn-dark:not(:disabled):not(.disabled):active, .btn-dark.active:not(:disabled):not(.disabled), .show > .btn-dark.dropdown-toggle {
     color: #fff;
     background-color: #1d2124;
     border-color: #171a1d; }
-    .btn-dark:not(:disabled):not(.disabled):active:focus, .btn-dark:not(:disabled):not(.disabled).active:focus, .show > .btn-dark.dropdown-toggle:focus {
+    .btn-dark:not(:disabled):not(.disabled):active:focus, .btn-dark.active:not(:disabled):not(.disabled):focus, .show > .btn-dark.dropdown-toggle:focus {
       box-shadow: 0 0 0 0.2rem rgba(82, 88, 93, 0.5); }
 
 .btn-outline-primary {
@@ -2005,11 +2005,11 @@ fieldset:disabled a.btn {
   .btn-outline-primary.disabled, .btn-outline-primary:disabled {
     color: #007bff;
     background-color: transparent; }
-  .btn-outline-primary:not(:disabled):not(.disabled):active, .btn-outline-primary:not(:disabled):not(.disabled).active, .show > .btn-outline-primary.dropdown-toggle {
+  .btn-outline-primary:not(:disabled):not(.disabled):active, .btn-outline-primary.active:not(:disabled):not(.disabled), .show > .btn-outline-primary.dropdown-toggle {
     color: #fff;
     background-color: #007bff;
     border-color: #007bff; }
-    .btn-outline-primary:not(:disabled):not(.disabled):active:focus, .btn-outline-primary:not(:disabled):not(.disabled).active:focus, .show > .btn-outline-primary.dropdown-toggle:focus {
+    .btn-outline-primary:not(:disabled):not(.disabled):active:focus, .btn-outline-primary.active:not(:disabled):not(.disabled):focus, .show > .btn-outline-primary.dropdown-toggle:focus {
       box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5); }
 
 .btn-outline-secondary {
@@ -2024,11 +2024,11 @@ fieldset:disabled a.btn {
   .btn-outline-secondary.disabled, .btn-outline-secondary:disabled {
     color: #6c757d;
     background-color: transparent; }
-  .btn-outline-secondary:not(:disabled):not(.disabled):active, .btn-outline-secondary:not(:disabled):not(.disabled).active, .show > .btn-outline-secondary.dropdown-toggle {
+  .btn-outline-secondary:not(:disabled):not(.disabled):active, .btn-outline-secondary.active:not(:disabled):not(.disabled), .show > .btn-outline-secondary.dropdown-toggle {
     color: #fff;
     background-color: #6c757d;
     border-color: #6c757d; }
-    .btn-outline-secondary:not(:disabled):not(.disabled):active:focus, .btn-outline-secondary:not(:disabled):not(.disabled).active:focus, .show > .btn-outline-secondary.dropdown-toggle:focus {
+    .btn-outline-secondary:not(:disabled):not(.disabled):active:focus, .btn-outline-secondary.active:not(:disabled):not(.disabled):focus, .show > .btn-outline-secondary.dropdown-toggle:focus {
       box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.5); }
 
 .btn-outline-success {
@@ -2043,11 +2043,11 @@ fieldset:disabled a.btn {
   .btn-outline-success.disabled, .btn-outline-success:disabled {
     color: #28a745;
     background-color: transparent; }
-  .btn-outline-success:not(:disabled):not(.disabled):active, .btn-outline-success:not(:disabled):not(.disabled).active, .show > .btn-outline-success.dropdown-toggle {
+  .btn-outline-success:not(:disabled):not(.disabled):active, .btn-outline-success.active:not(:disabled):not(.disabled), .show > .btn-outline-success.dropdown-toggle {
     color: #fff;
     background-color: #28a745;
     border-color: #28a745; }
-    .btn-outline-success:not(:disabled):not(.disabled):active:focus, .btn-outline-success:not(:disabled):not(.disabled).active:focus, .show > .btn-outline-success.dropdown-toggle:focus {
+    .btn-outline-success:not(:disabled):not(.disabled):active:focus, .btn-outline-success.active:not(:disabled):not(.disabled):focus, .show > .btn-outline-success.dropdown-toggle:focus {
       box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.5); }
 
 .btn-outline-info {
@@ -2062,11 +2062,11 @@ fieldset:disabled a.btn {
   .btn-outline-info.disabled, .btn-outline-info:disabled {
     color: #17a2b8;
     background-color: transparent; }
-  .btn-outline-info:not(:disabled):not(.disabled):active, .btn-outline-info:not(:disabled):not(.disabled).active, .show > .btn-outline-info.dropdown-toggle {
+  .btn-outline-info:not(:disabled):not(.disabled):active, .btn-outline-info.active:not(:disabled):not(.disabled), .show > .btn-outline-info.dropdown-toggle {
     color: #fff;
     background-color: #17a2b8;
     border-color: #17a2b8; }
-    .btn-outline-info:not(:disabled):not(.disabled):active:focus, .btn-outline-info:not(:disabled):not(.disabled).active:focus, .show > .btn-outline-info.dropdown-toggle:focus {
+    .btn-outline-info:not(:disabled):not(.disabled):active:focus, .btn-outline-info.active:not(:disabled):not(.disabled):focus, .show > .btn-outline-info.dropdown-toggle:focus {
       box-shadow: 0 0 0 0.2rem rgba(23, 162, 184, 0.5); }
 
 .btn-outline-warning {
@@ -2081,11 +2081,11 @@ fieldset:disabled a.btn {
   .btn-outline-warning.disabled, .btn-outline-warning:disabled {
     color: #ffc107;
     background-color: transparent; }
-  .btn-outline-warning:not(:disabled):not(.disabled):active, .btn-outline-warning:not(:disabled):not(.disabled).active, .show > .btn-outline-warning.dropdown-toggle {
+  .btn-outline-warning:not(:disabled):not(.disabled):active, .btn-outline-warning.active:not(:disabled):not(.disabled), .show > .btn-outline-warning.dropdown-toggle {
     color: #212529;
     background-color: #ffc107;
     border-color: #ffc107; }
-    .btn-outline-warning:not(:disabled):not(.disabled):active:focus, .btn-outline-warning:not(:disabled):not(.disabled).active:focus, .show > .btn-outline-warning.dropdown-toggle:focus {
+    .btn-outline-warning:not(:disabled):not(.disabled):active:focus, .btn-outline-warning.active:not(:disabled):not(.disabled):focus, .show > .btn-outline-warning.dropdown-toggle:focus {
       box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.5); }
 
 .btn-outline-danger {
@@ -2100,11 +2100,11 @@ fieldset:disabled a.btn {
   .btn-outline-danger.disabled, .btn-outline-danger:disabled {
     color: #dc3545;
     background-color: transparent; }
-  .btn-outline-danger:not(:disabled):not(.disabled):active, .btn-outline-danger:not(:disabled):not(.disabled).active, .show > .btn-outline-danger.dropdown-toggle {
+  .btn-outline-danger:not(:disabled):not(.disabled):active, .btn-outline-danger.active:not(:disabled):not(.disabled), .show > .btn-outline-danger.dropdown-toggle {
     color: #fff;
     background-color: #dc3545;
     border-color: #dc3545; }
-    .btn-outline-danger:not(:disabled):not(.disabled):active:focus, .btn-outline-danger:not(:disabled):not(.disabled).active:focus, .show > .btn-outline-danger.dropdown-toggle:focus {
+    .btn-outline-danger:not(:disabled):not(.disabled):active:focus, .btn-outline-danger.active:not(:disabled):not(.disabled):focus, .show > .btn-outline-danger.dropdown-toggle:focus {
       box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.5); }
 
 .btn-outline-light {
@@ -2119,11 +2119,11 @@ fieldset:disabled a.btn {
   .btn-outline-light.disabled, .btn-outline-light:disabled {
     color: #f8f9fa;
     background-color: transparent; }
-  .btn-outline-light:not(:disabled):not(.disabled):active, .btn-outline-light:not(:disabled):not(.disabled).active, .show > .btn-outline-light.dropdown-toggle {
+  .btn-outline-light:not(:disabled):not(.disabled):active, .btn-outline-light.active:not(:disabled):not(.disabled), .show > .btn-outline-light.dropdown-toggle {
     color: #212529;
     background-color: #f8f9fa;
     border-color: #f8f9fa; }
-    .btn-outline-light:not(:disabled):not(.disabled):active:focus, .btn-outline-light:not(:disabled):not(.disabled).active:focus, .show > .btn-outline-light.dropdown-toggle:focus {
+    .btn-outline-light:not(:disabled):not(.disabled):active:focus, .btn-outline-light.active:not(:disabled):not(.disabled):focus, .show > .btn-outline-light.dropdown-toggle:focus {
       box-shadow: 0 0 0 0.2rem rgba(248, 249, 250, 0.5); }
 
 .btn-outline-dark {
@@ -2138,11 +2138,11 @@ fieldset:disabled a.btn {
   .btn-outline-dark.disabled, .btn-outline-dark:disabled {
     color: #343a40;
     background-color: transparent; }
-  .btn-outline-dark:not(:disabled):not(.disabled):active, .btn-outline-dark:not(:disabled):not(.disabled).active, .show > .btn-outline-dark.dropdown-toggle {
+  .btn-outline-dark:not(:disabled):not(.disabled):active, .btn-outline-dark.active:not(:disabled):not(.disabled), .show > .btn-outline-dark.dropdown-toggle {
     color: #fff;
     background-color: #343a40;
     border-color: #343a40; }
-    .btn-outline-dark:not(:disabled):not(.disabled):active:focus, .btn-outline-dark:not(:disabled):not(.disabled).active:focus, .show > .btn-outline-dark.dropdown-toggle:focus {
+    .btn-outline-dark:not(:disabled):not(.disabled):active:focus, .btn-outline-dark.active:not(:disabled):not(.disabled):focus, .show > .btn-outline-dark.dropdown-toggle:focus {
       box-shadow: 0 0 0 0.2rem rgba(52, 58, 64, 0.5); }
 
 .btn-link {
@@ -2176,9 +2176,9 @@ fieldset:disabled a.btn {
   .btn-block + .btn-block {
     margin-top: 0.5rem; }
 
-input[type="submit"].btn-block,
-input[type="reset"].btn-block,
-input[type="button"].btn-block {
+input.btn-block[type="submit"],
+input.btn-block[type="reset"],
+input.btn-block[type="button"] {
   width: 100%; }
 
 .fade {
@@ -7237,7 +7237,7 @@ a.text-dark:hover, a.text-dark:focus {
   font-style: normal; }
 
 /*!
- * Font Awesome Free 5.12.0 by @fontawesome - https://fontawesome.com
+ * Font Awesome Free 5.13.0 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
 /* FONT PATH
@@ -7246,25 +7246,25 @@ a.text-dark:hover, a.text-dark:focus {
   font-family: 'Font Awesome 5 Free';
   font-style: normal;
   font-weight: 900;
-  font-display: auto;
-  src: url("/assets/font-awesome/fa-solid-900-93f06dfddb5a5d772c35c7650102fa3a75746a4398ab1b5b97172f0b278ecce29d6a851ce7f6eb2b56e5d564c0f92f02f4804a96719c9eefdf42127abc4e31c7.eot");
-  src: url("/assets/font-awesome/fa-solid-900-93f06dfddb5a5d772c35c7650102fa3a75746a4398ab1b5b97172f0b278ecce29d6a851ce7f6eb2b56e5d564c0f92f02f4804a96719c9eefdf42127abc4e31c7.eot#iefix") format("embedded-opentype"), url("/assets/font-awesome/fa-solid-900-ff0dc2e7f41b5dda10f19ca4d476d6c786fa7a595288f9cb3db2c068293149a1b358119a9c1d9da616b5f9d3fd3f414258f295570e7bb755a665b143861be6fb.woff2") format("woff2"), url("/assets/font-awesome/fa-solid-900-0bedae5c742cadfc19982366d64ee40e5bfda7f7a51809f2c2c0887854d4496650debb80a50a0ffe97bfeceb677c73e026424cb7850edc4846b001208f4eb410.woff") format("woff"), url("/assets/font-awesome/fa-solid-900-7fdb75e5a505c3a78e28abd6f996deefb53ae6c2a86fd4578007f27ff0a63742c564df0b5bf99a69273c1b00a8e7f5ab56f42039767dcee9135e190bc9e2591d.ttf") format("truetype"), url("/assets/font-awesome/fa-solid-900-6be4aa6d1c7d568dd91830e5d92fd542ff52cba1ac0a91046be626340ee8f37535641072c4f9e998a9ac493f0f5d953491bbcc567d93aaa941c1f29a1fa25589.svg#fontawesome") format("svg"); }
+  font-display: block;
+  src: url("/assets/font-awesome/fa-solid-900-fa38f5a543384762b98de5a2ac50a506652522ab5052ffd533cde8cb0789a281ca9693ca1eac381a63a01dd318986351be315e53811333c2f5158d7ea322bfc0.eot");
+  src: url("/assets/font-awesome/fa-solid-900-fa38f5a543384762b98de5a2ac50a506652522ab5052ffd533cde8cb0789a281ca9693ca1eac381a63a01dd318986351be315e53811333c2f5158d7ea322bfc0.eot#iefix") format("embedded-opentype"), url("/assets/font-awesome/fa-solid-900-84e621ac534c416cf13880059d76ce842fa74bb433a274aa5d106adbda20354fa5ed751ed1d13d0c393d54ceb37fe8dbd2f653e4cb791e9f9d3d2a50a250b05f.woff2") format("woff2"), url("/assets/font-awesome/fa-solid-900-15d488b35ed1c2012a255ad5eb225b6d62827f7698c1462fb5dd64059b35d7b90697bbb4d5cb8bc1170f547069fad10070fe55a97018ad5af424b69d5c2aa696.woff") format("woff"), url("/assets/font-awesome/fa-solid-900-808e4fe1a6a0b99273424eceeb40886c695797b61fa8d3ec8ae4e2f087f047d6c072edab5bf5ea18a5d70512c4e32b54782f257049f16ce10432a373a16ff543.ttf") format("truetype"), url("/assets/font-awesome/fa-solid-900-93e2c7ebfa034c0495722973f7bd5daabb79d833ac48cc8b583ded6673b599b502df5aee287707ceb4247c760a5abe33baf91788d061336e327ebdf3af449c7b.svg#fontawesome") format("svg"); }
 
 @font-face {
   font-family: 'Font Awesome 5 Free';
   font-style: normal;
   font-weight: 400;
-  font-display: auto;
-  src: url("/assets/font-awesome/fa-regular-400-fa62032031641c3807805799c4d2f4d9b87a169805f7f306def0cd7adb2d1894df3b98c867fac609cbd60a7588a71af35ac37fdcc55cbb43ace12e98f112b197.eot");
-  src: url("/assets/font-awesome/fa-regular-400-fa62032031641c3807805799c4d2f4d9b87a169805f7f306def0cd7adb2d1894df3b98c867fac609cbd60a7588a71af35ac37fdcc55cbb43ace12e98f112b197.eot#iefix") format("embedded-opentype"), url("/assets/font-awesome/fa-regular-400-0767677bb9da08fcf2e2facd285b27e0e7092525734ee0c87f2c940aef11a33d797f86ac89bc5c46f50abf8de3877a9a4166fefde699bf9c7f61f96126fc1475.woff2") format("woff2"), url("/assets/font-awesome/fa-regular-400-68bbde9cf53b5c3fcfb063f8743f109d5cf603c1a82203797bba3e3db714b906f635a82b3fc162c383116f4e8c1916d650f33a67f68c8bc0f1b21b6db40d669b.woff") format("woff"), url("/assets/font-awesome/fa-regular-400-e82e19c9e25076c06232b53f1838487337f7ce9c1cc593f6f656d087c8344b79a66c1a15a6036308c977eec11016de8deaf6307eeb49f612dc32f18bbf234f43.ttf") format("truetype"), url("/assets/font-awesome/fa-regular-400-f129df9d8865751e081281514ae609389f8baa42dd527fe51fdeb886e307837e89818b2387eda54b271e581577bda70d14de5ccd2325d1b52e1236e1f18ef7ac.svg#fontawesome") format("svg"); }
+  font-display: block;
+  src: url("/assets/font-awesome/fa-regular-400-9db95a9fa6bf3899d6dd419eab879b2b18c6d166913aa51ccb9b4d2c0d0baa4a531b666cce51f6ce99bd88861b4c33df804179233db439d8f86ce2a584e7577f.eot");
+  src: url("/assets/font-awesome/fa-regular-400-9db95a9fa6bf3899d6dd419eab879b2b18c6d166913aa51ccb9b4d2c0d0baa4a531b666cce51f6ce99bd88861b4c33df804179233db439d8f86ce2a584e7577f.eot#iefix") format("embedded-opentype"), url("/assets/font-awesome/fa-regular-400-75d8799a172ae620eaa3ac889cb055fbea9a98d24eb471c826e6bb4c4de685ab3332e888853adb7a6725035edcfd3a29fe9713874c857f14b1c01825ce8164f6.woff2") format("woff2"), url("/assets/font-awesome/fa-regular-400-230e535cc929ea8552bf3bd2ae50ceef3eb3df0bc905cb5a6bd5c439d3340b2a6f76c558c8789f2070511e8b1c8a7931c75b4009fd4b5405e89653931d6c7f77.woff") format("woff"), url("/assets/font-awesome/fa-regular-400-e8aad953f343429d98a41c2d9960bfa9bc63195efbe20972fb11c38e1040f4faf4e7f7fc60d59531eae7159261ea9c16cd0d2689a4dc64bbe9ee8fffb4f959ec.ttf") format("truetype"), url("/assets/font-awesome/fa-regular-400-d3ae8128e3256086535552cd6234a04588534d483b72660ec3168d4b835a84736d078e40cb6109734f40fbbb38f35a147c1782732985b3ee6d14c77491664546.svg#fontawesome") format("svg"); }
 
 @font-face {
   font-family: 'Font Awesome 5 Brands';
   font-style: normal;
   font-weight: normal;
-  font-display: auto;
-  src: url("/assets/font-awesome/fa-brands-400-f471d0368adf36f6b3651b3b551d914a42eb50b38584cdb79a6ada9c5bb6fb30864b84ea3685ac202e0348e0f58aac6b424a92978e5ff65b20f67106d33ab45e.eot");
-  src: url("/assets/font-awesome/fa-brands-400-f471d0368adf36f6b3651b3b551d914a42eb50b38584cdb79a6ada9c5bb6fb30864b84ea3685ac202e0348e0f58aac6b424a92978e5ff65b20f67106d33ab45e.eot#iefix") format("embedded-opentype"), url("/assets/font-awesome/fa-brands-400-9cdcef971580179bc9e43bfbaa437f818d95cd8437ff739207c700608028f1f9be516ac8cf14a5200b2aa22e8af01a04576ca0429d74304d479fa70efcee9ec0.woff2") format("woff2"), url("/assets/font-awesome/fa-brands-400-7fbdbfe45fa2b45e5e896b55fb9c05209840466f80714e9c4ecc486355483efcabb24f3b6c632cc06563c116ab3d1e5c7e8706b36bb04d7df95518c8551aeacb.woff") format("woff"), url("/assets/font-awesome/fa-brands-400-e786826281fb32c3b011e0c639c1f1f189aede68ea1463ae999906b42f9cc340dca026fafde4608039532711e81c93125c14ae9fc441b2f112cfad3f5d6a69f5.ttf") format("truetype"), url("/assets/font-awesome/fa-brands-400-a1343d5329d718b50561171698493270eebcc187decb2669a9620187bdb4362c9caff7a56821d62b93b806577e57cf530dfc445b5918fe648cb38b57725ceb99.svg#fontawesome") format("svg"); }
+  font-display: block;
+  src: url("/assets/font-awesome/fa-brands-400-c048eb8f7159b61a947e1349a5ebc535949ce97ed1bd8b1d031970dbb28a9b74877ff01168b18930f0341f1198ab3a293a604b4ab66e7b4978c3ccbf8a9cf9e9.eot");
+  src: url("/assets/font-awesome/fa-brands-400-c048eb8f7159b61a947e1349a5ebc535949ce97ed1bd8b1d031970dbb28a9b74877ff01168b18930f0341f1198ab3a293a604b4ab66e7b4978c3ccbf8a9cf9e9.eot#iefix") format("embedded-opentype"), url("/assets/font-awesome/fa-brands-400-b53d839c5464f7a2904cabcd1e7d6456e2ed1702254450833fc586f4b3a4e6dc07c24f443415a2710e241af8d2dda1b9c17f050045e76501e9b5aa2cb4801ea8.woff2") format("woff2"), url("/assets/font-awesome/fa-brands-400-9e28f0149e0426e1a8c4229109ac1b03f98b66cf5c9e8768f95e7a7018d478fa881950cde164a0b3285fb32e2832fff2938b4e3cf50740fe69037b1cc8747692.woff") format("woff"), url("/assets/font-awesome/fa-brands-400-6f88c29a1bb9697e07b2f6a716953c357be06e2b313fcd84a350f9afae687ade7f794d1816dbfa8c9966d9792a69ed2fe59fb7d36d9bf23ad7557581dead533a.ttf") format("truetype"), url("/assets/font-awesome/fa-brands-400-4d9a6e6dc11e3d5e4e2594d86b4a183ca77dec119638bac34483d8a3146b533eef41c264e73104f535a56e1e1e4bc2b9ea6476d96af8b1c5faf5344889c54457.svg#fontawesome") format("svg"); }
 
 .fa,
 .fas {
@@ -7896,6 +7896,9 @@ readers do not read off random characters that represent icons */
 .fa-box-open:before {
   content: "\f49e"; }
 
+.fa-box-tissue:before {
+  content: "\f95b"; }
+
 .fa-boxes:before {
   content: "\f468"; }
 
@@ -8469,6 +8472,9 @@ readers do not read off random characters that represent icons */
 .fa-d-and-d-beyond:before {
   content: "\f6ca"; }
 
+.fa-dailymotion:before {
+  content: "\f952"; }
+
 .fa-dashcube:before {
   content: "\f210"; }
 
@@ -8555,6 +8561,9 @@ readers do not read off random characters that represent icons */
 
 .fa-discourse:before {
   content: "\f393"; }
+
+.fa-disease:before {
+  content: "\f7fa"; }
 
 .fa-divide:before {
   content: "\f529"; }
@@ -8786,6 +8795,9 @@ readers do not read off random characters that represent icons */
 
 .fa-fast-forward:before {
   content: "\f050"; }
+
+.fa-faucet:before {
+  content: "\f905"; }
 
 .fa-fax:before {
   content: "\f1ac"; }
@@ -9273,8 +9285,14 @@ readers do not read off random characters that represent icons */
 .fa-hand-holding-heart:before {
   content: "\f4be"; }
 
+.fa-hand-holding-medical:before {
+  content: "\f95c"; }
+
 .fa-hand-holding-usd:before {
   content: "\f4c0"; }
+
+.fa-hand-holding-water:before {
+  content: "\f4c1"; }
 
 .fa-hand-lizard:before {
   content: "\f258"; }
@@ -9309,6 +9327,9 @@ readers do not read off random characters that represent icons */
 .fa-hand-scissors:before {
   content: "\f257"; }
 
+.fa-hand-sparkles:before {
+  content: "\f95d"; }
+
 .fa-hand-spock:before {
   content: "\f259"; }
 
@@ -9318,8 +9339,17 @@ readers do not read off random characters that represent icons */
 .fa-hands-helping:before {
   content: "\f4c4"; }
 
+.fa-hands-wash:before {
+  content: "\f95e"; }
+
 .fa-handshake:before {
   content: "\f2b5"; }
+
+.fa-handshake-alt-slash:before {
+  content: "\f95f"; }
+
+.fa-handshake-slash:before {
+  content: "\f960"; }
 
 .fa-hanukiah:before {
   content: "\f6e6"; }
@@ -9341,6 +9371,18 @@ readers do not read off random characters that represent icons */
 
 .fa-hdd:before {
   content: "\f0a0"; }
+
+.fa-head-side-cough:before {
+  content: "\f961"; }
+
+.fa-head-side-cough-slash:before {
+  content: "\f962"; }
+
+.fa-head-side-mask:before {
+  content: "\f963"; }
+
+.fa-head-side-virus:before {
+  content: "\f964"; }
 
 .fa-heading:before {
   content: "\f1dc"; }
@@ -9414,6 +9456,9 @@ readers do not read off random characters that represent icons */
 .fa-hospital-symbol:before {
   content: "\f47e"; }
 
+.fa-hospital-user:before {
+  content: "\f80d"; }
+
 .fa-hot-tub:before {
   content: "\f593"; }
 
@@ -9440,6 +9485,9 @@ readers do not read off random characters that represent icons */
 
 .fa-house-damage:before {
   content: "\f6f1"; }
+
+.fa-house-user:before {
+  content: "\f965"; }
 
 .fa-houzz:before {
   content: "\f27c"; }
@@ -9509,6 +9557,9 @@ readers do not read off random characters that represent icons */
 
 .fa-instagram:before {
   content: "\f16d"; }
+
+.fa-instagram-square:before {
+  content: "\f955"; }
 
 .fa-intercom:before {
   content: "\f7af"; }
@@ -9623,6 +9674,9 @@ readers do not read off random characters that represent icons */
 
 .fa-laptop-code:before {
   content: "\f5fc"; }
+
+.fa-laptop-house:before {
+  content: "\f966"; }
 
 .fa-laptop-medical:before {
   content: "\f812"; }
@@ -9740,6 +9794,12 @@ readers do not read off random characters that represent icons */
 
 .fa-luggage-cart:before {
   content: "\f59d"; }
+
+.fa-lungs:before {
+  content: "\f604"; }
+
+.fa-lungs-virus:before {
+  content: "\f967"; }
 
 .fa-lyft:before {
   content: "\f3c3"; }
@@ -9908,6 +9968,9 @@ readers do not read off random characters that represent icons */
 
 .fa-mixcloud:before {
   content: "\f289"; }
+
+.fa-mixer:before {
+  content: "\f956"; }
 
 .fa-mizuni:before {
   content: "\f3cc"; }
@@ -10146,6 +10209,9 @@ readers do not read off random characters that represent icons */
 .fa-penny-arcade:before {
   content: "\f704"; }
 
+.fa-people-arrows:before {
+  content: "\f968"; }
+
 .fa-people-carry:before {
   content: "\f4ce"; }
 
@@ -10242,6 +10308,9 @@ readers do not read off random characters that represent icons */
 .fa-plane-departure:before {
   content: "\f5b0"; }
 
+.fa-plane-slash:before {
+  content: "\f969"; }
+
 .fa-play:before {
   content: "\f04b"; }
 
@@ -10316,6 +10385,12 @@ readers do not read off random characters that represent icons */
 
 .fa-project-diagram:before {
   content: "\f542"; }
+
+.fa-pump-medical:before {
+  content: "\f96a"; }
+
+.fa-pump-soap:before {
+  content: "\f96b"; }
 
 .fa-pushed:before {
   content: "\f3e1"; }
@@ -10602,6 +10677,9 @@ readers do not read off random characters that represent icons */
 .fa-shield-alt:before {
   content: "\f3ed"; }
 
+.fa-shield-virus:before {
+  content: "\f96c"; }
+
 .fa-ship:before {
   content: "\f21a"; }
 
@@ -10613,6 +10691,9 @@ readers do not read off random characters that represent icons */
 
 .fa-shoe-prints:before {
   content: "\f54b"; }
+
+.fa-shopify:before {
+  content: "\f957"; }
 
 .fa-shopping-bag:before {
   content: "\f290"; }
@@ -10748,6 +10829,9 @@ readers do not read off random characters that represent icons */
 
 .fa-snowplow:before {
   content: "\f7d2"; }
+
+.fa-soap:before {
+  content: "\f96e"; }
 
 .fa-socks:before {
   content: "\f696"; }
@@ -10914,11 +10998,20 @@ readers do not read off random characters that represent icons */
 .fa-stopwatch:before {
   content: "\f2f2"; }
 
+.fa-stopwatch-20:before {
+  content: "\f96f"; }
+
 .fa-store:before {
   content: "\f54e"; }
 
 .fa-store-alt:before {
   content: "\f54f"; }
+
+.fa-store-alt-slash:before {
+  content: "\f970"; }
+
+.fa-store-slash:before {
+  content: "\f971"; }
 
 .fa-strava:before {
   content: "\f428"; }
@@ -11156,6 +11249,9 @@ readers do not read off random characters that represent icons */
 
 .fa-toilet-paper:before {
   content: "\f71e"; }
+
+.fa-toilet-paper-slash:before {
+  content: "\f972"; }
 
 .fa-toolbox:before {
   content: "\f552"; }
@@ -11468,6 +11564,15 @@ readers do not read off random characters that represent icons */
 
 .fa-vine:before {
   content: "\f1ca"; }
+
+.fa-virus:before {
+  content: "\f974"; }
+
+.fa-virus-slash:before {
+  content: "\f975"; }
+
+.fa-viruses:before {
+  content: "\f976"; }
 
 .fa-vk:before {
   content: "\f189"; }
