@@ -85,7 +85,7 @@ GEM
       rouge (~> 3.0)
       safe_yaml (~> 1.0)
       terminal-table (~> 1.8)
-    jekyll-feed (0.13.0)
+    jekyll-feed (0.14.0)
       jekyll (>= 3.7, < 5.0)
     jekyll-gist (1.5.0)
       octokit (~> 4.2)
@@ -107,7 +107,7 @@ GEM
       jekyll (>= 3.7, < 5.0)
     jekyll-watch (2.2.1)
       listen (~> 3.0)
-    kramdown (2.2.1)
+    kramdown (2.3.0)
       rexml
     kramdown-parser-gfm (1.1.0)
       kramdown (~> 2.0)
@@ -196,7 +196,7 @@ DEPENDENCIES
   haml (~> 5.1.2)
   jekyll (~> 4.1.0)
   jekyll-assets!
-  jekyll-feed (~> 0.13.0)
+  jekyll-feed (~> 0.14.0)
   jekyll-gist (~> 1.5.0)
   jekyll-octicons (~> 10.0.0)
   jekyll-paginate-v2 (~> 3.0.0)
