@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/envygeeks/jekyll-assets.git
-  revision: 7ac3a1fde3047ee25b0ebf167678c203e3072e6f
+  revision: 056d2c88719ef3b1f90967a606dd1441581dd832
   specs:
     jekyll-assets (4.0.0.alpha)
       activesupport (>= 5, < 7)
@@ -126,7 +126,7 @@ GEM
     mini_portile2 (2.4.0)
     minitest (5.14.1)
     multipart-post (2.1.1)
-    nokogiri (1.10.9)
+    nokogiri (1.10.10)
       mini_portile2 (~> 2.4.0)
     octicons (10.0.0)
       nokogiri (>= 1.6.3.1)
@@ -156,7 +156,7 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     rexml (3.2.4)
-    rouge (3.20.0)
+    rouge (3.21.0)
     safe_yaml (1.0.5)
     sassc (2.4.0)
       ffi (~> 1.9)
@@ -185,7 +185,7 @@ GEM
     tzinfo (1.2.7)
       thread_safe (~> 0.1)
     unicode-display_width (1.7.0)
-    zeitwerk (2.3.0)
+    zeitwerk (2.4.0)
 
 PLATFORMS
   ruby
