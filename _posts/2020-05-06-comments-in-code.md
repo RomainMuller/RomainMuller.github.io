@@ -39,7 +39,7 @@ in the source:
 Now, which is right? Is the comment telling me how things should be, and the
 implementation is, in fact, broken? Or is the source code correct and the
 comment is simply stale (and should be fixed or removed)? At this point, the
-source code is the only thing I have which is grounded in realmity - it
+source code is the only thing I have which is grounded in reality - it
 represents what is being executed by computers.
 
 If the code is not readable enough that it can be understood by the reader, it
