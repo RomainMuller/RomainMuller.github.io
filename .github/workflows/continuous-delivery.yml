@@ -22,7 +22,7 @@ jobs:
         with:
           ruby-version: 2.6.x
       - name: Gem Cache
-        uses: actions/cache@v1
+        uses: actions/cache@v2.1.2
         with:
           path: source/vendor/bundle
           key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
