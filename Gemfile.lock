@@ -61,7 +61,7 @@ GEM
       multipart-post (>= 1.2, < 3)
     fastimage (2.1.7)
     ffi (1.13.1)
-    font-awesome-sass (5.13.0)
+    font-awesome-sass (5.15.1)
       sassc (>= 1.11)
     forwardable-extended (2.6.0)
     haml (5.2.0)
@@ -192,7 +192,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap (~> 4.5.2)
-  font-awesome-sass (~> 5.13.0)
+  font-awesome-sass (~> 5.15.1)
   haml (~> 5.2.0)
   jekyll (~> 4.1.1)
   jekyll-assets!
