@@ -1,5 +1,5 @@
 /*!
- * Bootstrap v4.5.2 (https://getbootstrap.com/)
+ * Bootstrap v4.5.3 (https://getbootstrap.com/)
  * Copyright 2011-2020 The Bootstrap Authors
  * Copyright 2011-2020 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
@@ -181,7 +181,8 @@ caption {
   caption-side: bottom; }
 
 th {
-  text-align: inherit; }
+  text-align: inherit;
+  /* @alternate */ text-align: -webkit-match-parent; }
 
 label {
   display: inline-block;
@@ -1417,9 +1418,6 @@ pre {
   .form-control:-ms-input-placeholder {
     color: #6c757d;
     opacity: 1; }
-  .form-control::-ms-input-placeholder {
-    color: #6c757d;
-    opacity: 1; }
   .form-control::placeholder {
     color: #6c757d;
     opacity: 1; }
@@ -2621,7 +2619,9 @@ input.btn-block[type="button"] {
   z-index: 1;
   display: block;
   min-height: 1.5rem;
-  padding-left: 1.5rem; }
+  padding-left: 1.5rem;
+  /* @alternate */ -webkit-print-color-adjust: exact;
+          color-adjust: exact; }
 
 .custom-control-inline {
   display: inline-flex;
@@ -3735,6 +3735,7 @@ input.btn-block[type="button"] {
     position: absolute;
     top: 0;
     right: 0;
+    z-index: 2;
     padding: 0.75rem 1.25rem;
     color: inherit; }
 
@@ -7150,7 +7151,7 @@ a.text-dark:hover, a.text-dark:focus {
 
 .text-break {
   word-break: break-word !important;
-  overflow-wrap: break-word !important; }
+  word-wrap: break-word !important; }
 
 .text-reset {
   color: inherit !important; }
@@ -7415,8 +7416,7 @@ a.text-dark:hover, a.text-dark:focus {
 :root .fa-flip-horizontal,
 :root .fa-flip-vertical,
 :root .fa-flip-both {
-  /* @alternate */ -webkit-filter: none;
-          filter: none; }
+  filter: none; }
 
 .fa-stack {
   display: inline-block;
