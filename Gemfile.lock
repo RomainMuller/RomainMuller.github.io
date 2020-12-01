@@ -64,7 +64,7 @@ GEM
     font-awesome-sass (5.15.1)
       sassc (>= 1.11)
     forwardable-extended (2.6.0)
-    haml (5.2.0)
+    haml (5.2.1)
       temple (>= 0.8.0)
       tilt
     http_parser.rb (0.6.0)
@@ -193,7 +193,7 @@ PLATFORMS
 DEPENDENCIES
   bootstrap (~> 4.5.3)
   font-awesome-sass (~> 5.15.1)
-  haml (~> 5.2.0)
+  haml (~> 5.2.1)
   jekyll (~> 4.1.1)
   jekyll-assets!
   jekyll-feed (~> 0.15.1)
