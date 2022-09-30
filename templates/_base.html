@@ -1,0 +1,145 @@
+{% import '_macros.html' as macros %}
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>{{ config.title }} &mdash; {% block title %}Blog{% endblock title %}</title>
+
+  {% if page.description %}
+  <meta name="description" content="{{ page.description }}">
+  {% elif section.description %}
+  <meta name="description" content="{{ section.description }}">
+  {% else %}
+  <meta name="description" content="{{ config.description }}">
+  {% endif %}
+
+  <meta name="author" content="{{ config.extra.author }}">
+  <meta name="keywords" content="{{ config.extra.keywords | join(sep=',') }}">
+
+  <link rel="canonical" href="{{ current_url | safe }}">
+  <link rel="sitemap" href="{{ get_url(path='sitemap.xml') }}">
+  {% block rss %}
+  <link rel="alternate" type="application/atom+xml" title="RSS" href="{{ get_url(path=config.feed_filename) }}">
+  {% endblock rss %}
+  <link rel="shortcut icon" type="image/x-icon" href="{{ get_url(path='favicon.ico') }}">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
+    integrity="sha384-xeJqLiuOvjUBq3iGOjvSQSIlwrpqjSHXpduPd6rQpuiM3f5/ijby8pCsnbu5S81n" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/firacode@6.2.0/distr/fira_code.css"
+    integrity="sha384-4aMEnBa9HzMLsDYaLm5wiA2ZoWDqNSB6pNnINMFUt13g9VOuTY5hZC49pzHzRXVs" crossorigin="anonymous">
+  <link rel="stylesheet" href="{{ get_url(path='style.css', cachebust=true) }}" {% if config.mode !='serve' %}
+    integrity="sha384-{{ get_file_hash(path='style.css', sha_type=384, base64=true) | safe }}" {% endif %}>
+  <link rel="stylesheet" href="{{ get_url(path='style-dark.css', cachebust=true) }}" {% if config.mode !='serve' %}
+    integrity="sha384-{{ get_file_hash(path='style-dark.css', sha_type=384, base64=true) | safe }}" {% endif %}>
+
+
+  {% set bootstrap = load_data(path="vendor/bootstrap/package.json", format="json") %}
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@{{ bootstrap.version }}/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-{{ get_file_hash(path='vendor/bootstrap/dist/js/bootstrap.bundle.min.js', sha_type=384, base64=true) | safe }}"
+    crossorigin="anonymous" defer></script>
+</head>
+
+<body>
+  <div class="d-flex flex-column justify-content-start" style="min-height: 100vh;">
+    <nav class="navbar navbar-expand-md sticky-top bg-light shadow-sm">
+      <div class="container-lg">
+        <a class="navbar-brand" href="{{ config.base_url | safe }}">
+          <img class="rounded-circle" src="https://avatars.githubusercontent.com/RomainMuller" height="30"
+            aria-hidden="true">
+          {{ config.title }}
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto">
+            {% for cfg in config.taxonomies %}
+            {% set taxonomy = get_taxonomy(kind=cfg.name) %}
+            {% if taxonomy.items | length > 0 %}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                {% if config.extra.taxonomies[taxonomy.kind.name].icon %}
+                {{ macros::icon(id=config.extra.taxonomies[taxonomy.kind.name].icon) }}
+                {% endif %}
+                {{ taxonomy.kind.name | capitalize }}
+              </a>
+              <ul class="dropdown-menu">
+                {% set items = taxonomy.items | sort(attribute='pages') | reverse %}
+                {% for item in items %}
+                <li>
+                  {% set url = get_taxonomy_url(kind=taxonomy.kind.name, name=item.name) %}
+                  {% set active = url == current_url %}
+                  <a class="dropdown-item{% if active %} active{% endif %}" href="{{ url }}" {% if active %}
+                    aria-current="page" {% endif %}>
+                    <span class="badge rounded-pill text-bg-primary">{{ item.pages | length }}</span>
+                    {{ item.name | capitalize }}
+                  </a>
+                </li>
+                {% endfor %}
+              </ul>
+            </li>
+            {% endif %}
+            {% endfor %}
+
+            {% set root = get_section(path='_index.md') %}
+            {% for page in root.pages %}
+            <li class="nav-item">
+              {% set url = get_url(path='@/' ~ page.relative_path) %}
+              {% set current = current_url == url %}
+              <a class="nav-link{%if current %} active{% endif %}" href="{{ url }}" {%if current %} aria-current="page"
+                {% endif %}>
+                {% if page.extra.icon %}
+                {{ macros::icon(id=page.extra.icon) }}
+                {% endif %}
+                {{ page.title }}
+              </a>
+            </li>
+            {% endfor %}
+          </ul>
+
+          <div class="btn-group me-4" role="group" aria-label="Social networks">
+            <a class="btn btn-outline-dark" role="button" href="https://github.com/RomainMuller" target="_blank"
+              rel="noreferrer noopener">
+              {{ macros::icon(id="github") }}
+            </a>
+            <a class="btn btn-outline-primary" role="button" href="https://www.linkedin.com/in/romainmuller/"
+              target="_blank" rel="noreferrer noopener">
+              {{ macros::icon(id="linkedin") }}
+            </a>
+            <a class="btn btn-outline-primary" role="button" href="https://twitter.com/RomainMuller" target="_blank"
+              rel="noreferrer noopener">
+              {{ macros::icon(id="twitter") }}
+            </a>
+          </div>
+
+          <form class="d-flex" role="search">
+            <label class="visually-hidden" for="searchBox">Search</label>
+            <div class="input-group">
+              <div class="input-group-text">
+                {{ macros::icon(id="search") }}
+              </div>
+              <input type="search" id="searchBox" class="form-control" placeholder="Search..." aria-label="Search">
+            </div>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <div class="container-md mt-4">
+      {% block content %}{% endblock content %}
+    </div>
+    <footer class="pt-4 mt-auto text-center text-muted">
+      All content on this website is licensed as
+      <a class="text-decoration-none text-muted" rel="license"
+        href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND-4.0</a>
+      unless otherwise specified.
+    </footer>
+  </div>
+</body>
+
+</html>
