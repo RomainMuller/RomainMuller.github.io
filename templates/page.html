@@ -1,0 +1,30 @@
+{% extends '_base.html' %}
+{% import '_macros.html' as macros %}
+
+{% block title %}{{ page.toc[0].title }}{% endblock title %}
+
+{% block content %}
+<div class="markdown">
+  {% set lines = page.content | split(pat='\n') %}
+
+  {{ lines[0] | safe }}
+
+  <h5 class="mb-2 text-muted">
+    <span class="badge rounded-pill text-bg-primary">
+      {{ macros::icon(id="watch", label="Reading time") }}
+      <time datetime="PT{{ page.reading_time }}M">{{ page.reading_time }} minutes</time>
+      ({{ page.word_count }} words)
+    </span>
+
+    {% if page.date %}
+    <span class="badge rounded-pill text-bg-secondary">
+      {{ macros::icon(id='calendar2-event-fill', label='Posted on') }}
+      <time datetime="{{ page.date | date(format='%Y-%m-%d') }}">{{ page.date | date(format='%Y-%m-%d') }}</time>
+    </span>
+    {% endif %}
+  </h5>
+
+
+  {{ lines | slice(start=1) | join(sep='&#10;') | safe }}
+</div>
+{% endblock content %}

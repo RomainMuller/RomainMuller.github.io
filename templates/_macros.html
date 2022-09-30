@@ -1,0 +1,77 @@
+{% macro article_card(article) %}
+<div class="card shadow mb-4 mt-4">
+  {% if article.assets | length > 0 %}
+  <div id="carousel-{{ article.slug }}" class="carousel slide carousel-fade" data-bs-ride="carousel" aria-hidden="true">
+    {% if article.assets | length > 1 %}
+    <div class="carousel-indicators">
+      {% for asset in article.assets %}
+      <button type="button" data-bs-target="#carousel-{{ article.slug }}" data-bs-slide-to="{{ loop.index0 }}" {% if
+        loop.first %}class="active" {% endif %}></button>
+      {% endfor %}
+    </div>
+    {% endif %}
+    <div class="carousel-inner">
+      {% for asset in article.assets %}
+      {% set image=resize_image(path=asset, height=300, width=1320, op="fill") %}
+      <div class="carousel-item{% if loop.first %} active{% endif %}">
+        <img src="{{ image.url }}" class="card-img-top">
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+  <div class="card-body">
+    <h1 class="card-title">
+      <a class="text-decoration-none link-dark" href="{{ get_url(path='@/' ~ article.relative_path) }}">
+        {{ article.toc[0].title }}
+      </a>
+    </h1>
+    <h5 class="card-subtitle mb-2 text-muted">
+      <span class="badge rounded-pill text-bg-primary">
+        {{ self::icon(id="watch", label="Reading time") }}
+        <time datetime="PT{{ article.reading_time }}M">{{ article.reading_time }} minutes</time>
+        ({{ article.word_count }} words)
+      </span>
+      <span class="badge rounded-pill text-bg-secondary">
+        {{ self::icon(id="calendar2-event-fill", label="Posted on") }}
+        <time datetime="{{ article.date | date(format='%Y-%m-%d') }}">
+          {{ article.date | date(format='%Y-%m-%d') }}
+        </time>
+      </span>
+    </h5>
+    <p class="card-text markdown">
+      {{ article.summary | split(pat='\n') | slice(start=1) | join(sep='&#10;') | safe }}
+      <a href="{{ article.path }}#continue-reading">Continue reading...</a>
+    </p>
+  </div>
+  <div class="card-footer text-muted">
+    <span class="me-4">
+      Category:
+      {% for category in article.taxonomies.categories %}
+      <span class="badge border border-primary text-bg-light">
+        <a class="text-decoration-none text-muted" href="{{ get_taxonomy_url(kind='categories', name=category) }}">
+          {{ macros::icon(id='bookmark-star-fill', label='Category', class='text-primary') }}
+          {{ category }}
+        </a>
+      </span>
+      {% endfor %}
+    </span>
+    <span>
+      Tags:
+      {% for tag in article.taxonomies.tags %}
+      <span class="badge border border-info text-bg-light">
+        <a class="text-decoration-none text-muted" href="{{ get_taxonomy_url(kind='tags', name=tag) }}">
+          {{ macros::icon(id='tag-fill', label='Tag', class='text-info') }}
+          {{ tag }}
+        </a>
+      </span>
+      {% endfor %}
+    </span>
+  </div>
+</div>
+{% endmacro %}
+
+{% macro icon(id, label="", class="") %}
+<i class="bi bi-{{ id }}{% if class %} {{ class }}{% endif %}" role="img" {%if label %}aria-label="{{ label }}" {% else
+  %}aria-hidden="true" {% endif %}></i>
+{% endmacro %}

@@ -1,0 +1,15 @@
+{% extends '_base.html' %}
+
+{% block title %}{{ taxonomy.name | title }}{% endblock title %}
+
+{% block content %}
+<h4>{{ taxonomy.name | title }}</h4>
+<div class="list-group">
+  {% for term in terms | sort(attribute='pages') | reverse %}
+  <a class="list-group-item list-group-item-action" href="{{ get_taxonomy_url(kind=taxonomy.name, name=term.name) }}">
+    <span class="badge bg-primary rounded-pill">{{ term.pages | length }}</span>
+    {{ term.name | title }}
+  </a>
+  {% endfor %}
+</div>
+{% endblock %}

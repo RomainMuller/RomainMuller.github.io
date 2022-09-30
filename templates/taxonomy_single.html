@@ -1,0 +1,21 @@
+{% extends '_base.html' %}
+{% import '_macros.html' as macros %}
+
+{% block title %}
+{% set display_name = taxonomy.name %}
+{% if config.extra.taxonomies[display_name] %}
+{% set display_name = config.extra.taxonomies[display_name].display %}
+{% endif %}
+{{ display_name | title }}: {{ term.name | title }}
+{% endblock title %}
+
+{% block content %}
+<div class="card text-bg-primary shadow">
+  <div class="card-body">
+    <h5 class="card-title">{{ display_name | title }}: {{ term.name | title }}</h5>
+  </div>
+</div>
+{% for article in term.pages %}
+{{ macros::article_card(article=article) }}
+{% endfor %}
+{% endblock %}
