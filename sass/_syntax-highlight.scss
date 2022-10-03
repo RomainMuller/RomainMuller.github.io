@@ -1,0 +1,76 @@
+.z-code {
+  background-color: #242936;
+
+  code {
+    display: block;
+    width: 100%;
+
+    span.z-source,
+    mark {
+      display: block;
+      width: 100%;
+    }
+  }
+
+  mark {
+    background-color: #1a1f29;
+  }
+
+  .z-source {
+    color: #cccac2;
+  }
+
+  .z-class,
+  .z-entity,
+  .z-function {
+    color: #ffd173;
+  }
+
+  .z-keyword,
+  .z-storage {
+    color: #f29e74;
+  }
+
+  .z-key,
+  .z-object,
+  .z-module {
+    color: #cccac2;
+  }
+
+  .z-punctuation {
+    color: #9a9a98;
+
+    &.z-block,
+    &.z-section {
+      color: #da70d6;
+    }
+  }
+
+
+  .z-string {
+    color: #d5ff80;
+  }
+
+  .z-language,
+  .z-this {
+    color: #5ccfe6;
+    font-style: italic;
+  }
+
+  .z-constant,
+  .z-false,
+  .z-true {
+    color: #dfbfff;
+  }
+
+  .z-method.z-parameters {
+    .z-parens {
+      color: #179fff;
+    }
+  }
+
+  .z-annotation {
+    color: #fdac66;
+    font-style: italic;
+  }
+}

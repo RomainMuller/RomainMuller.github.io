@@ -10,11 +10,12 @@ extra:
 My name is Romain Marcadier, and *Orderly RAM* is my blog about software
 engineering, open-source, and more...
 
-## Background
+## {{ icon(id='person-circle') }} Background
 
-I was born in France, and have been married to my husband since 2014.
+I was born in France, and have been married to my husband since 2014. I speak *french* and *english*
+fluently.
 
-## Career
+## {{ icon(id='building') }} Career
 
 I'm a *Senior Software Development Engineer* at Amazon Web Services, working on open-source software
 as part of the  [AWS <abbr title="Cloud Development Kit">CDK</abbr>][aws-cdk] project, in particular
@@ -29,7 +30,7 @@ operations.
 
 [aws-cdk]: https://github.com/aws/aws-cdk
 
-## Education
+## {{ icon(id='mortarboard-fill') }} Education
 
 I studied Computer Science and Software Engineering, starting with a
 <abbr title="Diplome Universitaire de Technologie">DUT</abbr> (a two-year undergraduate diploma

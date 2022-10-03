@@ -1,0 +1,187 @@
+---
+description: |-
+    In this article, I discuss what led to the creation of jsii, and explain some of the design constraints it was built
+    under.
+
+taxonomies:
+    categories: [Dive deep]
+    tags: [AWS, jsii]
+---
+# Why `jsii`?
+
+In this article, I discuss what led to the creation of [jsii], and explain some of the design constraints it was built
+under.
+
+For those unfamiliar, [jsii] is the technology that enables the
+[AWS <abbr title="Cloud Development Kit">CDK</abbr>][aws-cdk] to be entirely authored in *TypeScript*, while being
+available to use in several other languages (*C#* and other .NET languages, *Go*, *Java*, *Python*, ...).
+
+## The inception of AWS CDK
+
+<cite>Elad Ben-Israel</cite> recalls the events that led to the creation of [AWS CDK][aws-cdk] in the
+[foreword][cdk-book-fw] he wrote for [The CDK Book][cdk-book]: developers build increasingly complex applications on
+*the cloud*, and shift towards <abbr title="Infrastructure as Code">IaC</abbr> solutions such as *AWS CloudFormation* to
+achieve reliable, reproductible infrastucture provisioning. While this is a clear upgrade from manually provisioning
+infrastructure in the *AWS Console* or writing custom scripts using the *AWS CLI*, maintaining growing YAML templates
+can quickly become daunting &ndash; they are effectively a flat list of *resources* that isn't well correlated to the
+mental model or goals of the developers maintaining it. Eventually, large amounts of code end up copied across the
+template, making it difficult to keep up with best practices.
+
+Software engineers have designed techniques to deal with large projects, leading to the invention of
+<abbr title="Object-Oriented Programming">OOP</abbr> &ndash; a programming model that thrives on creating abstractions
+to reduce the perceived complexity of a system. Abstractions are closer to the developer's mental model, and facilitate
+re-use and composition.
+
+OOP seemed like a natural fit for IaC: the inherent complexity of cloud services could be hidden away by layering
+abstractions that better fit a developer's mind frame. But this wasn't enough: with the advent of the *DevOps* movement,
+application developers (who author business logic of an application) and platform operators (who provision and operate
+the infrastructure which runs the developer's application) are increasingly often... the same people. Since existing IaC
+programming models at the time typically relied on <abbr title="Domain Specific Language">DSL</abbr>s, there was an
+opportunity to improve *DevOps* productivity by enabling developers to write their IaC in the same language they write
+their application in.
+
+<!-- more -->
+
+## AWS' experience with SDKs
+
+AWS has had tooling available for a variety of programming language for a while already: officially supported *AWS
+<abbr title="Software Development Kit">SDK</abbr>s* are available for the most popular languages. These are individually
+written libraries, each crafted by a dedicated team of language specialists. While much of the code is in fact generated
+from service models, the core functionality is hand-written for each language.
+
+The consequence of this is that different SDKs have different features, behaviors, and performance. When a new
+fundamental feature is added to the service models, each individual SDK needs to adopt it separately, possibly on very
+different timelines. When a bug is discovered in an SDK, it is difficult to determine whether the same bug exists in
+other SDKs, and if so - to port the fix over.
+
+Generating libraries from service models also has limitations: the service model is built with the intent to describe
+the service's API as it's implemented. It is hence tightly coupled to the service's protocol of choice (e.g: REST, SOAP,
+...), which is usually tailed for machine interaction, not for human consumption. This in turn contributes to making it
+harder for developers to map their mental model to the service's surface, and increases the perceived complexity of the
+services. Abstractions would solve this, but they realize their maximum potential when they are written by humands with
+a good understanding of the service's use-cases, and how customers are supposed to use it.
+
+## A plan emerges
+
+With all this in mind, the original design for [AWS CDK][aws-cdk] opted for a slightly different approach than that of
+the AWS SDks, with the goal of ensuring maintainers would be able to spend their time working on high-added-value API
+design, while not having to concern themselves with multiple different programming languages:
+
+1. [AWS CDK][aws-cdk] applications will use *AWS CloudFormation* as a provisioning engine &ndash; it's reliable and well
+   tested, and building a provisioning engine from scratch would be a distraction;
+1. Generate a baseline from the [*CloudFormation* resource specification][cfn-spec] in order to reduce the boilerplate
+   needed in order to get started with writing abstractions;
+1. Hand-write abstractions once, in a single language;
+1. Re-use that code for all supported languages &ndash; via generated bindings.
+
+This is how [jsii] was originally imagined: a collection of tools that processes *TypeScript* class libraries and
+generates bindings in the supported languages.
+
+### Why *TypeScript*?
+
+Well for starters, it was difficult to miss such an obvious opportunity to uphold *Atwood's Law*:
+
+> Any application that can be written in Javascript, will eventually be written in Javascript.
+>
+> <span class="blockquote-footer">[<cite>Jeff Atwood</cite>][jeff-atwood], circa 2007.</span>
+
+*Javascript* is pervasive today &ndash; runtimes have excellent performance characteristics and are readily available
+for virtually any platform you'd think about. Web browsers all come with a *Javascript* engine, such as Google Chrome's
+[V8] that incidentially also is the engine of choice for the popular [Node] platform.
+
+*Javascript* however lacks built-in support for static typing, which is essentially required for the task at hand:
+static type information is necessary in order to build idiomatic-looking bindings in statically typed languages such as
+*Java*. This is where *TypeScript* comes into the picture: the Microsoft-developed language quickly became popular and
+the standard *TypeScript* compiler has an API that can be used to process a program or library's
+<abbr title="Abstract Syntax Tree">AST</abbr>, complete with type information (statically declared as well as inferred).
+
+A proof-of-concept version of `jsii` was written using the *TypeScript* compiler API, which traverses `export`ed
+declarations from a *TypeScript* module's entry point (as specified by the `types` key in `package.json`), and produces
+a `.jsii` assembly document that describes the module's types. Next, `jsii-pacmak` was created to consume the `.jsii`
+assembly and generate *Java* bindings to these, with the intention of looking as idiomatic as possible.
+
+## Code Generation
+
+*TypeScript* is a modern language with a powerful type system &ndash; perhaps too powerful. In the quest to generate
+idiomatic-looking bindings in other languages, this flexibility quickly became a problem... Many *TypeScript* idioms are
+simply not supported in other languages. Some of them can be emulated, but only at the expense of additional boilerplate
+and leaking out *TypeScript*-isms to the bindings language. Others have semantics that cannot be easily replicated in
+all languages, as features with similar syntax exists, but semantics differ in ways that would be problematic <aside>
+(for example, *TypeScript* mapped types use syntax reminiscent of *Java* or *C#* generics, but the semantics in each of
+these languages vary)</aside>. Some features are simply not uniformly available in all languages, such as:
+
+- *Go* generics have very limited functionality compared to *Java* or *C#*
+- *C#* is strict about the [*Liskov Substitution principle*][lsp] and does not allow covariant specialization of members
+- Very few languages support *optional* members in the way *TypeScript* does
+- ...
+
+In order to improve odds of success, `jsii` effectively implements a dialect of *TypeScript*: exported API elements may
+only use a subset of the *TypeScript* syntax, while private implementation details are free to leverage all features of
+the language.
+
+### Programming Localization
+
+Idioms often translate across languages but sometimes in very different ways. For example, *Javascript* traditionally
+uses _property bags_ to provide a constructor with configuration, which was a natural fit for [AWS CDK][aws-cdk]
+construct properties:
+
+```js,hl_lines=2-3
+const bucket = new s3.Bucket(this, 'BucketName', {
+    blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
+    enforceSsl: true,
+});
+```
+
+This idiom could be naively translated to *Java* in the following way:
+
+```java
+Bucket bucket = new s3.Bucket(this, "BucketName", new BucketOptions() {
+    @Override
+    public s3.BlockPublicAccess getBlockPublicAccess() {
+        return s3.BlockPublicAccess.BLOCK_ALL;
+    }
+
+    @Override
+    public Boolean getEnforceSsl() {
+        return true;
+    }
+});
+```
+
+This is however not the *Java* idiom. Translating the syntax elements from one language to another is not sufficient, it
+needs to be _localized_ &ndash; that is the target language's _culture_ must be taken into account. The *Java* idiom
+that corresponds to *Javascript*'s property bag is the _builder pattern_:
+
+```java
+Bucket bucket = s3.Bucket.Builder.create(this, "BucketName")
+    .blockPublicAccess(s3.BlockPublicAccess.BLOCK_ALL)
+    .enforceSsl(true)
+    .build();
+```
+
+This is one example of the kind of _localization_ work that is happening in `jsii-pacmak`, but it does not stop here, as
+it also accounts for naming pattern differences:
+- *C#* and *Go* use `PascalCase` for naming _public_ API elements
+- *C#* prefers `I`-prefixing _all_ interface names
+- *Java* hides properties behind *getter* and *setter* methods
+- *Python* uses `snake_case` for method and property names
+
+The `jsii` compiler performs checks and validations to ensure case- and name-conversions do not result in two legitimate
+API elements from *TypeScript* resulting in a name collision in any of the target languages. It also prohibits creating
+APIs that would be found to be illegal in other languages (such as covariant specialization being illegal in *C#*).
+
+## Conclusion
+
+You now understand the history of why [jsii] was created and have a rough idea of design constraints deriving from the
+goals [jsii] seeks to achieve. I'll dive deeper into [jsii]'s type model and some "do & don't" for [jsii] library
+authors in a future post.
+
+[aws-cdk]: https://github.com/aws/aws-cdk
+[cdk-book-fw]: https://thecdkbook.com/foreword.html
+[cdk-book]: https://thecdkbook.com
+[cfn-spec]: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-resource-specification.html
+[jeff-atwood]: https://en.wikipedia.org/wiki/Jeff_Atwood
+[lsp]: https://en.wikipedia.org/wiki/Liskov_substitution_principle
+[jsii]: https://github.com/aws/jsii
+[Node]: https://nodejs.org
+[V8]: https://v8.dev

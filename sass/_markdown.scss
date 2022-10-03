@@ -1,11 +1,8 @@
 .markdown {
-  img {
-    --bs-border-opacity: 1;
-
-    border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color);
-    border-color: rgba(var(--bs-dark-rgb), var(--bs-border-opacity));
-    border-radius: var(--bs-border-radius);
-    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
+  blockquote {
+    background-color: var(--bs-light);
+    border-left: 5px var(--bs-border-style) var(--bs-border-color);
+    padding-left: 0.5rem;
   }
 
   code {
@@ -24,6 +21,15 @@
         padding-right: .5rem;
       }
     }
+  }
+
+  img {
+    --bs-border-opacity: 1;
+
+    border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color);
+    border-color: rgba(var(--bs-dark-rgb), var(--bs-border-opacity));
+    border-radius: var(--bs-border-radius);
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
   }
 
   pre {
