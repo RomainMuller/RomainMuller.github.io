@@ -1,0 +1,62 @@
+name: Publish
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up node
+        uses: actions/setup-node@v2
+        with:
+          cache: 'yarn'
+          node-version: '21'
+        env:
+          SKIP_YARN_COREPACK_CHECK: true
+      - name: Enable corepack
+        run: corepack enable && corepack install
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
+      - name: Build
+        run: yarn build
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: static-site
+          path: _site
+          if-no-files-found: error
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Download Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: static-site
+          path: ${{ runner.temp }}/_site
+      - name: Configure Git
+        run: |-
+          git config --global user.name "GitHub Actions (on behalf of ${{ github.actor }})"
+          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+      - name: Update working directory
+        run: |-
+          rsync --checksum --copy-links --delete --exclude=".git" --force --prune-empty-dirs --recursive --times \
+            ${{ runner.temp }}/_site/ \
+            ./
+      - name: Commit changes
+        run: |-
+          git add .
+          git commit -m "Update to ${{ github.sha }}"
+      - name: Push changes
+        run: git push origin gh-pages

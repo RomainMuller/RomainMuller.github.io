@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="{{ site.description }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="{{ eleventy.generator }}">
+    {% if eleventy.runMode == "build" %}<base href="{{ site.url }}">{% endif %}
+    <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+    <title>{{ site.name }}{% if title != null %} &mdash; {{ title }}{% endif %}</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    {% link "stylesheet", "/css/style.css" %}
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml">
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar bg-dark bg-gradient shadow" data-bs-theme="dark">
+        <div class="container-fluid">
+          <a class="navbar-brand fw-bolder" href="/">
+            <img alt="Logo" class="d-inline-block rounded-circle mx-2" src="https://avatars.githubusercontent.com/RomainMuller" width="48" height="48" aria-hidden="true">
+            {{ site.name }}
+          </a>
+          <ul class="nav justify-content-center">
+            <li class="nav-item mx-2">
+              <a class="nav-link text-white" href="/#about">
+                {% icon "person-badge-fill", 24, 24, "d-block", "mx-auto", "mb-1" %}
+                About
+              </a>
+            </li>
+            <li class="nav-item mx-2">
+              <a class="nav-link text-white" href="/#blog">
+                {% icon "book-half", 24, 24, "d-block", "mx-auto", "mb-1" %}
+                Blog
+              </a>
+            </li>
+            <li class="nav-item mx-2">
+              <a class="nav-link text-white" href="/#contact">
+                {% icon "mailbox2-flag", 24, 24, "d-block", "mx-auto", "mb-1" %}
+                Contact
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <main class="container py-{% if py != null %}{{ py }}{% else %}3{% endif %}{% if px != null %} px-{{ px }}{% endif %}">
+      {{ content | safe }}
+    </main>
+    {% script "/js/javascript.js" %}
+  </body>
+</html>

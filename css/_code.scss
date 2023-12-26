@@ -1,0 +1,35 @@
+pre {
+  &.language-js {
+    background-color: rgb(36, 41, 54);
+    box-shadow: var(--bs-box-shadow);
+    border-radius: var(--bs-border-radius);
+    color: rgb(204, 202, 194);
+    padding: 1em;
+
+    & .token {
+      &.comment {
+        color: rgb(110, 124, 142);
+        font-style: italic;
+      }
+      &.keyword {
+        color: rgb(252, 171, 101);
+        font-weight: bold;
+      }
+      &.literal-property {
+        color: rgb(204, 202, 194);
+      }
+      &.number {
+        color: rgb(223, 191, 255);
+      }
+      &.operator {
+        color: rgb(242, 158, 116);
+      }
+      &.punctuation {
+        color: rgb(255, 215, 0);
+      }
+      &.string {
+        color: rgb(213, 255, 128);
+      }
+    }
+  }
+}
