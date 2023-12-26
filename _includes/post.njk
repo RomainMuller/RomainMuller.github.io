@@ -1,0 +1,22 @@
+---
+layout: base
+image: /img/walnut.jpg
+px: 0
+py: 0
+---
+<article>
+  <div class="title position-relative" style="background-image: url({{ image | url }})">
+    <h1>{{ title }}</h1>
+    {%- set cdate -%}{% date page.date, "long" %}{%- endset -%}
+    <div class="publish-date position-absolute bottom-0 end-0">Published: {{ cdate | safe }}</div>
+  </div>
+  <div class="container clearfix px-auto">
+    {{ content | safe }}
+
+    <div class="signature">&ndash; {{ site.author }}</div>
+    {%- set mdate -%}{% mdate page, "long" %}{%- endset -%}
+    {% if cdate != mdate %}
+    <div class="text-secondary float-end">Updated on {{ mdate | safe }}</div>
+    {% endif %}
+  </div>
+</article>

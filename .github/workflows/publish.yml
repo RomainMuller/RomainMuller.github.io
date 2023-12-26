@@ -1,0 +1,61 @@
+name: Publish
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+      - name: Set up node
+        uses: actions/setup-node@v4
+        with:
+          cache: 'yarn'
+          node-version: '21'
+        env:
+          SKIP_YARN_COREPACK_CHECK: true
+      - name: Enable corepack
+        run: corepack enable && corepack install
+      - name: Install Dependencies
+        run: yarn install --immutable
+      - name: Build
+        run: yarn build
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: static-site
+          path: _site/
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Download Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: static-site
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
