@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://www.romainmuller.dev/posts/2022-10-03/</loc>
+    <lastmod>2023-12-27T18:02:37.410Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://www.romainmuller.dev/posts/2023-12-27/</loc>
+    <lastmod>2023-12-27T18:02:37.410Z</lastmod>
+  </url>
+
+  <url>
+    <loc>https://www.romainmuller.dev/blog/</loc>
+    <lastmod>2023-12-27T18:02:37.230Z</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://www.romainmuller.dev/</loc>
+    <lastmod>2023-12-27T18:02:37.410Z</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+</urlset>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="GeekyThoughts is Romain Marcadier&#39;s personal blog, which discusses software engineering, computer science, and other geeky topics.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Eleventy v2.0.1">
+    
+    <link rel="canonical" href="https://www.romainmuller.dev/posts/2022-10-03/">
+    <title>GeekyThoughts &mdash; Why jsii?</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="/css/style.css?v=f6b127d201354b611090225bdf62df72965ae69089bb36944b0bd12787b26975aa87941090f09f2ad29baea2c9f6f92fe1b98807078e52af1db6f896ea0808f8">
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml">
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="prefetching" href="/img/walnut.jpg" as="image">
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar bg-dark bg-gradient shadow" data-bs-theme="dark">
+        <div class="container-fluid">
+          <a class="navbar-brand fw-bolder" href="/">
+            <img alt="Logo" class="d-inline-block rounded-circle mx-2" src="https://avatars.githubusercontent.com/RomainMuller" width="48" height="48" aria-hidden="true">
+            GeekyThoughts
+          </a>
+          <ul class="nav justify-content-center">
+            <li class="nav-item mx-2">
+              <a class="nav-link text-white" href="/#about">
+                <svg class="bi d-block mx-auto mb-1" width="24" height="24" fill="currentColor" aria-hidden="true"><use xlink:href="/img/bootstrap-icons.svg#person-badge-fill"></use></svg>
+                About
+              </a>
+            </li>
+            <li class="nav-item mx-2">
+              <a class="nav-link text-white" href="/#blog">
+                <svg class="bi d-block mx-auto mb-1" width="24" height="24" fill="currentColor" aria-hidden="true"><use xlink:href="/img/bootstrap-icons.svg#book-half"></use></svg>
+                Blog
+              </a>
+            </li>
+            <li class="nav-item mx-2">
+              <a class="nav-link text-white" href="/#contact">
+                <svg class="bi d-block mx-auto mb-1" width="24" height="24" fill="currentColor" aria-hidden="true"><use xlink:href="/img/bootstrap-icons.svg#mailbox2-flag"></use></svg>
+                Contact
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <main class="container py-0 px-0">
+      <article>
+  <div class="title position-relative" style="background-image: url(/img/walnut.jpg)">
+    <h1>Why jsii?</h1><div class="publish-date position-absolute bottom-0 end-0">Published: <time datetime="2022-10-03">October 3, 2022</time></div>
+  </div>
+  <div class="container clearfix px-auto">
+    <p>In this article, I discuss what led to the creation of <a href="https://github.com/aws/jsii">jsii</a>, and explain some of the design constraints it was built
+under.</p>
+<p>For those unfamiliar, <a href="https://github.com/aws/jsii">jsii</a> is the technology that enables the
+<a href="https://github.com/aws/aws-cdk">AWS <abbr title="Cloud Development Kit">CDK</abbr></a> to be entirely authored in <em>TypeScript</em>, while being
+available to use in several other languages (<em>C#</em> and other .NET languages, <em>Go</em>, <em>Java</em>, <em>Python</em>, ...).</p>
+<h2 id="the-inception-of-aws-cdk" tabindex="-1">The inception of AWS CDK</h2>
+<p><cite>Elad Ben-Israel</cite> recalls the events that led to the creation of <a href="https://github.com/aws/aws-cdk">AWS CDK</a> in the
+<a href="https://thecdkbook.com/foreword.html">foreword</a> he wrote for <a href="https://thecdkbook.com">The CDK Book</a>: developers build increasingly complex applications on
+<em>the cloud</em>, and shift towards <abbr title="Infrastructure as Code">IaC</abbr> solutions such as <em>AWS CloudFormation</em> to
+achieve reliable, reproductible infrastucture provisioning. While this is a clear upgrade from manually provisioning
+infrastructure in the <em>AWS Console</em> or writing custom scripts using the <em>AWS CLI</em>, maintaining growing YAML templates
+can quickly become daunting – they are effectively a flat list of <em>resources</em> that isn't well correlated to the
+mental model or goals of the developers maintaining it. Eventually, large amounts of code end up copied across the
+template, making it difficult to keep up with best practices.</p>
+<p>Software engineers have designed techniques to deal with large projects, leading to the invention of
+<abbr title="Object-Oriented Programming">OOP</abbr> – a programming model that thrives on creating abstractions
+to reduce the perceived complexity of a system. Abstractions are closer to the developer's mental model, and facilitate
+re-use and composition.</p>
+<p>OOP seemed like a natural fit for IaC: the inherent complexity of cloud services could be hidden away by layering
+abstractions that better fit a developer's mind frame. But this wasn't enough: with the advent of the <em>DevOps</em> movement,
+application developers (who author business logic of an application) and platform operators (who provision and operate
+the infrastructure which runs the developer's application) are increasingly often... the same people. Since existing IaC
+programming models at the time typically relied on <abbr title="Domain Specific Language">DSL</abbr>s, there was an
+opportunity to improve <em>DevOps</em> productivity by enabling developers to write their IaC in the same language they write
+their application in.</p>
+<!-- more -->
+<h2 id="aws'-experience-with-sdks" tabindex="-1">AWS' experience with SDKs</h2>
+<p>AWS has had tooling available for a variety of programming language for a while already: officially supported <em>AWS
+<abbr title="Software Development Kit">SDK</abbr>s</em> are available for the most popular languages. These are individually
+written libraries, each crafted by a dedicated team of language specialists. While much of the code is in fact generated
+from service models, the core functionality is hand-written for each language.</p>
+<p>The consequence of this is that different SDKs have different features, behaviors, and performance. When a new
+fundamental feature is added to the service models, each individual SDK needs to adopt it separately, possibly on very
+different timelines. When a bug is discovered in an SDK, it is difficult to determine whether the same bug exists in
+other SDKs, and if so - to port the fix over.</p>
+<p>Generating libraries from service models also has limitations: the service model is built with the intent to describe
+the service's API as it's implemented. It is hence tightly coupled to the service's protocol of choice (e.g: REST, SOAP,
+...), which is usually tailed for machine interaction, not for human consumption. This in turn contributes to making it
+harder for developers to map their mental model to the service's surface, and increases the perceived complexity of the
+services. Abstractions would solve this, but they realize their maximum potential when they are written by humands with
+a good understanding of the service's use-cases, and how customers are supposed to use it.</p>
+<h2 id="a-plan-emerges" tabindex="-1">A plan emerges</h2>
+<p>With all this in mind, the original design for <a href="https://github.com/aws/aws-cdk">AWS CDK</a> opted for a slightly different approach than that of
+the AWS SDks, with the goal of ensuring maintainers would be able to spend their time working on high-added-value API
+design, while not having to concern themselves with multiple different programming languages:</p>
+<ol>
+<li><a href="https://github.com/aws/aws-cdk">AWS CDK</a> applications will use <em>AWS CloudFormation</em> as a provisioning engine – it's reliable and well
+tested, and building a provisioning engine from scratch would be a distraction;</li>
+<li>Generate a baseline from the <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-resource-specification.html"><em>CloudFormation</em> resource specification</a> in order to reduce the boilerplate
+needed in order to get started with writing abstractions;</li>
+<li>Hand-write abstractions once, in a single language;</li>
+<li>Re-use that code for all supported languages – via generated bindings.</li>
+</ol>
+<p>This is how <a href="https://github.com/aws/jsii">jsii</a> was originally imagined: a collection of tools that processes <em>TypeScript</em> class libraries and
+generates bindings in the supported languages.</p>
+<h3 id="why-typescript%3F" tabindex="-1">Why <em>TypeScript</em>?</h3>
+<p>Well for starters, it was difficult to miss such an obvious opportunity to uphold <em>Atwood's Law</em>:</p>
+<blockquote>
+<p>Any application that can be written in Javascript, will eventually be written in Javascript.</p>
+<p><span class="blockquote-footer"><a href="https://en.wikipedia.org/wiki/Jeff_Atwood"><cite>Jeff Atwood</cite></a>, circa 2007.</span></p>
+</blockquote>
+<p><em>Javascript</em> is pervasive today – runtimes have excellent performance characteristics and are readily available
+for virtually any platform you'd think about. Web browsers all come with a <em>Javascript</em> engine, such as Google Chrome's
+<a href="https://v8.dev">V8</a> that incidentially also is the engine of choice for the popular <a href="https://nodejs.org">Node</a> platform.</p>
+<p><em>Javascript</em> however lacks built-in support for static typing, which is essentially required for the task at hand:
+static type information is necessary in order to build idiomatic-looking bindings in statically typed languages such as
+<em>Java</em>. This is where <em>TypeScript</em> comes into the picture: the Microsoft-developed language quickly became popular and
+the standard <em>TypeScript</em> compiler has an API that can be used to process a program or library's
+<abbr title="Abstract Syntax Tree">AST</abbr>, complete with type information (statically declared as well as inferred).</p>
+<p>A proof-of-concept version of <code>jsii</code> was written using the <em>TypeScript</em> compiler API, which traverses <code>export</code>ed
+declarations from a <em>TypeScript</em> module's entry point (as specified by the <code>types</code> key in <code>package.json</code>), and produces
+a <code>.jsii</code> assembly document that describes the module's types. Next, <code>jsii-pacmak</code> was created to consume the <code>.jsii</code>
+assembly and generate <em>Java</em> bindings to these, with the intention of looking as idiomatic as possible.</p>
+<h2 id="code-generation" tabindex="-1">Code Generation</h2>
+<p><em>TypeScript</em> is a modern language with a powerful type system – perhaps too powerful. In the quest to generate
+idiomatic-looking bindings in other languages, this flexibility quickly became a problem... Many <em>TypeScript</em> idioms are
+simply not supported in other languages. Some of them can be emulated, but only at the expense of additional boilerplate
+and leaking out <em>TypeScript</em>-isms to the bindings language. Others have semantics that cannot be easily replicated in
+all languages, as features with similar syntax exists, but semantics differ in ways that would be problematic <aside>
+(for example, <em>TypeScript</em> mapped types use syntax reminiscent of <em>Java</em> or <em>C#</em> generics, but the semantics in each of
+these languages vary)</aside>. Some features are simply not uniformly available in all languages, such as:</p>
+<ul>
+<li><em>Go</em> generics have very limited functionality compared to <em>Java</em> or <em>C#</em></li>
+<li><em>C#</em> is strict about the <a href="https://en.wikipedia.org/wiki/Liskov_substitution_principle"><em>Liskov Substitution principle</em></a> and does not allow covariant specialization of members</li>
+<li>Very few languages support <em>optional</em> members in the way <em>TypeScript</em> does</li>
+<li>...</li>
+</ul>
+<p>In order to improve odds of success, <code>jsii</code> effectively implements a dialect of <em>TypeScript</em>: exported API elements may
+only use a subset of the <em>TypeScript</em> syntax, while private implementation details are free to leverage all features of
+the language.</p>
+<h3 id="programming-localization" tabindex="-1">Programming Localization</h3>
+<p>Idioms often translate across languages but sometimes in very different ways. For example, <em>Javascript</em> traditionally
+uses <em>property bags</em> to provide a constructor with configuration, which was a natural fit for <a href="https://github.com/aws/aws-cdk">AWS CDK</a>
+construct properties:</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">const</span> bucket <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">s3<span class="token punctuation">.</span>Bucket</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token string">'BucketName'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    <span class="token literal-property property">blockPublicAccess</span><span class="token operator">:</span> s3<span class="token punctuation">.</span>BlockPublicAccess<span class="token punctuation">.</span><span class="token constant">BLOCK_ALL</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">enforceSsl</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>This idiom could be naively translated to <em>Java</em> in the following way:</p>
+<pre class="language-java"><code class="language-java"><span class="token class-name">Bucket</span> bucket <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name"><span class="token namespace">s3<span class="token punctuation">.</span></span>Bucket</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token string">"BucketName"</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">BucketOptions</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token class-name"><span class="token namespace">s3<span class="token punctuation">.</span></span>BlockPublicAccess</span> <span class="token function">getBlockPublicAccess</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token class-name"><span class="token namespace">s3<span class="token punctuation">.</span></span>BlockPublicAccess</span><span class="token punctuation">.</span><span class="token constant">BLOCK_ALL</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token class-name">Boolean</span> <span class="token function">getEnforceSsl</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>This is however not the <em>Java</em> idiom. Translating the syntax elements from one language to another is not sufficient, it
+needs to be <em>localized</em> – that is the target language's <em>culture</em> must be taken into account. The <em>Java</em> idiom
+that corresponds to <em>Javascript</em>'s property bag is the <em>builder pattern</em>:</p>
+<pre class="language-java"><code class="language-java"><span class="token class-name">Bucket</span> bucket <span class="token operator">=</span> <span class="token class-name"><span class="token namespace">s3<span class="token punctuation">.</span></span>Bucket<span class="token punctuation">.</span>Builder</span><span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token string">"BucketName"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">blockPublicAccess</span><span class="token punctuation">(</span><span class="token class-name"><span class="token namespace">s3<span class="token punctuation">.</span></span>BlockPublicAccess</span><span class="token punctuation">.</span><span class="token constant">BLOCK_ALL</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">enforceSsl</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p>This is one example of the kind of <em>localization</em> work that is happening in <code>jsii-pacmak</code>, but it does not stop here, as
+it also accounts for naming pattern differences:</p>
+<ul>
+<li><em>C#</em> and <em>Go</em> use <code>PascalCase</code> for naming <em>public</em> API elements</li>
+<li><em>C#</em> prefers <code>I</code>-prefixing <em>all</em> interface names</li>
+<li><em>Java</em> hides properties behind <em>getter</em> and <em>setter</em> methods</li>
+<li><em>Python</em> uses <code>snake_case</code> for method and property names</li>
+</ul>
+<p>The <code>jsii</code> compiler performs checks and validations to ensure case- and name-conversions do not result in two legitimate
+API elements from <em>TypeScript</em> resulting in a name collision in any of the target languages. It also prohibits creating
+APIs that would be found to be illegal in other languages (such as covariant specialization being illegal in <em>C#</em>).</p>
+<h2 id="conclusion" tabindex="-1">Conclusion</h2>
+<p>You now understand the history of why <a href="https://github.com/aws/jsii">jsii</a> was created and have a rough idea of design constraints deriving from the
+goals <a href="https://github.com/aws/jsii">jsii</a> seeks to achieve.</p>
+
+
+    <div class="signature">&ndash; Romain Marcadier</div>
+    <div class="text-secondary float-end">Updated on <time datetime="2023-12-27">December 27, 2023</time></div>
+    
+  </div>
+</article>
+
+    </main>
+    <script src="/js/javascript.js?v=e0c22ef0e9e7888d5b1491c811db5775682f46cb9d2adbe41a1ff96c9064ee5a4250a68bcc47fce651e3294ea3336d97bf2c9ecdc79c65b526e7f4a33aa3d84d"></script>
+  </body>
+</html>

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:base="https://www.romainmuller.dev">
+  <title>GeekyThoughts</title>
+  <subtitle>GeekyThoughts is Romain Marcadier&#39;s personal blog, which discusses software engineering, computer science, and other geeky topics.</subtitle>
+  <link href="https://www.romainmuller.dev/feed.xml" rel="self" />
+  <link href="https://www.romainmuller.dev" />
+  <updated>2023-12-27T00:00:00Z</updated>
+  <id>https://www.romainmuller.dev</id>
+  <author>
+      <name>Romain Marcadier</name>
+  </author><entry>
+      <title>Hello, world!</title>
+      <link href="https://www.romainmuller.dev/posts/2023-12-27/" />
+      <updated>2023-12-27T00:00:00Z</updated>
+      <id>https://www.romainmuller.dev/posts/2023-12-27/</id>
+      <content xml:lang="en" type="html">&lt;p&gt;After multiple unsuccessful attempts at getting myself to consistently produce
+blog entries, I finally set out to follow &lt;a href=&quot;https://blog.codinghorror.com/how-to-achieve-ultimate-blog-success-in-one-easy-step/&quot;&gt;Jeff Attwood&#39;s advice&lt;/a&gt; and set
+myself a goal to publish one new blog article per month (or more).&lt;/p&gt;
+&lt;p&gt;I will be blogging about &lt;em&gt;software engineering&lt;/em&gt;, &lt;em&gt;programming languages&lt;/em&gt;,
+&lt;em&gt;career&lt;/em&gt;, and maybe also &lt;em&gt;photography&lt;/em&gt; and other topics, as I see fit.&lt;/p&gt;
+&lt;p&gt;This blog currently does not include a comments section, but I do welcome
+(constructive) feedback and am always glad to answer any questions that come my
+way... Information on how to reach me is available in the &lt;a href=&quot;https://www.romainmuller.dev/#about&quot;&gt;About&lt;/a&gt;
+section of the landing page — feel free to use it!&lt;/p&gt;
+</content>
+  </entry><entry>
+      <title>Why jsii?</title>
+      <link href="https://www.romainmuller.dev/posts/2022-10-03/" />
+      <updated>2022-10-03T00:00:00Z</updated>
+      <id>https://www.romainmuller.dev/posts/2022-10-03/</id>
+      <content xml:lang="en" type="html">&lt;p&gt;In this article, I discuss what led to the creation of &lt;a href=&quot;https://github.com/aws/jsii&quot;&gt;jsii&lt;/a&gt;, and explain some of the design constraints it was built
+under.&lt;/p&gt;
+&lt;p&gt;For those unfamiliar, &lt;a href=&quot;https://github.com/aws/jsii&quot;&gt;jsii&lt;/a&gt; is the technology that enables the
+&lt;a href=&quot;https://github.com/aws/aws-cdk&quot;&gt;AWS &lt;abbr title=&quot;Cloud Development Kit&quot;&gt;CDK&lt;/abbr&gt;&lt;/a&gt; to be entirely authored in &lt;em&gt;TypeScript&lt;/em&gt;, while being
+available to use in several other languages (&lt;em&gt;C#&lt;/em&gt; and other .NET languages, &lt;em&gt;Go&lt;/em&gt;, &lt;em&gt;Java&lt;/em&gt;, &lt;em&gt;Python&lt;/em&gt;, ...).&lt;/p&gt;
+&lt;h2 id=&quot;the-inception-of-aws-cdk&quot; tabindex=&quot;-1&quot;&gt;The inception of AWS CDK&lt;/h2&gt;
+&lt;p&gt;&lt;cite&gt;Elad Ben-Israel&lt;/cite&gt; recalls the events that led to the creation of &lt;a href=&quot;https://github.com/aws/aws-cdk&quot;&gt;AWS CDK&lt;/a&gt; in the
+&lt;a href=&quot;https://thecdkbook.com/foreword.html&quot;&gt;foreword&lt;/a&gt; he wrote for &lt;a href=&quot;https://thecdkbook.com/&quot;&gt;The CDK Book&lt;/a&gt;: developers build increasingly complex applications on
+&lt;em&gt;the cloud&lt;/em&gt;, and shift towards &lt;abbr title=&quot;Infrastructure as Code&quot;&gt;IaC&lt;/abbr&gt; solutions such as &lt;em&gt;AWS CloudFormation&lt;/em&gt; to
+achieve reliable, reproductible infrastucture provisioning. While this is a clear upgrade from manually provisioning
+infrastructure in the &lt;em&gt;AWS Console&lt;/em&gt; or writing custom scripts using the &lt;em&gt;AWS CLI&lt;/em&gt;, maintaining growing YAML templates
+can quickly become daunting – they are effectively a flat list of &lt;em&gt;resources&lt;/em&gt; that isn&#39;t well correlated to the
+mental model or goals of the developers maintaining it. Eventually, large amounts of code end up copied across the
+template, making it difficult to keep up with best practices.&lt;/p&gt;
+&lt;p&gt;Software engineers have designed techniques to deal with large projects, leading to the invention of
+&lt;abbr title=&quot;Object-Oriented Programming&quot;&gt;OOP&lt;/abbr&gt; – a programming model that thrives on creating abstractions
+to reduce the perceived complexity of a system. Abstractions are closer to the developer&#39;s mental model, and facilitate
+re-use and composition.&lt;/p&gt;
+&lt;p&gt;OOP seemed like a natural fit for IaC: the inherent complexity of cloud services could be hidden away by layering
+abstractions that better fit a developer&#39;s mind frame. But this wasn&#39;t enough: with the advent of the &lt;em&gt;DevOps&lt;/em&gt; movement,
+application developers (who author business logic of an application) and platform operators (who provision and operate
+the infrastructure which runs the developer&#39;s application) are increasingly often... the same people. Since existing IaC
+programming models at the time typically relied on &lt;abbr title=&quot;Domain Specific Language&quot;&gt;DSL&lt;/abbr&gt;s, there was an
+opportunity to improve &lt;em&gt;DevOps&lt;/em&gt; productivity by enabling developers to write their IaC in the same language they write
+their application in.&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;h2 id=&quot;aws&#39;-experience-with-sdks&quot; tabindex=&quot;-1&quot;&gt;AWS&#39; experience with SDKs&lt;/h2&gt;
+&lt;p&gt;AWS has had tooling available for a variety of programming language for a while already: officially supported &lt;em&gt;AWS
+&lt;abbr title=&quot;Software Development Kit&quot;&gt;SDK&lt;/abbr&gt;s&lt;/em&gt; are available for the most popular languages. These are individually
+written libraries, each crafted by a dedicated team of language specialists. While much of the code is in fact generated
+from service models, the core functionality is hand-written for each language.&lt;/p&gt;
+&lt;p&gt;The consequence of this is that different SDKs have different features, behaviors, and performance. When a new
+fundamental feature is added to the service models, each individual SDK needs to adopt it separately, possibly on very
+different timelines. When a bug is discovered in an SDK, it is difficult to determine whether the same bug exists in
+other SDKs, and if so - to port the fix over.&lt;/p&gt;
+&lt;p&gt;Generating libraries from service models also has limitations: the service model is built with the intent to describe
+the service&#39;s API as it&#39;s implemented. It is hence tightly coupled to the service&#39;s protocol of choice (e.g: REST, SOAP,
+...), which is usually tailed for machine interaction, not for human consumption. This in turn contributes to making it
+harder for developers to map their mental model to the service&#39;s surface, and increases the perceived complexity of the
+services. Abstractions would solve this, but they realize their maximum potential when they are written by humands with
+a good understanding of the service&#39;s use-cases, and how customers are supposed to use it.&lt;/p&gt;
+&lt;h2 id=&quot;a-plan-emerges&quot; tabindex=&quot;-1&quot;&gt;A plan emerges&lt;/h2&gt;
+&lt;p&gt;With all this in mind, the original design for &lt;a href=&quot;https://github.com/aws/aws-cdk&quot;&gt;AWS CDK&lt;/a&gt; opted for a slightly different approach than that of
+the AWS SDks, with the goal of ensuring maintainers would be able to spend their time working on high-added-value API
+design, while not having to concern themselves with multiple different programming languages:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/aws/aws-cdk&quot;&gt;AWS CDK&lt;/a&gt; applications will use &lt;em&gt;AWS CloudFormation&lt;/em&gt; as a provisioning engine – it&#39;s reliable and well
+tested, and building a provisioning engine from scratch would be a distraction;&lt;/li&gt;
+&lt;li&gt;Generate a baseline from the &lt;a href=&quot;https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-resource-specification.html&quot;&gt;&lt;em&gt;CloudFormation&lt;/em&gt; resource specification&lt;/a&gt; in order to reduce the boilerplate
+needed in order to get started with writing abstractions;&lt;/li&gt;
+&lt;li&gt;Hand-write abstractions once, in a single language;&lt;/li&gt;
+&lt;li&gt;Re-use that code for all supported languages – via generated bindings.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;This is how &lt;a href=&quot;https://github.com/aws/jsii&quot;&gt;jsii&lt;/a&gt; was originally imagined: a collection of tools that processes &lt;em&gt;TypeScript&lt;/em&gt; class libraries and
+generates bindings in the supported languages.&lt;/p&gt;
+&lt;h3 id=&quot;why-typescript%3F&quot; tabindex=&quot;-1&quot;&gt;Why &lt;em&gt;TypeScript&lt;/em&gt;?&lt;/h3&gt;
+&lt;p&gt;Well for starters, it was difficult to miss such an obvious opportunity to uphold &lt;em&gt;Atwood&#39;s Law&lt;/em&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Any application that can be written in Javascript, will eventually be written in Javascript.&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;blockquote-footer&quot;&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Jeff_Atwood&quot;&gt;&lt;cite&gt;Jeff Atwood&lt;/cite&gt;&lt;/a&gt;, circa 2007.&lt;/span&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;em&gt;Javascript&lt;/em&gt; is pervasive today – runtimes have excellent performance characteristics and are readily available
+for virtually any platform you&#39;d think about. Web browsers all come with a &lt;em&gt;Javascript&lt;/em&gt; engine, such as Google Chrome&#39;s
+&lt;a href=&quot;https://v8.dev/&quot;&gt;V8&lt;/a&gt; that incidentially also is the engine of choice for the popular &lt;a href=&quot;https://nodejs.org/&quot;&gt;Node&lt;/a&gt; platform.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Javascript&lt;/em&gt; however lacks built-in support for static typing, which is essentially required for the task at hand:
+static type information is necessary in order to build idiomatic-looking bindings in statically typed languages such as
+&lt;em&gt;Java&lt;/em&gt;. This is where &lt;em&gt;TypeScript&lt;/em&gt; comes into the picture: the Microsoft-developed language quickly became popular and
+the standard &lt;em&gt;TypeScript&lt;/em&gt; compiler has an API that can be used to process a program or library&#39;s
+&lt;abbr title=&quot;Abstract Syntax Tree&quot;&gt;AST&lt;/abbr&gt;, complete with type information (statically declared as well as inferred).&lt;/p&gt;
+&lt;p&gt;A proof-of-concept version of &lt;code&gt;jsii&lt;/code&gt; was written using the &lt;em&gt;TypeScript&lt;/em&gt; compiler API, which traverses &lt;code&gt;export&lt;/code&gt;ed
+declarations from a &lt;em&gt;TypeScript&lt;/em&gt; module&#39;s entry point (as specified by the &lt;code&gt;types&lt;/code&gt; key in &lt;code&gt;package.json&lt;/code&gt;), and produces
+a &lt;code&gt;.jsii&lt;/code&gt; assembly document that describes the module&#39;s types. Next, &lt;code&gt;jsii-pacmak&lt;/code&gt; was created to consume the &lt;code&gt;.jsii&lt;/code&gt;
+assembly and generate &lt;em&gt;Java&lt;/em&gt; bindings to these, with the intention of looking as idiomatic as possible.&lt;/p&gt;
+&lt;h2 id=&quot;code-generation&quot; tabindex=&quot;-1&quot;&gt;Code Generation&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;TypeScript&lt;/em&gt; is a modern language with a powerful type system – perhaps too powerful. In the quest to generate
+idiomatic-looking bindings in other languages, this flexibility quickly became a problem... Many &lt;em&gt;TypeScript&lt;/em&gt; idioms are
+simply not supported in other languages. Some of them can be emulated, but only at the expense of additional boilerplate
+and leaking out &lt;em&gt;TypeScript&lt;/em&gt;-isms to the bindings language. Others have semantics that cannot be easily replicated in
+all languages, as features with similar syntax exists, but semantics differ in ways that would be problematic &lt;/p&gt;&lt;aside&gt;
+(for example, &lt;em&gt;TypeScript&lt;/em&gt; mapped types use syntax reminiscent of &lt;em&gt;Java&lt;/em&gt; or &lt;em&gt;C#&lt;/em&gt; generics, but the semantics in each of
+these languages vary)&lt;/aside&gt;. Some features are simply not uniformly available in all languages, such as:&lt;p&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Go&lt;/em&gt; generics have very limited functionality compared to &lt;em&gt;Java&lt;/em&gt; or &lt;em&gt;C#&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;C#&lt;/em&gt; is strict about the &lt;a href=&quot;https://en.wikipedia.org/wiki/Liskov_substitution_principle&quot;&gt;&lt;em&gt;Liskov Substitution principle&lt;/em&gt;&lt;/a&gt; and does not allow covariant specialization of members&lt;/li&gt;
+&lt;li&gt;Very few languages support &lt;em&gt;optional&lt;/em&gt; members in the way &lt;em&gt;TypeScript&lt;/em&gt; does&lt;/li&gt;
+&lt;li&gt;...&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In order to improve odds of success, &lt;code&gt;jsii&lt;/code&gt; effectively implements a dialect of &lt;em&gt;TypeScript&lt;/em&gt;: exported API elements may
+only use a subset of the &lt;em&gt;TypeScript&lt;/em&gt; syntax, while private implementation details are free to leverage all features of
+the language.&lt;/p&gt;
+&lt;h3 id=&quot;programming-localization&quot; tabindex=&quot;-1&quot;&gt;Programming Localization&lt;/h3&gt;
+&lt;p&gt;Idioms often translate across languages but sometimes in very different ways. For example, &lt;em&gt;Javascript&lt;/em&gt; traditionally
+uses &lt;em&gt;property bags&lt;/em&gt; to provide a constructor with configuration, which was a natural fit for &lt;a href=&quot;https://github.com/aws/aws-cdk&quot;&gt;AWS CDK&lt;/a&gt;
+construct properties:&lt;/p&gt;
+&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; bucket &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;s3&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Bucket&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;BucketName&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token literal-property property&quot;&gt;blockPublicAccess&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; s3&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;BlockPublicAccess&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;BLOCK_ALL&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token literal-property property&quot;&gt;enforceSsl&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This idiom could be naively translated to &lt;em&gt;Java&lt;/em&gt; in the following way:&lt;/p&gt;
+&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token class-name&quot;&gt;Bucket&lt;/span&gt; bucket &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;&lt;span class=&quot;token namespace&quot;&gt;s3&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;/span&gt;Bucket&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;BucketName&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;BucketOptions&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token annotation punctuation&quot;&gt;@Override&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;&lt;span class=&quot;token namespace&quot;&gt;s3&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;/span&gt;BlockPublicAccess&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;getBlockPublicAccess&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;&lt;span class=&quot;token namespace&quot;&gt;s3&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;/span&gt;BlockPublicAccess&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;BLOCK_ALL&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;token annotation punctuation&quot;&gt;@Override&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Boolean&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;getEnforceSsl&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This is however not the &lt;em&gt;Java&lt;/em&gt; idiom. Translating the syntax elements from one language to another is not sufficient, it
+needs to be &lt;em&gt;localized&lt;/em&gt; – that is the target language&#39;s &lt;em&gt;culture&lt;/em&gt; must be taken into account. The &lt;em&gt;Java&lt;/em&gt; idiom
+that corresponds to &lt;em&gt;Javascript&lt;/em&gt;&#39;s property bag is the &lt;em&gt;builder pattern&lt;/em&gt;:&lt;/p&gt;
+&lt;pre class=&quot;language-java&quot;&gt;&lt;code class=&quot;language-java&quot;&gt;&lt;span class=&quot;token class-name&quot;&gt;Bucket&lt;/span&gt; bucket &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;&lt;span class=&quot;token namespace&quot;&gt;s3&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;/span&gt;Bucket&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Builder&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;BucketName&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;blockPublicAccess&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token class-name&quot;&gt;&lt;span class=&quot;token namespace&quot;&gt;s3&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;/span&gt;BlockPublicAccess&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;BLOCK_ALL&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;enforceSsl&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This is one example of the kind of &lt;em&gt;localization&lt;/em&gt; work that is happening in &lt;code&gt;jsii-pacmak&lt;/code&gt;, but it does not stop here, as
+it also accounts for naming pattern differences:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;C#&lt;/em&gt; and &lt;em&gt;Go&lt;/em&gt; use &lt;code&gt;PascalCase&lt;/code&gt; for naming &lt;em&gt;public&lt;/em&gt; API elements&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;C#&lt;/em&gt; prefers &lt;code&gt;I&lt;/code&gt;-prefixing &lt;em&gt;all&lt;/em&gt; interface names&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Java&lt;/em&gt; hides properties behind &lt;em&gt;getter&lt;/em&gt; and &lt;em&gt;setter&lt;/em&gt; methods&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Python&lt;/em&gt; uses &lt;code&gt;snake_case&lt;/code&gt; for method and property names&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The &lt;code&gt;jsii&lt;/code&gt; compiler performs checks and validations to ensure case- and name-conversions do not result in two legitimate
+API elements from &lt;em&gt;TypeScript&lt;/em&gt; resulting in a name collision in any of the target languages. It also prohibits creating
+APIs that would be found to be illegal in other languages (such as covariant specialization being illegal in &lt;em&gt;C#&lt;/em&gt;).&lt;/p&gt;
+&lt;h2 id=&quot;conclusion&quot; tabindex=&quot;-1&quot;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;You now understand the history of why &lt;a href=&quot;https://github.com/aws/jsii&quot;&gt;jsii&lt;/a&gt; was created and have a rough idea of design constraints deriving from the
+goals &lt;a href=&quot;https://github.com/aws/jsii&quot;&gt;jsii&lt;/a&gt; seeks to achieve.&lt;/p&gt;
+</content>
+  </entry></feed>
