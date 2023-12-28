@@ -110,6 +110,9 @@ module.exports = function (/** @type import('@11ty/eleventy').UserConfig */ elev
       html: true,
     }).use(mdAnchor, {
       level: 1,
+      slugify: (text) =>
+        text.replaceAll(/[^a-z0-9]+/gim, '-')
+          .toLowerCase(),
     }));
 
   eleventyConfig.addTransform('stip-source-map', function (content) {

@@ -70,6 +70,32 @@ Here are the {{ mostRecentCount }} most recent articles published on this blog:
 I have been blogging since 2013, all posts can be found <a href="/blog">here</a>.
 {%- endif %}
 
+# Speaking & More
+<table class="blog-posts">
+   <tbody>
+      <tr class="blog-post">
+         <td class="title"><span><a href="https://aws.amazon.com/fr/blogs/opensource/how-the-jsii-open-source-framework-meets-developers-where-they-are/">{% icon "amazon" %}&nbsp;How the jsii open source framework meeds developers where they are</a></span></td>
+         <td class="date"><time datetime="2020-12-23">Dec 23, 2020</time></td>
+      </tr>
+      <tr class="blog-post">
+         <td class="title"><span><a href="https://www.twitch.tv/aws/video/944565768">{% icon "twitch" %}&nbsp;CDK Construction Zone | S1 Ep3 | CDK Triggers Part 3 (final)</a></span></td>
+         <td class="date"><time datetime="2021-03-09">Mar 9, 2021</time></td>
+      </tr>
+      <tr class="blog-post">
+         <td class="title"><span><a href="https://www.twitch.tv/aws/video/960287598">{% icon "twitch" %}&nbsp;CDK Construction Zone | S1 Ep4 | Tokens</a></span></td>
+         <td class="date"><time datetime="2021-03-23">Mar 23, 2021</time></td>
+      </tr>
+      <tr class="blog-post">
+         <td class="title"><span><a href="https://www.twitch.tv/aws/video/1019059654">{% icon "twitch" %}&nbsp;CDK Construction Zone | S1 Ep7 | Season finale, CDK Tips</a></span></td>
+         <td class="date"><time datetime="2021-11-05">Nov 5, 2021</time></td>
+      </tr>
+      <tr class="blog-post">
+         <td class="title"><span><a href="https://www.youtube.com/watch?v=CdMtBLVqhz8">{% icon "youtube" %} The Wingly Update EP 10</a></span></td>
+         <td class="date"><time datetime="2023-05-30">May 30, 2023</time></td>
+      </tr>
+   </tbody>
+</table>
+
 # Contact
 
 Besides the social media handles listed in [About](#about), you can reach me at
