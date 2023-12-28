@@ -2,6 +2,8 @@
 @import "bootstrap/scss/functions";
 
 // 2. Include any default variable overrides here
+$color-mode-type: media-query;
+
 $font-family-sans-serif: "Fira Sans", sans-serif;
 $font-family-monospace: "Fira Code", monospace;
 
@@ -21,6 +23,8 @@ $font-family-monospace: "Fira Code", monospace;
 @import "bootstrap/scss/reboot";
 @import "bootstrap/scss/containers";
 @import "bootstrap/scss/grid";
+@import "bootstrap/scss/button-group";
+@import "bootstrap/scss/buttons";
 @import "bootstrap/scss/images";
 @import "bootstrap/scss/nav";
 @import "bootstrap/scss/navbar";

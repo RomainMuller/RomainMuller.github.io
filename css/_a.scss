@@ -1,13 +1,29 @@
-a:not(.page-link) {
+a:not(.btn) {
   backface-visibility: hidden;
-  background-image: linear-gradient(to bottom right, var(--bs-orange), var(--bs-red), var(--bs-blue), var(--bs-teal)) !important;
+  background-image: linear-gradient(
+    to bottom right,
+    var(--bs-orange),
+    var(--bs-red),
+    var(--bs-blue),
+    var(--bs-teal),
+  ) !important;
   background-clip: text !important;
   color: transparent !important;
   font-weight: $font-weight-medium;
   text-decoration: none;
 
+  @include color-mode(dark) {
+    background-image: linear-gradient(
+      to bottom right,
+      var(--bs-yellow),
+      var(--bs-orange),
+      var(--bs-cyan),
+      var(--bs-blue),
+    ) !important;
+  }
+
   svg {
-    color: $orange;
+    color: var(--bs-orange);
   }
 
   &:hover {

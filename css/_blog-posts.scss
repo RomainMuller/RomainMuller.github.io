@@ -7,9 +7,9 @@
     line-height: 1.5em;
 
     & .title {
-      border-bottom: 2px dotted #ccc;
+      border-bottom: 2px dotted var(--bs-border-color);
       & > span {
-        background-color: #fff;
+        background-color: var(--bs-body-bg);
         padding-right: 20px;
       }
     }

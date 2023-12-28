@@ -20,3 +20,19 @@ py: 0
     {% endif %}
   </div>
 </article>
+
+{%- set newerPost = collections.post | reverse | getPreviousCollectionItem -%}
+{%- set olderPost = collections.post | reverse | getNextCollectionItem -%}
+{%- if olderPost != null or newerPost != null -%}
+<div class="container clearfix py-2">
+  <div class="btn-group float-end" role="group" aria-label="Navigate posts">
+    {%- if olderPost != null -%}
+    <a class="btn btn-lg btn-outline-success" href="{{ olderPost.url | url }}" role="button">{% icon "skip-backward-btn-fill", "1.5rem" %}&nbsp;{{ olderPost.data.title }}</a>
+    {%- endif -%}
+
+    {%- if newerPost != null -%}
+    <a class="btn btn-lg btn-outline-success" href="{{ newerPost.url | url }}" role="button">{{ newerPost.data.title }}&nbsp;{% icon "skip-forward-btn-fill", "1.5rem" %}</a>
+    {%- endif -%}
+  </div>
+</div>
+{%- endif -%}
