@@ -9,7 +9,10 @@ mostRecentCount: 10
 
 # About
 
-Hi, I am Romain Marcadier, a software engineer living in Metz, France.
+Hi, I am Romain Marcadier, software engineer living in Metz, France.
+
+I'm a <abbr title="my gender identity corresponds to my sex assigned at birth">cisgender</abbr> man,
+hapily married to my husband since 2014.
 
 Currently I'm working as a Senior Software Engineer for Datadog, focusing on
 [<abbr title="Application Security Management Libraries">ASM</abbr> for Go][dd-asm].
