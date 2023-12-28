@@ -16,7 +16,7 @@
     <link rel="me" href="https://hachyderm.io/@Romain">
   </head>
 
-  <body>
+  <body itemscope itemtype="http://schema.org/Blog">
     <header>
       <nav class="navbar bg-dark bg-gradient shadow" data-bs-theme="dark">
         <div class="container-fluid">
@@ -56,6 +56,9 @@
     <main class="container py-{% if py != null %}{{ py }}{% else %}3{% endif %}{% if px != null %} px-{{ px }}{% endif %}">
       {{ content | safe }}
     </main>
+    <footer class="mt-4 text-center text-secondary">
+      &copy; 2023-Current &ndash; Romain Marcadier. All rights reserved.
+    </footer>
     {% script "/js/javascript.js" %}
   </body>
 </html>

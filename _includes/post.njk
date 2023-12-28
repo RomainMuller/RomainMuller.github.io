@@ -4,19 +4,19 @@ image: /img/walnut.jpg
 px: 0
 py: 0
 ---
-<article>
+<article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
   <div class="title position-relative" style="background-image: url({{ image | url }})">
-    <h1>{{ title }}</h1>
+    <h1  itemprop="headline">{{ title }}</h1>
     {%- set cdate -%}{% date page.date, "long" %}{%- endset -%}
-    <div class="publish-date position-absolute bottom-0 end-0">Published: {{ cdate | safe }}</div>
+    <div class="publish-date position-absolute bottom-0 end-0" itemprop="datePublished">Published: {{ cdate | safe }}</div>
   </div>
-  <div class="container clearfix px-auto">
+  <div class="container clearfix px-auto" itemprop="text">
     {{ content | safe }}
 
-    <div class="signature">&ndash; {{ site.author }}</div>
+    <div class="signature" itemprop="author">&ndash; {{ site.author }}</div>
     {%- set mdate -%}{% mdate page, "long" %}{%- endset -%}
     {% if cdate != mdate %}
-    <div class="text-secondary float-end">Updated on {{ mdate | safe }}</div>
+    <div class="text-secondary float-end" itemprop="dateModified">Updated on {{ mdate | safe }}</div>
     {% endif %}
   </div>
 </article>

@@ -59,7 +59,7 @@ Here are the {{ mostRecentCount }} most recent articles published on this blog:
    <tbody>
       {% for post in collections.post | reverse %}
       {%- if loop.index0 < mostRecentCount -%}
-      <tr class="blog-post">
+      <tr class="blog-post" itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting">
          <td class="title"><span><a href="{{ post.url | url }}">{% icon post.data.icon %}&nbsp;{{ post.data.title }}</a></span></td>
          <td class="date">{% date post.date %}</td>
       </tr>
