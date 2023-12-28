@@ -2,8 +2,8 @@
 @import "bootstrap/scss/functions";
 
 // 2. Include any default variable overrides here
-$font-family-sans-serif: "Fira Sans";
-$font-family-monospace: "Fira Code";
+$font-family-sans-serif: "Fira Sans", sans-serif;
+$font-family-monospace: "Fira Code", monospace;
 
 // 3. Include remainder of required Bootstrap stylesheets (including any separate color mode stylesheets)
 @import "bootstrap/scss/variables";

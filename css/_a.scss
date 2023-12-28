@@ -1,0 +1,16 @@
+a:not(.page-link) {
+  backface-visibility: hidden;
+  background-image: linear-gradient(to bottom right, var(--bs-orange), var(--bs-red), var(--bs-blue), var(--bs-teal)) !important;
+  background-clip: text !important;
+  color: transparent !important;
+  font-weight: $font-weight-medium;
+  text-decoration: none;
+
+  svg {
+    color: $orange;
+  }
+
+  &:hover {
+    border-bottom: 1px solid rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 0.5));
+  }
+}

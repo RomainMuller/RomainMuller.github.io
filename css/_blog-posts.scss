@@ -1,0 +1,28 @@
+.blog-posts {
+  border-collapse: separate;
+  width: 100%;
+  margin: -.5em 0 1em 0;
+
+  & .blog-post {
+    line-height: 1.5em;
+
+    & .title {
+      border-bottom: 2px dotted #ccc;
+      & > span {
+        background-color: #fff;
+        padding-right: 20px;
+      }
+    }
+    & .date {
+      text-align: right;
+      width: 12ch;
+    }
+    & span, & time {
+      bottom: -0.5em;
+      position: relative;
+    }
+    & span {
+      left: -1px;
+    }
+  }
+}

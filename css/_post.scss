@@ -1,0 +1,28 @@
+article {
+  padding-bottom: 2ex;
+
+  .title {
+    background-position: top;
+    background-size: cover;
+    margin-bottom: 2ex;
+    min-height: 15ex;
+    padding: 2ex 0 2ex 0;
+
+    & > h1 {
+      background-color: #000;
+      color: #fff;
+      display: inline-block;
+      mix-blend-mode: multiply;
+      padding: 0 .5em 0 1em;
+    }
+  }
+
+  .publish-date {
+    background-color: #000;
+    color: #fff;
+    display: inline-block;
+    margin-bottom: 2ex;
+    mix-blend-mode: multiply;
+    padding: 0 1em 0 .5em;
+  }
+}
