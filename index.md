@@ -38,14 +38,16 @@ Besides this I enjoy cooking and baking (in particular, baking brioches), watchi
 more important to me than visual effects), TV series (big fan of the BBC's *Doctor Who*), and
 photography (my gear is built around a *Canon EOS 70D*).
 
-You can find me on <a href="https://hachyderm.io/@Romain">{% icon "mastodon" %}&nbsp;Hachyderm.io</a>,
-<a href="https://github.com/RomainMuller">{% icon "github" %}&nbsp;GitHub</a>, or <a href="#contact">contact me
-directly</a>.
+You can find me on [{% icon "mastodon" %}&nbsp;Hachyderm.io][hachyderm],
+[{% icon "github" %}&nbsp;GitHub][gh], [{% icon "linkedin" %}&nbsp;LinkedIn][linkedin], or [contact me directly](#contact).
 
 [dd-asm]: https://docs.datadoghq.com/security/application_security/
 [aws-cdk]: https://github.com/aws/aws-cdk
 [aws-jsii]: https://github.com/aws/jsii
 [tn]: https://telecomnancy.univ-lorraine.fr/
+[hachyderm]: https://hachyderm.io/@Romain
+[gh]: https://github.com/RomainMuller
+[linkedin]: https://www.linkedin.com/in/romainmuller/
 
 # Blog
 
