@@ -106,6 +106,6 @@ encrypted (or signed) mail using any of the addresses listed on my (un-expired)
 PGP keys, which are registered on <a href="https://keybase.io/RomainMuller">
 {% icon "key" %}&nbsp;Keybase</a>, which would be the identities linked to:
 - <a href="https://keybase.io/romainmuller/pgp_keys.asc?fingerprint=882a50770612d2030779ce4b4839f8d9266f42f2">
-  {% icon "house-heart-fill" %}&nbsp;<tt>0x4839&nbsp;F8D9&nbsp;266F&nbsp;42F2</tt></a> for personal dealings
+  {% icon "house-heart-fill" %}&nbsp;<code>0x4839&nbsp;F8D9&nbsp;266F&nbsp;42F2</code></a> for personal dealings
 - <a href="https://keybase.io/romainmuller/pgp_keys.asc?fingerprint=5e8765091530d7d58f043626752ea596354c3ae3">
-  {% icon "briefcase-fill" %}&nbsp;<tt>0x752E&nbsp;A596&nbsp;354C&nbsp;3AE3</tt></a> for contacts related to my work at Datadog
+  {% icon "briefcase-fill" %}&nbsp;<code>0x752E&nbsp;A596&nbsp;354C&nbsp;3AE3</code></a> for contacts related to my work at Datadog
