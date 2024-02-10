@@ -5,9 +5,10 @@ eleventyImport:
    collections: [post]
 mostRecentCount: 10
 ---
-<img class="col-3 float-end shadow-sm rounded-4"
+<img class="col-sm-3 float-end shadow-sm rounded-4"
+   style="height: 25%"
    alt="A picture of myself, wearing a gray hat and a black T-shirt with the quote “I'm pickle Rick“ from the show Rick & Morty."
-   width="428" height="485"
+   width="428" height="642"
    srcset="/img/me.jpg, /img/me@x2.jpg 2x"
    src="/img/me.jpg" />
 
