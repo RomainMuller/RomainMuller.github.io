@@ -6,6 +6,7 @@ const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
 const rss = require('@11ty/eleventy-plugin-rss');
 const md = require('markdown-it');
 const mdAnchor = require('markdown-it-anchor');
+const mdAttrs = require('markdown-it-attrs');
 const sass = require('sass');
 
 module.exports = function (/** @type import('@11ty/eleventy').UserConfig */ eleventyConfig) {
@@ -113,7 +114,7 @@ module.exports = function (/** @type import('@11ty/eleventy').UserConfig */ elev
       slugify: (text) =>
         text.replaceAll(/[^a-z0-9]+/gim, '-')
           .toLowerCase(),
-    }));
+    }).use(mdAttrs));
 
   eleventyConfig.addTransform('stip-source-map', function (content) {
     if (!this.outputPath.endsWith('.js')) {

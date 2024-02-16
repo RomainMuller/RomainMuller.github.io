@@ -299,6 +299,7 @@ __metadata:
     bootstrap-icons: ^1.11.3
     markdown-it: ^14.0.0
     markdown-it-anchor: ^8.6.7
+    markdown-it-attrs: ^4.1.6
     sass: ^1.71.0
   languageName: unknown
   linkType: soft
@@ -1635,6 +1636,15 @@ __metadata:
     "@types/markdown-it": "*"
     markdown-it: "*"
   checksum: 828236768ac7f61ed5591393c1b1bfc5dbf2b6d0c58a3deec606c61dddaa12658a34450cbef37ab50a04453e618ce1efd47d86e4e52595024334898fd306225b
+  languageName: node
+  linkType: hard
+
+"markdown-it-attrs@npm:^4.1.6":
+  version: 4.1.6
+  resolution: "markdown-it-attrs@npm:4.1.6"
+  peerDependencies:
+    markdown-it: ">= 9.0.0"
+  checksum: 3487fab315a5955f1882edcb29b5362fcdc9a369c4cd1c38688b3d32a145254094d2d8389bdd6887c3af66f9a9a75143f167d88421dcf201e54ec587675756a0
   languageName: node
   linkType: hard
 
