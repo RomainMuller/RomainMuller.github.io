@@ -10,7 +10,7 @@ const mdAttrs = require('markdown-it-attrs');
 const sass = require('sass');
 
 module.exports = function (/** @type import('@11ty/eleventy').UserConfig */ eleventyConfig) {
-  const cname = 'www.romainmuller.dev';
+  const cname = 'romainmuller.dev';
   eleventyConfig.addGlobalData('site', {
     author: 'Romain Marcadier',
     cname,
