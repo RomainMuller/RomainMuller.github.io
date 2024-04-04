@@ -23,6 +23,7 @@ $font-family-monospace: "Fira Code", monospace;
 @import "bootstrap/scss/reboot";
 @import "bootstrap/scss/containers";
 @import "bootstrap/scss/grid";
+@import "bootstrap/scss/accordion";
 @import "bootstrap/scss/badge";
 @import "bootstrap/scss/button-group";
 @import "bootstrap/scss/buttons";
@@ -31,6 +32,7 @@ $font-family-monospace: "Fira Code", monospace;
 @import "bootstrap/scss/navbar";
 @import "bootstrap/scss/pagination";
 @import "bootstrap/scss/tables";
+@import "bootstrap/scss/transitions";
 @import "bootstrap/scss/type";
 @import "bootstrap/scss/helpers";
 
