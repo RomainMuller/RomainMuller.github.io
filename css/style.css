@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  h1 {
+    @apply text-4xl font-medium mb-2 mt-4;
+  }
+  h2 {
+    @apply text-3xl font-medium mb-2 mt-4;
+  }
+  h3 {
+    @apply text-2xl font-medium mb-2 mt-4;
+  }
+  h2 {
+    @apply text-xl font-medium mb-2 mt-4;
+  }
+
+  p {
+    @apply mb-4;
+  }
+
+  pre {
+    @apply overflow-scroll;
+  }
+  code, tt {
+    @apply font-mono;
+  }
+}
+
+@layer components {
+  main a:not(.plain) {
+    @apply text-transparent bg-clip-text rainbow font-semibold;
+  }
+
+  main aside {
+    @apply inline;
+  }
+
+  main blockquote {
+    @apply relative;
+    @apply bg-slate-100 dark:bg-slate-900;
+    @apply pl-[3rem] pr-3 ml-3 mr-6 mb-3;
+    @apply border-l-4 border-neutral-500;
+    @apply shadow-lg;
+  }
+  main blockquote:before {
+    content: url('/img/quote.svg');
+    left: .5rem;
+    @apply absolute top-0;
+  }
+
+  main ol {
+    @apply list-decimal;
+  }
+  main ul {
+    @apply list-disc;
+  }
+  main ol, main ul {
+    @apply ml-6;
+  }
+
+  main table:not(.plain) {
+    @apply p-2 mb-4;
+    @apply w-full;
+    @apply align-top;
+    @apply border-[#a7b9b1];
+    @apply shadow-md shadow-black/15;
+  }
+  main table:not(.plain) thead {
+    @apply bg-[#212529] text-white;
+  }
+  main table:not(.plain) th, main table:not(.plain) td {
+    text-align: inherit;
+    @apply p-2;
+    @apply border;
+  }
+}
+@layer utilities {
+  .rainbow {
+    @apply bg-gradient-to-r;
+    --tw-gradient-stops: theme('colors.rbow-orange'), theme('colors.rbow-red'), theme('colors.rbow-blue'), theme('colors.rbow-teal');
+  }
+}
+
+@layer components {
+  main pre {
+    @apply bg-[rgb(36,41,54)];
+    @apply text-[rgb(204,202,194)];
+    @apply p-4 mb-4;
+    @apply shadow-md shadow-black/15;
+    @apply rounded-md;
+  }
+
+  main pre > code > .token.boolean {
+    @apply text-[rgb(223,191,255)];
+  }
+  main pre > code > .token.class-name {
+    @apply text-[rgb(252,171,101)];
+  }
+  main pre > code > .token.constant {
+    @apply text-[rgb(115,208,255)];
+  }
+  main pre > code > .token.keyword {
+    @apply text-[rgb(252,171,101)];
+    @apply font-medium;
+  }
+  main pre > code > .token.literal-property {
+    @apply text-[rgb(204,202,194)];
+  }
+  main pre > code > .token.operator {
+    @apply text-[rgb(242,158,116)];
+  }
+  main pre > code > .token.punctuation {
+    @apply text-[rgb(255,215,0)];
+  }
+  main pre > code > .token.string {
+    @apply text-[rgb(213,255,128)];
+  }
+}

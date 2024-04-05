@@ -5,10 +5,9 @@ eleventyImport:
    collections: [post]
 mostRecentCount: 10
 ---
-<img class="col-sm-3 float-end shadow-sm rounded-4"
-   style="height: 25%"
+<img class="float-end rounded-xl shadow"
    alt="A picture of myself, wearing a gray hat and a black T-shirt with the quote “I'm pickle Rick“ from the show Rick & Morty."
-   width="428" height="642"
+   width="214" height="321"
    srcset="/img/me.jpg, /img/me@x2.jpg 2x"
    src="/img/me.jpg" />
 
@@ -24,14 +23,14 @@ Currently I'm working as a Senior Software Engineer for Datadog, focusing on
 
 Before that I spent almost 15 years working for Amazon & <abbr title="Amazon Web Services">
 AWS</abbr>:
-* <span class="badge text-bg-success">2008-2012</span> Sales & Operations Planning (and Capacity
+* <span class="rounded-lg border border-green-900 bg-green-800 text-white px-1">2008-2012</span> Sales & Operations Planning (and Capacity
   Planning) software for Amazon's european fulfillment network, with applications to Amazon's
   worldwide operations;
-* <span class="badge text-bg-success">2012-2014</span> Product detail page localization as part of
+* <span class="rounded-lg border border-green-900 bg-green-800 text-white px-1">2012-2014</span> Product detail page localization as part of
   Amazon Seller Services;
-* <span class="badge text-bg-success">2014-2018</span> Amazon Logistics Business Intelligence
+* <span class="rounded-lg border border-green-900 bg-green-800 text-white px-1">2014-2018</span> Amazon Logistics Business Intelligence
   service for Amazon's worldwide last-mile operations;
-* <span class="badge text-bg-success">2018-2023</span>
+* <span class="rounded-lg border border-green-900 bg-green-800 text-white px-1">2018-2023</span>
   [AWS <abbr title="Cloud Development Kit">CDK</abbr>][aws-cdk] &mdash; particularly
   [_jsii_][aws-jsii], the technology that supports CDK's multi-language support.
 
@@ -60,13 +59,15 @@ You can find me on [{% icon "mastodon" %}&nbsp;Hachyderm.io][hachyderm],
 Here are the {{ mostRecentCount }} most recent articles published on this blog:
 {%- endif %}
 
-<table class="blog-posts">
+<table class="plain border-separate w-full mt-[-0.5em] mb-[1em]">
    <tbody>
       {% for post in collections.post | reverse %}
       {%- if loop.index0 < mostRecentCount -%}
-      <tr class="blog-post" itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting">
-         <td class="title"><span><a href="{{ post.url | url }}">{% icon post.data.icon %}&nbsp;{{ post.data.title }}</a></span></td>
-         <td class="date">{% date post.date %}</td>
+      <tr class="leading-[1.5em]" itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting">
+         <td class="border-b-[2px] border-dotted border-gray-400">
+            <span class="bg-white pr-[20px] relative left-[-1px] bottom-[-0.5em]"><a href="{{ post.url | url }}">{% icon post.data.icon %}&nbsp;{{ post.data.title }}</a></span>
+         </td>
+         <td class="text-right w-[12ch]">{% date post.date, "short", "relative", "bottom-[-0.5em]" %}</td>
       </tr>
       {%- endif -%}
       {% endfor %}
@@ -78,27 +79,47 @@ I have been blogging since 2013, all posts can be found <a href="/blog">here</a>
 {%- endif %}
 
 # Speaking & More
-<table class="blog-posts">
+<table class="plain border-separate w-full mt-[-0.5em] mb-[1em]">
    <tbody>
-      <tr class="blog-post">
-         <td class="title"><span><a href="https://aws.amazon.com/fr/blogs/opensource/how-the-jsii-open-source-framework-meets-developers-where-they-are/">{% icon "amazon" %}&nbsp;How the jsii open source framework meeds developers where they are</a></span></td>
-         <td class="date"><time datetime="2020-12-23">Dec 23, 2020</time></td>
+      <tr class="leading-[1.5em]">
+         <td class="border-b-[2px] border-dotted border-gray-400">
+            <span class="bg-white pr-[20px] relative left-[-1px] bottom-[-0.5em]">
+               <a href="https://aws.amazon.com/fr/blogs/opensource/how-the-jsii-open-source-framework-meets-developers-where-they-are/">{% icon "amazon" %}&nbsp;How the jsii open source framework meeds developers where they are</a>
+            </span>
+         </td>
+         <td class="text-right w-[12ch]"><time class="relative bottom-[-0.5em]" datetime="2020-12-23">Dec 23, 2020</time></td>
       </tr>
       <tr class="blog-post">
-         <td class="title"><span><a href="https://www.twitch.tv/aws/video/944565768">{% icon "twitch" %}&nbsp;CDK Construction Zone | S1 Ep3 | CDK Triggers Part 3 (final)</a></span></td>
-         <td class="date"><time datetime="2021-03-09">Mar 9, 2021</time></td>
+         <td class="border-b-[2px] border-dotted border-gray-400">
+            <span class="bg-white pr-[20px] relative left-[-1px] bottom-[-0.5em]">
+               <a href="https://www.twitch.tv/aws/video/944565768">{% icon "twitch" %}&nbsp;CDK Construction Zone | S1 Ep3 | CDK Triggers Part 3 (final)</a>
+            </span>
+         </td>
+         <td class="text-right w-[12ch]"><time class="relative bottom-[-0.5em]" datetime="2021-03-09">Mar 9, 2021</time></td>
       </tr>
       <tr class="blog-post">
-         <td class="title"><span><a href="https://www.twitch.tv/aws/video/960287598">{% icon "twitch" %}&nbsp;CDK Construction Zone | S1 Ep4 | Tokens</a></span></td>
-         <td class="date"><time datetime="2021-03-23">Mar 23, 2021</time></td>
+         <td class="border-b-[2px] border-dotted border-gray-400">
+            <span class="bg-white pr-[20px] relative left-[-1px] bottom-[-0.5em]">
+               <a href="https://www.twitch.tv/aws/video/960287598">{% icon "twitch" %}&nbsp;CDK Construction Zone | S1 Ep4 | Tokens</a>
+            </span>
+         </td>
+         <td class="text-right w-[12ch]"><time class="relative bottom-[-0.5em]" datetime="2021-03-23">Mar 23, 2021</time></td>
       </tr>
       <tr class="blog-post">
-         <td class="title"><span><a href="https://www.twitch.tv/aws/video/1019059654">{% icon "twitch" %}&nbsp;CDK Construction Zone | S1 Ep7 | Season finale, CDK Tips</a></span></td>
-         <td class="date"><time datetime="2021-11-05">Nov 5, 2021</time></td>
+         <td class="border-b-[2px] border-dotted border-gray-400">
+            <span class="bg-white pr-[20px] relative left-[-1px] bottom-[-0.5em]">
+               <a href="https://www.twitch.tv/aws/video/1019059654">{% icon "twitch" %}&nbsp;CDK Construction Zone | S1 Ep7 | Season finale, CDK Tips</a>
+            </span>
+         </td>
+         <td class="text-right w-[12ch]"><time class="relative bottom-[-0.5em]" datetime="2021-11-05">Nov 5, 2021</time></td>
       </tr>
       <tr class="blog-post">
-         <td class="title"><span><a href="https://www.youtube.com/watch?v=CdMtBLVqhz8">{% icon "youtube" %} The Wingly Update EP 10</a></span></td>
-         <td class="date"><time datetime="2023-05-30">May 30, 2023</time></td>
+         <td class="border-b-[2px] border-dotted border-gray-400">
+            <span class="bg-white pr-[20px] relative left-[-1px] bottom-[-0.5em]">
+               <a href="https://www.youtube.com/watch?v=CdMtBLVqhz8">{% icon "youtube" %} The Wingly Update EP 10</a>
+            </span>
+         </td>
+         <td class="text-right w-[12ch]"><time class="relative bottom-[-0.5em]" datetime="2023-05-30">May 30, 2023</time></td>
       </tr>
    </tbody>
 </table>

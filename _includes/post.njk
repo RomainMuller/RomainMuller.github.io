@@ -1,38 +1,42 @@
 ---
 layout: base
 image: image-set("/img/walnut.jpg" 1x, "/img/walnut@x2.jpg" 2x, "/img/walnut@x3.jpg" 3x)
-px: 0
-py: 0
+container_padding: px-0
 ---
 <article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-  <div class="title position-relative" style="background-image: {{ image }}">
-    <h1  itemprop="headline">{{ title }}</h1>
+  <div class="pt-2 pb-6 bg-center bg-cover" style="background-image: {{ image }}">
+    <h1 class="px-6 py-1 bg-black text-white inline-block mix-blend-multiply" itemprop="headline">{{ title }}</h1>
     {%- set cdate -%}{% date page.date, "long" %}{%- endset -%}
-    <div class="publish-date position-absolute bottom-0 end-0" itemprop="datePublished">Published: {{ cdate | safe }}</div>
+    {%- set mdate -%}{% mdate page, "long" %}{%- endset -%}
+    <div class="grid justify-items-end mb-[2ex]">
+      <div><span class="px-6 py-1 bg-black text-white mix-blend-multiply" itemprop="datePublished">Published: {{ cdate | safe }}</span></div>
+      {% if cdate != mdate %}
+      <div><span class="px-6 py-1 bg-black text-white mix-blend-multiply" itemprop="dateModified">Updated: {{ mdate | safe }}</span></div>
+      {% endif %}
+    </div>
   </div>
-  <div class="container clearfix px-auto" itemprop="text">
+  <div class="p-4" itemprop="text">
     {{ content | safe }}
 
-    <div class="signature" itemprop="author">&ndash; {{ site.author }}</div>
-    {%- set mdate -%}{% mdate page, "long" %}{%- endset -%}
-    {% if cdate != mdate %}
-    <div class="text-secondary float-end" itemprop="dateModified">Updated on {{ mdate | safe }}</div>
-    {% endif %}
+    <div class="italic pl-6" itemprop="author">&ndash; {{ site.author }}</div>
   </div>
 </article>
 
 {%- set newerPost = collections.post | reverse | getPreviousCollectionItem -%}
 {%- set olderPost = collections.post | reverse | getNextCollectionItem -%}
 {%- if olderPost != null or newerPost != null -%}
-<div class="container clearfix py-2">
-  <div class="btn-group float-end" role="group" aria-label="Navigate posts">
-    {%- if olderPost != null -%}
-    <a class="btn btn-lg btn-outline-success" href="{{ olderPost.url | url }}" role="button">{% icon "skip-backward-btn-fill", "1.5rem" %}&nbsp;{{ olderPost.data.title }}</a>
-    {%- endif -%}
+<nav class="flex justify-between p-4" aria-label="Navigate posts">
+  {%- set linkClass = "p-2 text-white font-medium plain rainbow border rounded-lg shadow-inner shadow-black" -%}
+  {%- if olderPost != null -%}
+  <a class="{{ linkClass }}" href="{{ olderPost.url | url }}" role="button">{% icon "skip-backward-btn-fill", "1.5rem", "1.5rem", "inline-block", "pr-2" %}<span>{{ olderPost.data.title }}</span></a>
+  {%- else -%}
+  <div><span class="sr-only">There is no older post!</span></div>
+  {%- endif -%}
 
-    {%- if newerPost != null -%}
-    <a class="btn btn-lg btn-outline-success" href="{{ newerPost.url | url }}" role="button">{{ newerPost.data.title }}&nbsp;{% icon "skip-forward-btn-fill", "1.5rem" %}</a>
-    {%- endif -%}
-  </div>
-</div>
+  {%- if newerPost != null -%}
+  <a class="{{ linkClass }}" href="{{ newerPost.url | url }}" role="button"><span>{{ newerPost.data.title }}</span>{% icon "skip-forward-btn-fill", "1.5rem", "1.5rem", "inline-block", "pl-2" %}</a>
+  {%- else -%}
+  <div><span class="sr-only">There is no newer post!</span></div>
+  {%- endif -%}
+</nav>
 {%- endif -%}

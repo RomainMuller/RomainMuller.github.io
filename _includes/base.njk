@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="utf-8">
     <meta name="description" content="{{ site.description }}">
@@ -23,49 +23,54 @@
     <link rel="me" href="https://hachyderm.io/@Romain">
   </head>
 
-  <body itemscope itemtype="http://schema.org/Blog">
-    <header>
-      <nav class="navbar bg-dark bg-gradient shadow" data-bs-theme="dark">
-        <div class="container-fluid">
-          <a class="navbar-brand fw-bolder" href="/">
-            <img alt="Logo" class="d-inline-block rounded-circle mx-2" src="/img/logo.png" srcset="/img/logo.png, /img/logo@x2.png 2x, /img/logo@x3.png 3x, /img/logo@x4.png 4x" width="44" height="48" aria-hidden="true">
+  <body class="font-body subpixel-antialiased bg-slate-300 dark:bg-slate-800 text-slate-900 dark:text-slate-100" itemscope itemtype="http://schema.org/Blog">
+    <header class="sticky z-10 top-0 w-full bg-zinc-700 bg-gradient-to-b from-black/0 to-black/15 text-white shadow-md shadow-black/50">
+      <nav class="flex content-center items-center justify-between p-4">
+        <a class="whitespace-nowrap text-4xl/6 font-bold" href="{{ site.url }}">
+          <img class="inline-block"
+            alt="A logo presenting the stylized initials R.M."
+            srcset="/img/logo.png 1x, /img/logo@x2.png 2x, /img/logo@x3.png 3x, /img/logo@x4.png 4x"
+            src="/img/logo.png"
+            width="44"
+            height="48"
+            />
+          <span class="text-transparent bg-double bg-clip-text bg-gradient-to-tl from-rbow-teal via-rbow-yellow to-rbow-indigo animate-bg-slide">
             {{ site.name }}
-          </a>
-          <ul class="nav justify-content-center">
-            <li class="nav-item mx-2">
-              <a class="nav-link text-white" href="/#about">
-                {% icon "person-badge-fill", 24, 24, "d-block", "mx-auto", "mb-1" %}
-                About
-              </a>
-            </li>
-            <li class="nav-item mx-2">
-              <a class="nav-link text-white" href="/#blog">
-                {% icon "book-half", 24, 24, "d-block", "mx-auto", "mb-1" %}
-                Blog
-              </a>
-            </li>
-            <li class="nav-item mx-2">
-              <a class="nav-link text-white" href="/#speaking-more">
-                {% icon "megaphone-fill", 24, 24, "d-block", "mx-auto", "mb-1" %}
-                Speaking
-              </a>
-            </li>
-            <li class="nav-item mx-2">
-              <a class="nav-link text-white" href="/#contact">
-                {% icon "mailbox2-flag", 24, 24, "d-block", "mx-auto", "mb-1" %}
-                Contact
-              </a>
-            </li>
-          </ul>
-        </div>
+          </span>
+        </a>
+        <ul class="flex items-center space-x-5">
+          <li class="mx-2">
+            <a class="block text-white" href="/#about">
+              {% icon "person-badge-fill", 24, 24, "block", "mx-auto", "mb-1" %}
+              About
+            </a>
+          </li>
+          <li class="mx-2">
+            <a class="block text-white" href="/#blog">
+              {% icon "book-half", 24, 24, "block", "mx-auto", "mb-1" %}
+              Blog
+            </a>
+          </li>
+          <li class="mx-2">
+            <a class="block text-white" href="/#speaking">
+              {% icon "megaphone-fill", 24, 24, "block", "mx-auto", "mb-1" %}
+              Speaking
+            </a>
+          </li>
+          <li class="mx-2">
+            <a class="block text-white" href="/#contact">
+              {% icon "mailbox2-flag", 24, 24, "block", "mx-auto", "mb-1" %}
+              Contact
+            </a>
+          </li>
+        </ul>
       </nav>
     </header>
-    <main class="container py-{% if py != null %}{{ py }}{% else %}3{% endif %}{% if px != null %} px-{{ px }}{% endif %}">
+    <main class="container mx-auto py-4 {{ container_padding if container_padding != null else "px-4" }} bg-white dark:bg-black text-black dark:text-white shadow-lg shadow-black/50">
       {{ content | safe }}
     </main>
-    <footer class="mt-4 text-center text-secondary">
-      &copy; 2023-Current &ndash; Romain Marcadier. All rights reserved.
+    <footer class="text-gray-500 text-center mt-6 mb-4">
+      Copyright &copy; 2023-Current &ndash; Romain Marcadier. All rights reserved.
     </footer>
-    {% script "/js/javascript.js" %}
   </body>
 </html>

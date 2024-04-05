@@ -3,12 +3,14 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "build": "npx @11ty/eleventy",
-    "serve": "npx @11ty/eleventy --serve"
+    "build": "npm-run-all -p 'build:*'",
+    "serve": "npm-run-all -p 'serve:*'",
+    "build:11ty": "npx @11ty/eleventy",
+    "build:tailwind": "tailwindcss -i css/style.css -o _site/css/style.css --postcss",
+    "serve:11ty": "npm run build:11ty -- --serve",
+    "serve:tailwind": "npm run build:tailwind -- --watch"
   },
   "dependencies": {
-    "@popperjs/core": "^2.11.8",
-    "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
     "markdown-it-attrs": "^4.1.6"
   },
@@ -17,9 +19,12 @@
     "@11ty/eleventy-plugin-rss": "^1.2.0",
     "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
     "@types/markdown-it": "^13.0.7",
-    "markdown-it": "^14.0.0",
+    "autoprefixer": "^10.4.19",
+    "markdown-it": "^14.1.0",
     "markdown-it-anchor": "^8.6.7",
-    "sass": "^1.72.0"
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.3"
   },
   "packageManager": "yarn@3.7.0+sha256.7bf0c78a106332886ea4e59641fd819b1af953edcd72c4d93a32b1c71000ee67",
   "engines": {
