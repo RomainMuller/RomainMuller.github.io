@@ -311,13 +311,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/markdown-it@npm:^13.0.7":
-  version: 13.0.7
-  resolution: "@types/markdown-it@npm:13.0.7"
+"@types/markdown-it@npm:^14.0.1":
+  version: 14.0.1
+  resolution: "@types/markdown-it@npm:14.0.1"
   dependencies:
     "@types/linkify-it": "npm:*"
     "@types/mdurl": "npm:*"
-  checksum: 10/fb9fe249e5542e1cce5d7b006125cd976dc9a1d093ef2639e6e35fbc5fce47aacc2f166f2678b1cbe27939f1f05f85e5b7b9e363269b59834cf7431d8461f48d
+  checksum: 10/5bb909022ceac3dd813e6a571252e5ecbc24352bec6d0da3dd25b039c43dd181928845f9d4c69b105b5e682bb05a81c7f454efe825294b6b83db058184a5ea1c
   languageName: node
   linkType: hard
 
@@ -342,7 +342,7 @@ __metadata:
     "@11ty/eleventy": "npm:^2.0.1"
     "@11ty/eleventy-plugin-rss": "npm:^1.2.0"
     "@11ty/eleventy-plugin-syntaxhighlight": "npm:^5.0.0"
-    "@types/markdown-it": "npm:^13.0.7"
+    "@types/markdown-it": "npm:^14.0.1"
     autoprefixer: "npm:^10.4.19"
     bootstrap-icons: "npm:^1.11.3"
     cssnano: "npm:^6.1.2"
