@@ -304,27 +304,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/linkify-it@npm:*":
-  version: 3.0.5
-  resolution: "@types/linkify-it@npm:3.0.5"
-  checksum: 10/fac28f41a6e576282300a459d70ea0d33aab70dbb77c3d09582bb0335bb00d862b6de69585792a4d590aae4173fbab0bf28861e2d90ca7b2b1439b52688e9ff6
+"@types/linkify-it@npm:^5":
+  version: 5.0.0
+  resolution: "@types/linkify-it@npm:5.0.0"
+  checksum: 10/c3919044d4876f9d71d037e861745cd2485c95ac8c36a4fa67b132d4e60eb1d067e123cc7965c9cf5110eea351517d767f0d306af5e9147d6d0af87bc374ddcf
   languageName: node
   linkType: hard
 
-"@types/markdown-it@npm:^14.0.1":
-  version: 14.0.1
-  resolution: "@types/markdown-it@npm:14.0.1"
+"@types/markdown-it@npm:^14.1.1":
+  version: 14.1.1
+  resolution: "@types/markdown-it@npm:14.1.1"
   dependencies:
-    "@types/linkify-it": "npm:*"
-    "@types/mdurl": "npm:*"
-  checksum: 10/5bb909022ceac3dd813e6a571252e5ecbc24352bec6d0da3dd25b039c43dd181928845f9d4c69b105b5e682bb05a81c7f454efe825294b6b83db058184a5ea1c
+    "@types/linkify-it": "npm:^5"
+    "@types/mdurl": "npm:^2"
+  checksum: 10/78d6aae11cda6878b9190f9b65095b1d09de77e054148efb6876fca7b3f19505384ec9dd0ceeaf2a52455691c6a55b9baee92e14899994100121a7bebc58df14
   languageName: node
   linkType: hard
 
-"@types/mdurl@npm:*":
-  version: 1.0.5
-  resolution: "@types/mdurl@npm:1.0.5"
-  checksum: 10/e8e872e8da8f517a9c748b06cec61c947cb73fd3069e8aeb0926670ec5dfac5d30549b3d0f1634950401633e812f9b7263f2d5dbe7e98fce12bcb2c659aa4b21
+"@types/mdurl@npm:^2":
+  version: 2.0.0
+  resolution: "@types/mdurl@npm:2.0.0"
+  checksum: 10/78746e96c655ceed63db06382da466fd52c7e9dc54d60b12973dfdd110cae06b9439c4b90e17bb8d4461109184b3ea9f3e9f96b3e4bf4aa9fe18b6ac35f283c8
   languageName: node
   linkType: hard
 
@@ -342,7 +342,7 @@ __metadata:
     "@11ty/eleventy": "npm:^2.0.1"
     "@11ty/eleventy-plugin-rss": "npm:^1.2.0"
     "@11ty/eleventy-plugin-syntaxhighlight": "npm:^5.0.0"
-    "@types/markdown-it": "npm:^14.0.1"
+    "@types/markdown-it": "npm:^14.1.1"
     autoprefixer: "npm:^10.4.19"
     bootstrap-icons: "npm:^1.11.3"
     cssnano: "npm:^6.1.2"
