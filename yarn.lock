@@ -347,7 +347,7 @@ __metadata:
     bootstrap-icons: "npm:^1.11.3"
     cssnano: "npm:^6.1.2"
     markdown-it: "npm:^14.1.0"
-    markdown-it-anchor: "npm:^8.6.7"
+    markdown-it-anchor: "npm:^9.0.1"
     markdown-it-attrs: "npm:^4.1.6"
     npm-run-all: "npm:^4.1.5"
     postcss: "npm:^8.4.38"
@@ -2497,13 +2497,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"markdown-it-anchor@npm:^8.6.7":
-  version: 8.6.7
-  resolution: "markdown-it-anchor@npm:8.6.7"
+"markdown-it-anchor@npm:^9.0.1":
+  version: 9.0.1
+  resolution: "markdown-it-anchor@npm:9.0.1"
   peerDependencies:
     "@types/markdown-it": "*"
     markdown-it: "*"
-  checksum: 10/1b061e9c8fb093dab6040725f9f3cedae7da1160a14ee8f29d144534be7ee5c788f02a4de4019f55eb8514cae5f12d350baaa7d08732c26a62abc60e5e66c7f7
+  checksum: 10/eecf779066b37f75eea8e665564073aaf08fa91e7492f8d6477a55f23f6450b21b58b9b416170b20f803483c264c7d327ff5d32aca8453f7b1ab13a8874df4af
   languageName: node
   linkType: hard
 
