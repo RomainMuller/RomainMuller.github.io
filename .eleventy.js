@@ -33,12 +33,21 @@ module.exports = function (/** @type import('@11ty/eleventy').UserConfig */ elev
       }
 
       return async () => {
-        let output = await esbuild.build({
+        const define = {
+          'process.env.DD_CLIENT_TOKEN': 'undefined',
+          'process.env.DD_APPLICATION_ID': 'undefined',
+          'process.env.SITE_VERSION': 'undefined',
+        };
+        for (const [key, value] of Object.entries(process.env)) {
+          define[`process.env.${key}`] = JSON.stringify(value);
+        }
+        const output = await esbuild.build({
           target: 'es2020',
           entryPoints: [path],
           minify: true,
           bundle: true,
           write: false,
+          define,
         });
         return output.outputFiles[0].text;
       };

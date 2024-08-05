@@ -1,12 +1,12 @@
 import { datadogRum } from '@datadog/browser-rum';
 
 datadogRum.init({
-  clientToken: '{{ process.env.DD_CLIENT_TOKEN or "" }}',
-  applicationId: '{{ process.env.DD_APPLICATION_ID or "" }}',
+  clientToken: process.env.DD_CLIENT_TOKEN,
+  applicationId: process.env.DD_APPLICATION_ID,
   site: 'datadoghq.eu',
   service: 'romainmuller.dev',
-  env: '{% if eleventy.runMode == "build" %}prod{% else %}dev{% endif %}',
-  version: '{{ process.env.SITE_VERSION or "" }}',
+  env: process.env.NODE_ENV,
+  version: process.env.SITE_VERSION,
   sessionSampleRate: 100,
   sessionReplaySampleRate: 0,
   trackUserInteractions: false,
