@@ -4,6 +4,7 @@ const sync = require('node:fs');
 const path = require('node:path');
 const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
 const rss = require('@11ty/eleventy-plugin-rss');
+const esbuild = require('esbuild');
 const md = require('markdown-it');
 const mdAnchor = require('markdown-it-anchor');
 const mdAttrs = require('markdown-it-attrs');
@@ -22,6 +23,27 @@ module.exports = function (/** @type import('@11ty/eleventy').UserConfig */ elev
   eleventyConfig.addPlugin(rss);
 
   eleventyConfig.setNunjucksEnvironmentOptions({ throwOnUndefined: true });
+
+  eleventyConfig.addTemplateFormats('js');
+  eleventyConfig.addExtension('js', {
+    outputFileExtension: 'js',
+    compile: async (_content, path) => {
+      if (!path.startsWith('./js/')) {
+        return undefined;
+      }
+
+      return async () => {
+        let output = await esbuild.build({
+          target: 'es2020',
+          entryPoints: [path],
+          minify: true,
+          bundle: true,
+          write: false,
+        });
+        return output.outputFiles[0].text;
+      };
+    },
+  });
 
   const date = (date, month = 'short', ...classes) => {
     const human = Intl.DateTimeFormat(
@@ -50,7 +72,7 @@ module.exports = function (/** @type import('@11ty/eleventy').UserConfig */ elev
     // May need to wait for the file to be re-compiled...
     await upToDate(eleventyConfig, href);
 
-    const content = await fs.readFile(path.join(eleventyConfig.dir.output, href));
+    const content = await retry(fs.readFile)(path.join(eleventyConfig.dir.output, href));
     const hash = crypto.createHash('sha512')
       .update(content)
       .digest('hex');
@@ -66,7 +88,7 @@ module.exports = function (/** @type import('@11ty/eleventy').UserConfig */ elev
       .update(content)
       .digest('hex');
 
-    return `<script src="${src}?v=${hash}"></script>`
+    return `<script async src="${src}?v=${hash}"></script>`
   });
 
   eleventyConfig.addShortcode('icon', (name, width = '1.1em', height = width, ...classes) => {

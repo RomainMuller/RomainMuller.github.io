@@ -29,6 +29,7 @@ jobs:
         run: yarn build
         env:
           NODE_ENV: production
+          SITE_VERSION: ${{ github.sha }}
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
