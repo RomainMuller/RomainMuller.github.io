@@ -27,6 +27,9 @@ module.exports = function (/** @type import('@11ty/eleventy').UserConfig */ elev
   eleventyConfig.addTemplateFormats('js');
   eleventyConfig.addExtension('js', {
     outputFileExtension: 'js',
+    compileOptions: {
+      permalink: true,
+    },
     compile: async (_content, path) => {
       if (!path.startsWith('./js/')) {
         return undefined;
