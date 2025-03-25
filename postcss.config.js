@@ -1,8 +1,7 @@
 /** @type {import('postcss/lib/processor')} */
 module.exports = {
   plugins: {
-    tailwindcss: {},
-    autoprefixer: {},
+    '@tailwindcss/postcss': {},
     ...process.env.NODE_ENV === 'production' ? { cssnano: {} } : {},
   },
 };

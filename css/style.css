@@ -1,6 +1,13 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+@config '../tailwind.config.js';
+
+@utility rainbow {
+  @apply bg-linear-to-br;
+  --tw-gradient-stops:
+    theme('color.rbow-orange'), theme('color.rbow-red'), theme('color.rbow-blue'),
+    theme('color.rbow-teal');
+}
+
 
 @layer base {
   h1 {
@@ -74,12 +81,6 @@
     text-align: inherit;
     @apply p-2;
     @apply border;
-  }
-}
-@layer utilities {
-  .rainbow {
-    @apply bg-gradient-to-r;
-    --tw-gradient-stops: theme('colors.rbow-orange'), theme('colors.rbow-red'), theme('colors.rbow-blue'), theme('colors.rbow-teal');
   }
 }
 
